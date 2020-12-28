@@ -1,0 +1,44 @@
+HTTrack3.49-2+htsswf+htsjava launched on Mon, 28 Dec 2020 13:36:54 at https://nephos.cssninja.io/home.html +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "en, *" https://nephos.cssninja.io/home.html -O1 "D:\kuliah\farm-template" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+13:37:51	Error: 	"Not Found" (404) at link https://nephos.cssninja.io/wishlists.html (from https://nephos.cssninja.io/home.html)
+13:37:53	Error: 	"Not Found" (404) at link https://nephos.cssninja.io/assets/img/loading.gif (from https://nephos.cssninja.io/assets/css/app.css)
+13:37:58	Warning: 	File not parsed, looks like binary: https://nephos.cssninja.io/assets/fonts/fa-brands-400.woff2
+13:37:58	Warning: 	File not parsed, looks like binary: https://nephos.cssninja.io/assets/fonts/fa-regular-400.woff2
+13:37:58	Warning: 	File not parsed, looks like binary: https://nephos.cssninja.io/assets/fonts/fa-solid-900.woff2
+13:38:01	Error: 	"Not Found" (404) at link https://nephos.cssninja.io/orders-empty.html (from https://nephos.cssninja.io/)
+13:44:42	Error: 	"Not Found" (404) at link https://nephos.cssninja.io/assets/css/easy-autocomplete.min.css (from https://nephos.cssninja.io/assets/css/app.css.map)
+13:44:42	Error: 	"Not Found" (404) at link https://nephos.cssninja.io/assets/css/croppie.css (from https://nephos.cssninja.io/assets/css/app.css.map)
+13:44:42	Error: 	"Not Found" (404) at link https://nephos.cssninja.io/assets/css/iziToast.min.css (from https://nephos.cssninja.io/assets/css/app.css.map)
+13:44:42	Error: 	"Not Found" (404) at link https://nephos.cssninja.io/assets/css/zoom.css (from https://nephos.cssninja.io/assets/css/app.css.map)
+13:44:42	Error: 	"Not Found" (404) at link https://nephos.cssninja.io/assets/css/card.css (from https://nephos.cssninja.io/assets/css/app.css.map)
+13:44:42	Error: 	"Not Found" (404) at link https://nephos.cssninja.io/assets/css/alertify.min.css (from https://nephos.cssninja.io/assets/css/app.css.map)
+13:44:42	Error: 	"Not Found" (404) at link https://nephos.cssninja.io/assets/css/default.min.css (from https://nephos.cssninja.io/assets/css/app.css.map)
+13:44:42	Error: 	"Not Found" (404) at link https://nephos.cssninja.io/assets/css/chosen.css (from https://nephos.cssninja.io/assets/css/app.css.map)
+13:44:42	Error: 	"Not Found" (404) at link https://nephos.cssninja.io/assets/css/datepicker.css (from https://nephos.cssninja.io/assets/css/app.css.map)
+13:52:25	Error: 	"Not Found" (404) at link https://nephos.cssninja.io/assets/vendor/fonts/ (from https://nephos.cssninja.io/assets/vendor/css/font-awesome5.css)
+13:52:25	Error: 	"Not Found" (404) at link https://nephos.cssninja.io/assets/vendor/fonts/? (from https://nephos.cssninja.io/assets/vendor/css/font-awesome5.css)
+13:52:25	Error: 	"Not Found" (404) at link https://nephos.cssninja.io/assets/vendor/fonts/fa-brands-400.woff2 (from https://nephos.cssninja.io/assets/vendor/css/font-awesome5.css)
+13:52:25	Error: 	"Not Found" (404) at link https://nephos.cssninja.io/assets/vendor/fonts/fa-brands-400.woff (from https://nephos.cssninja.io/assets/vendor/css/font-awesome5.css)
+13:52:25	Error: 	"Not Found" (404) at link https://nephos.cssninja.io/assets/vendor/fonts/fa-brands-400.ttf (from https://nephos.cssninja.io/assets/vendor/css/font-awesome5.css)
+13:52:25	Error: 	"Not Found" (404) at link https://nephos.cssninja.io/assets/vendor/fonts/fa-brands-400.svg (from https://nephos.cssninja.io/assets/vendor/css/font-awesome5.css)
+13:52:25	Error: 	"Not Found" (404) at link https://nephos.cssninja.io/assets/vendor/fonts/fa-regular-400.eot (from https://nephos.cssninja.io/assets/vendor/css/font-awesome5.css)
+13:52:25	Error: 	"Not Found" (404) at link https://nephos.cssninja.io/assets/vendor/fonts/fa-regular-400.eot? (from https://nephos.cssninja.io/assets/vendor/css/font-awesome5.css)
+13:52:25	Error: 	"Not Found" (404) at link https://nephos.cssninja.io/assets/vendor/fonts/fa-regular-400.woff2 (from https://nephos.cssninja.io/assets/vendor/css/font-awesome5.css)
+13:52:25	Error: 	"Not Found" (404) at link https://nephos.cssninja.io/assets/vendor/fonts/fa-regular-400.woff (from https://nephos.cssninja.io/assets/vendor/css/font-awesome5.css)
+13:52:25	Error: 	"Not Found" (404) at link https://nephos.cssninja.io/assets/vendor/fonts/fa-regular-400.ttf (from https://nephos.cssninja.io/assets/vendor/css/font-awesome5.css)
+13:52:25	Error: 	"Not Found" (404) at link https://nephos.cssninja.io/assets/vendor/fonts/fa-regular-400.svg (from https://nephos.cssninja.io/assets/vendor/css/font-awesome5.css)
+13:52:25	Error: 	"Not Found" (404) at link https://nephos.cssninja.io/assets/vendor/fonts/fa-solid-900.eot (from https://nephos.cssninja.io/assets/vendor/css/font-awesome5.css)
+13:52:25	Error: 	"Not Found" (404) at link https://nephos.cssninja.io/assets/vendor/fonts/fa-solid-900.eot? (from https://nephos.cssninja.io/assets/vendor/css/font-awesome5.css)
+13:52:25	Error: 	"Not Found" (404) at link https://nephos.cssninja.io/assets/vendor/fonts/fa-solid-900.woff2 (from https://nephos.cssninja.io/assets/vendor/css/font-awesome5.css)
+13:52:25	Error: 	"Not Found" (404) at link https://nephos.cssninja.io/assets/vendor/fonts/fa-solid-900.woff (from https://nephos.cssninja.io/assets/vendor/css/font-awesome5.css)
+13:52:25	Error: 	"Not Found" (404) at link https://nephos.cssninja.io/assets/vendor/fonts/fa-solid-900.ttf (from https://nephos.cssninja.io/assets/vendor/css/font-awesome5.css)
+13:52:25	Error: 	"Not Found" (404) at link https://nephos.cssninja.io/assets/vendor/fonts/fa-solid-900.svg (from https://nephos.cssninja.io/assets/vendor/css/font-awesome5.css)
+
+HTTrack Website Copier/3.49-2 mirror complete in 15 minutes 58 seconds : 524 links scanned, 493 files written (28542692 bytes overall) [24268396 bytes received at 25332 bytes/sec], 5291819 bytes transferred using HTTP compression in 266 files, ratio 16%, 3.5 requests per connection
+(30 errors, 3 warnings, 0 messages)
