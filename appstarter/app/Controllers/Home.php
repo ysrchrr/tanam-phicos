@@ -4,9 +4,13 @@ class Home extends BaseController
 {
 	public function index()
 	{
-		return view('welcome_message');
+		return view('index');
 	}
 
+	public function test() 
+	{
+		return view('index-e-commerce');
+	}
 	//--------------------------------------------------------------------
 
 }
