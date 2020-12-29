@@ -1,10 +1,9 @@
-# Sistem *E-Commerce* tanam-phicos
+# Sistem _E-Commerce_ tanam-phicos
 
 ![version](https://img.shields.io/badge/version-1.0.0-blue.svg)
 
 ## Contributors
-<ol>
-    <li>Daffa : https://github.com/niredocz</li>
-    <li>Roy : https://github.com/royaldoy</li>
-    <li>Yasir : https://github.com/ysrchrr</li>
-</ol>
+
+- Daffa : [niredocz](https://github.com/niredocz)
+- Roy : [royaldoy](https://github.com/royaldoy)
+- Yasir : [ysrchrr](https://github.com/ysrchrr)
