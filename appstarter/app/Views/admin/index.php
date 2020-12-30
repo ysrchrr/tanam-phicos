@@ -6,11 +6,11 @@
         <title>Enlink - Admin Dashboard Template</title>
 
         <!-- Favicon -->
-        <link rel="shortcut icon" href="assets/images/logo/favicon.png">
+        <link rel="shortcut icon" href="<?= base_url()?>/back-assets/images/logo/favicon.png">
         <!-- page css -->
-        <link href="assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet">
+        <link href="<?= base_url()?>/back-assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet">
         <!-- Core css -->
-        <link href="assets/css/app.min.css" rel="stylesheet">
+        <link href="<?= base_url()?>/back-assets/css/app.min.css" rel="stylesheet">
     </head>
 
     <body>
@@ -20,14 +20,14 @@
                 <div class="header">
                     <div class="logo logo-dark">
                         <a href="index.html">
-                            <img src="assets/images/logo/logo.png" alt="Logo">
-                            <img class="logo-fold" src="assets/images/logo/logo-fold.png" alt="Logo">
+                            <img src="<?= base_url()?>/back-assets/images/logo/logo.png" alt="Logo">
+                            <img class="logo-fold" src="<?= base_url()?>/back-assets/images/logo/logo-fold.png" alt="Logo">
                         </a>
                     </div>
                     <div class="logo logo-white">
                         <a href="index.html">
-                            <img src="assets/images/logo/logo-white.png" alt="Logo">
-                            <img class="logo-fold" src="assets/images/logo/logo-fold-white.png" alt="Logo">
+                            <img src="<?= base_url()?>/back-assets/images/logo/logo-white.png" alt="Logo">
+                            <img class="logo-fold" src="<?= base_url()?>/back-assets/images/logo/logo-fold-white.png" alt="Logo">
                         </a>
                     </div>
                     <div class="nav-wrap">
@@ -116,14 +116,14 @@
                             <li class="dropdown dropdown-animated scale-left">
                                 <div class="pointer" data-toggle="dropdown">
                                     <div class="avatar avatar-image  m-h-10 m-r-15">
-                                        <img src="assets/images/avatars/thumb-3.jpg"  alt="">
+                                        <img src="<?= base_url()?>/back-assets/images/avatars/thumb-3.jpg"  alt="">
                                     </div>
                                 </div>
                                 <div class="p-b-15 p-t-20 dropdown-menu pop-profile">
                                     <div class="p-h-20 p-b-15 m-b-10 border-bottom">
                                         <div class="d-flex m-r-50">
                                             <div class="avatar avatar-lg avatar-image">
-                                                <img src="assets/images/avatars/thumb-3.jpg" alt="">
+                                                <img src="<?= base_url()?>/back-assets/images/avatars/thumb-3.jpg" alt="">
                                             </div>
                                             <div class="m-l-10">
                                                 <p class="m-b-0 text-dark font-weight-semibold">Marshall Nichols</p>
@@ -601,7 +601,7 @@
                                     <h5 class="m-b-20">Members</h5>
                                     <div class="d-flex m-b-30">
                                         <div class="avatar avatar-image">
-                                            <img src="assets/images/avatars/thumb-1.jpg" alt="">
+                                            <img src="<?= base_url()?>/back-assets/images/avatars/thumb-1.jpg" alt="">
                                         </div>
                                         <div class="m-l-15">
                                             <a href="javascript:void(0);" class="text-dark m-b-0 font-weight-semibold">Erin Gonzales</a>
@@ -709,11 +709,11 @@
         </div>
 
         <!-- Core Vendors JS -->
-        <script src="assets/js/vendors.min.js"></script>
+        <script src="<?= base_url()?>/back-assets/js/vendors.min.js"></script>
         <!-- page js -->
-        <script src="assets/vendors/chartjs/Chart.min.js"></script>
-        <script src="assets/js/pages/dashboard-e-commerce.js"></script>
+        <script src="<?= base_url()?>/back-assets/vendors/chartjs/Chart.min.js"></script>
+        <script src="<?= base_url()?>/back-assets/js/pages/dashboard-e-commerce.js"></script>
         <!-- Core JS -->
-        <script src="assets/js/app.min.js"></script>
+        <script src="<?= base_url()?>/back-assets/js/app.min.js"></script>
 </body>
 </html>

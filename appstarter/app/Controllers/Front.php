@@ -1,15 +1,15 @@
 <?php namespace App\Controllers;
 
-class Home extends BaseController
+class Front extends BaseController
 {
 	public function index()
 	{
-		return view('index');
+		return view('front/index');
 	}
 
 	public function test() 
 	{
-		return view('index-e-commerce');
+		return view('referensi/front-e-commerce');
 	}
 	//--------------------------------------------------------------------
 
