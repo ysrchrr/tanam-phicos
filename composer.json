@@ -1,0 +1,5 @@
+{
+    "require": {
+        "tatter/chat": "^1.0"
+    }
+}
