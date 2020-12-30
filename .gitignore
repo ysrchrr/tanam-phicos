@@ -125,5 +125,3 @@ nb-configuration.xml
 /phpunit*.xml
 /.phpunit.*.cache
 
-#garden template reference
-thegardenstore.sg/
