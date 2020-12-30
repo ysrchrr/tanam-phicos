@@ -169,12 +169,12 @@
 				    </select>
 				</div>
 		</div>
-		
+		<!-- https://www.thegardenstore.sg/image/cache/catalog/products/Plant/Crotalaria%20retusa-460x460.jpg -->
 		<div class="col-md-9">
 			<div class="row">
 				<div class="col-md-4">
 					<div class="product">
-						<a href="product.html"><img alt="dress1home" src="<?= base_url()?>/front-assets/img/plant/Adenium -250x300.png"></a>
+						<a href="product.html"><img alt="dress1home" src="<?= base_url()?>/front-assets/img/Plant/Adenium -250x300.png"></a>
 						<div class="name">
 						<a href="#">Adenium</a>
 						</div>
@@ -186,7 +186,7 @@
 				<div class="col-md-4">
 					<div class="product">
 						<div class="product_sale">-30%</div>
-						<a href="product.html"><img alt="dres2" src="<?= base_url()?>/front-assets/img/plant/Begonia-Tiger-TGS-254x300.png"></a>
+						<a href="product.html"><img alt="dres2" src="<?= base_url()?>/front-assets/img/Plant/Begonia-Tiger-TGS-254x300.png"></a>
 						<div class="name">
 						<a href="#">Begonia Tiger</a>
 						</div>
@@ -198,7 +198,7 @@
 				<div class="col-md-4">
 					<div class="product">
 						<div class="product_sale">Sale</div>
-						<a href="product.html"><img alt="dress3" src="<?= base_url()?>/front-assets/img/plant/Asplenium-nidus-TGS-250x300.png"></a>
+						<a href="product.html"><img alt="dress3" src="<?= base_url()?>/front-assets/img/Plant/Asplenium-nidus-TGS-250x300.png"></a>
 						<div class="name">
 							<a href="#">Asplenium Nidus</a>
 						</div>
