@@ -1,25 +1,23 @@
 <!doctype html>
 <html>
-
-<!-- Mirrored from www.nicolethemes.com/sapphire-html/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 29 Dec 2020 08:07:44 GMT -->
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="<?= base_url()?>/front-assets/img/logo.png">
     <link rel="stylesheet" type="text/css" href="<?= base_url();?>/front-assets/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="<?= base_url();?>/front-assets/css/bootstrap-select.css">
-	<link href='http://fonts.googleapis.com/css?family=Montserrat:200,300,400,600,700' rel='stylesheet' type='text/css'/>
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:200,300,400,600,700' rel='stylesheet' type='text/css'/>
 	<link rel='stylesheet' type='text/css' href='<?= base_url();?>/front-assets/css/font-awesome.min.css'/>
     <link rel="stylesheet" type="text/css" href="<?= base_url();?>/front-assets/css/camera.css">
     <link rel="stylesheet" type="text/css" href="<?= base_url();?>/front-assets/css/style.css">
-    <!--script type="text/javascript" src="https://getfirebug.com/firebug-lite-debug.js"></script-->	
-	<title>Sapphire</title>
+	<link href='http://fonts.googleapis.com/css?family=Montserrat:200,300,400,600,700' rel='stylesheet' type='text/css'/>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:200,300,400,600,700' rel='stylesheet' type='text/css'/>
+	<title><?= $title; ?></title>
 </head>
 <body>
 <div class="page-container">
+<!-- Start Header -->
     <div class="header">
 			<nav class="navbar container">
-		
 			  <div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 				  <span class="sr-only">Toggle navigation</span>
@@ -27,12 +25,10 @@
 				  <span class="icon-bar"></span>
 				  <span class="icon-bar"></span>
 				</button>
-					<a href="index.html" class="navbar-brand">
+				<a href="index.html" class="navbar-brand">
 					<img src="<?= base_url()?>/front-assets/img/logo.png" alt="Sapphire">Sapphire
 				</a>
 			  </div>
-  
-                 
                  <div class="navbar-collapse collapse navbar-right">
 					<ul class="nav navbar-nav">
                       <li class="active"><a href="index.html">Home</a></li>
@@ -60,17 +56,6 @@
 							 </li>
                         </ul>
                       </li>
-					<li class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">Other pages <b class="caret"></b></a>
-                        <ul class="dropdown-menu multi-2-columns">
-							  <li><a href="index_center.html" class="ajax_right">Homepage center logo</a></li>
-							  <li><a href="about.html" class="ajax_right">About</a></li>
-							  <li><a href="account.html" class="ajax_right">Account</a></li>
-							  <li><a href="forgot-password.html" class="ajax_right">Forgot password</a></li>
-							  <li><a href="site-map.html" class="ajax_right">Sitemap</a></li>
-							  <li><a href="404.html" class="ajax_right">404 Not found</a></li>
-                        </ul>
-                      </li>   
                       <li><a href="blog.html">Blog</a></li>
                       <li><a href="contact.html" class="ajax_right">Contact</a></li>
                     </ul>
@@ -117,86 +102,61 @@
 					</div> 
 			      </li>
 			     </ul>
-					 
-                    <form action="http://www.nicolethemes.com/" class="navbar-form navbar-search navbar-right" role="search">
-		      <div class="input-group"> 
-                        <input type="text" name="search" placeholder="Search" class="search-query col-md-2"><button type="submit" class="btn btn-default icon-search"></button> 
-                      </div>
+
+                    <form action="" class="navbar-form navbar-search navbar-right" role="search">
+		      			<div class="input-group"> 
+							<input type="text" name="search" placeholder="Search" class="search-query col-md-2"><button type="submit" class="btn btn-default icon-search"></button> 
+						</div>
                     </form>
-					 
-                  </div><!-- /.navbar-collapse -->
+                  </div>
 			</nav>		
-		</div>
-		
+	</div>
+<!-- End Header -->
+
+<!-- Start Main Content -->
 	<div class="container">
 		<div class="row">
 		    <div class="col-md-12 slideshow">
 				<div id="slideshow0">
 					<div class="camera_wrap camera_emboss camera_white_skin">
 						<img src="<?= base_url()?>/front-assets/image/sub.jpg" alt="Banner 1" />
-						<div data-thumb="<?= base_url()?>/front-assets/image/sub.jpg" data-src="<?= base_url()?>/front-assets/image/sub.jpg" data-link="product.html">
+						<div data-thumb="<?= base_url()?>/front-assets/img/slideshow/buy-plants-succlents.jpg" data-src="<?= base_url()?>/front-assets/img/slideshow/slide01.jpg" >
 						</div>
-						<div data-thumb="<?= base_url()?>/front-assets/image/sub1.jpg" data-src="<?= base_url()?>/front-assets/image/sub.jpg" >
+						<div data-thumb="<?= base_url()?>/front-assets/img/slideshow/slide02.jpg" data-src="<?= base_url()?>/front-assets/img/slideshow/slide02.jpg" >
 						</div>
-						<div data-thumb="<?= base_url()?>/front-assets/image/sub2.jpg" data-src="<?= base_url()?>/front-assets/image/sub2.jpg" >
+						<div data-thumb="<?= base_url()?>/front-assets/img/slideshow/slide03.png" data-src="<?= base_url()?>/front-assets/img/slideshow/slide03.png" data-link="#">
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		
-		<!--
-		<div class="row banners">
-		    <div class="col-md-4">
-			    <div class="banner">
-					<h2>Free delivery</h2>
-				</div>
-			</div>
-
-		    <div class="col-md-4">
-			    <div class="banner">
-				</div>
-			</div>
-
-
-		    <div class="col-md-4">
-			    <div class="banner">
-				</div>
-			</div>
-		</div>
-		-->
-		
-				
 		<div class="row">
 		    <div class="col-md-3 left-menu">
-				<div class="">
-					<h3>Sofas</h3>
+				<div class="sidebar">
+					<h3>Tanaman Hias</h3>
 					<ul>
-						<li class="active"><a href="category.html">trendy</a></li>
-						<li><a href="category.html">elegant</a></li>
-						<li><a href="category.html">expensive</a></li>
-						<li><a href="category.html">elegant</a></li>
-						<li><a href="category.html">expensive</a></li>
+						<li class="active"><a href="category.html">Bunga</a></li>
+						<li><a href="category.html">Tanaman Outdoor</a></li>
+						<li><a href="category.html">Tanaman Herbal</a></li>
+						<li><a href="category.html">Kaktus Hias</a></li>
 					</ul>
-
-					<h3>Couches</h3>
+					<h3>Pohon</h3>
 					<ul>
-						<li><a href="category.html">trendy</a></li>
-						<li><a href="category.html">elegant</a></li>
-						<li><a href="category.html">expensive</a></li>
-						<li><a href="category.html">elegant</a></li>
+						<li><a href="category.html">Pohon Hias</a></li>
+						<li><a href="category.html">Pohon Indoor</a></li>
+						<li><a href="category.html">Pohon Outdoor</a></li>
 					</ul>
-
-					<h3>Tables</h3>
+					<h3>Bibit</h3>
 					<ul>
-						<li><a href="category.html">expensive</a></li>
-						<li><a href="category.html">elegant</a></li>
-						<li><a href="category.html">expensive</a></li>
+						<li><a href="category.html">Bunga</a></li>
+						<li><a href="category.html">Buah - buahan</a></li>
+						<li><a href="category.html">Herbal</a></li>
+						<li><a href="category.html">Pohon</a></li>
+						<li><a href="category.html">Bibit Premium</a></li>
 					</ul>
 				</div>
-
-
 				<div class="options">
+					<h3>Pilih salah satu</h3>
 				    <select class="selectpicker" data-width="150px">
 					    <option>EN</option>
 					    <option>IT</option>
@@ -208,195 +168,67 @@
 					    <option>US Dollars</option>
 				    </select>
 				</div>
-			</div>
+		</div>
 		
 		<div class="col-md-9">
-		
-		<div class="row">
-		    <div class="col-md-4">
-			    <div class="product">
-				    <a href="product.html"><img alt="dress1home" src="<?= base_url()?>/front-assets/products/dress1home.jpg"></a>
-					<div class="name">
-				    <a href="#">Elegant Dress</a>
-				    </div>
-				    <div class="price">
-				    <p>$200.00</p>
-				    </div>
-				</div>
-			</div>
-		    <div class="col-md-4">
-			    <div class="product">
-				    <a href="product.html"><img alt="dres2" src="<?= base_url()?>/front-assets/products/dress5home.jpg"></a>
-				    <div class="name">
-				    <a href="#">Lace Dress</a>
-				    </div>
-				    <div class="price">
-				    <p>$250.00</p>
-				    </div>	
-
-				</div>	
-			
-			</div>			
-		    <div class="col-md-4">
-			    <div class="product">
-				    <a href="product.html"><img alt="dress3" src="<?= base_url()?>/front-assets/products/dress6home.jpg"></a>
-					<div class="name">
-				    <a href="#">Floral Dress</a>
-				    </div>
-				    <div class="price">
-				    <p>$500.00</p>
-				    </div>
-				</div>	
-			</div>		
-			
-			<!--
-		    <div class="col-md-4">
-			    <div class="product">
-				    <a href="product.html"><img alt="dress4" src="products/dress2home.jpg"></a>
-				    <div class="name">
-				    <a href="">Black Dress</a>
-				    </div>
-				    <div class="price">
-				    <p>$150.00</p>
-				    </div>
-
-				</div>	
-			</div>	-->	
-		
-		</div>
-	
-
-		<div class="row">
-		    <div class="col-md-4">
-			    <div class="product">
-				    <a href="product.html"><img alt="dress5" src="<?= base_url()?>/front-assets/products/dress3home.jpg"></a>
-				    <div class="name">
-				    <a href="#">Midi Dress</a>
-				    </div>
-				    <div class="price">
-				    <p>$50.00</p>
-				    </div>	
-				</div>
-			
-			</div>
-		    <div class="col-md-4">
-			    <div class="product">
-				    <a href="product.html"><img alt="dress6" src="<?= base_url()?>/front-assets/products/dress4home.jpg"></a>
-				    <div class="name">
-				    <a href="#">White Dress</a>
-				    </div>
-				    <div class="price">
-				    <p>$120.00</p>
-				    </div>	
-
-				</div>			
-			</div>			
-		    <div class="col-md-4">
-			    <div class="product">
-				    <div class="product_sale">-30%</div>
-				    <a href="product.html"><img alt="dress7" src="<?= base_url()?>/front-assets/products/dress7home.jpg"></a>
-				    <div class="name">
-				    <a href="#">Red Dress</a>
-				    </div>
-				    <div class="price">
-				    <p>$20.00</p>
-				    </div>
-
-				</div>			
-			</div>		
-			
-			<!--
-		    <div class="col-md-4">
-			    <div class="product">
-				    <a href="product.html"><img alt="dress8" src="products/dress8home.jpg"></a>
-				    <div class="name">
-				    <a href="">Evening Dress</a>
-				    </div>
-				    <div class="price">
-				    <p>$670.00</p>
-				    </div>	
-				</div>				
-			</div>		
-		-->
-		</div>
-		
-		
-			
-		<div class="row">
-		    <div class="col-md-4">
-			    <div class="product">
-					<div class="product_sale">Sale</div>
-				    <a href="product.html"><img alt="dress1home" src="<?= base_url()?>/front-assets/products/dress1home.jpg"></a>
-					<div class="name">
-				    <a href="#">Elegant Dress</a>
-				    </div>
-				    <div class="price">
-				    <p>$200.00</p>
-				    </div>
-				</div>
-			</div>
-		    <div class="col-md-4">
-			    <div class="product">
-				    <a href="product.html"><img alt="dres2" src="<?= base_url()?>/front-assets/products/dress5home.jpg"></a>
-				    <div class="name">
-				    <a href="#">Lace Dress</a>
-				    </div>
-				    <div class="price">
-				    <p>$250.00</p>
-				    </div>	
-
-				</div>	
-			
-			</div>			
-		    <div class="col-md-4">
-			    <div class="product">
-				    <a href="product.html"><img alt="dress3" src="<?= base_url()?>/front-assets/products/dress6home.jpg"></a>
-					<div class="name">
-				    <a href="#">Floral Dress</a>
-				    </div>
-				    <div class="price">
-				    <p>$500.00</p>
-				    </div>
-				</div>	
-			</div>		
-			
-			<!--
-		    <div class="col-md-4">
-			    <div class="product">
-				    <a href="product.html"><img alt="dress4" src="products/dress2home.jpg"></a>
-				    <div class="name">
-				    <a href="">Black Dress</a>
-				    </div>
-				    <div class="price">
-				    <p>$150.00</p>
-				    </div>
-
-				</div>	
-			</div>	-->	
-		
-		</div>
-
 			<div class="row">
-			<div class="col-md-12">
-				
-				<div class="newsletter clearfix">
-						<h3>Newsletter</h3>
-						<div>
-						<input type="text" name="email" class="email">
-						<input type="submit" value="Subscribe" class="btn btn-primary">
+				<div class="col-md-4">
+					<div class="product">
+						<a href="product.html"><img alt="dress1home" src="<?= base_url()?>/front-assets/img/plant/Adenium -250x300.png"></a>
+						<div class="name">
+						<a href="#">Adenium</a>
 						</div>
+						<div class="price">
+						<p>$200.00</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="product">
+						<div class="product_sale">-30%</div>
+						<a href="product.html"><img alt="dres2" src="<?= base_url()?>/front-assets/img/plant/Begonia-Tiger-TGS-254x300.png"></a>
+						<div class="name">
+						<a href="#">Begonia Tiger</a>
+						</div>
+						<div class="price">
+						<p>$250.00</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="product">
+						<div class="product_sale">Sale</div>
+						<a href="product.html"><img alt="dress3" src="<?= base_url()?>/front-assets/img/plant/Asplenium-nidus-TGS-250x300.png"></a>
+						<div class="name">
+							<a href="#">Asplenium Nidus</a>
+						</div>
+						<div class="price">
+							<p>$500.00</p>
+						</div>
+					</div>	
 				</div>
 			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="newsletter clearfix">
+							<h3>Newsletter</h3>
+							<div>
+								<input type="text" name="email" class="email">
+								<input type="submit" value="Subscribe" class="btn btn-primary">
+							</div>
+					</div>
+				</div>
 			</div>
-	   </div>
+		</div>
 	 </div>	
-	</div>		
-	
-	
+	</div>
+<!-- End Main Content -->
 
+
+<!-- Start Footer -->
 	<div class="footer black">
 		<div class="container">
-			<!-- div class="arrow"><b class="caret"></b></div -->
+			<!-- <div class="arrow"><a href="#" class="caret">To Top</a></div> -->
 		    <div class="row">
 		        <div class="col-md-3">
 					<div>
@@ -419,20 +251,16 @@
 							<li><a href="#">Shipping</a></li>
 				        </ul>	
 					  </div>
-				</div>	
-
-		        <!-- div class="col-md-3 twitter">
+				</div>
+		        <!-- <div class="col-md-3 twitter">
 					<div class="row">
 						<h3>Follow us</h3>
 						<script type="text/javascript" src="js/twitterFetcher_v9_min.js"></script>
-						<ul id="twitter_update_list"><li class="col-md-2">Twitter feed loading</li></ul>			
+						<ul id="twitter_update_list"><li class="col-md-2">Twitter feed loading</li></ul>
 						<script>twitterFetcher.fetch('256524641194098690', 'twitter_update_list', 2, true, true, false);</script> 
 					</div>				
-				</div-->	
-				<div class="col-md-3">
-				</div>
-
-				
+				</div> -->
+				<div class="col-md-3"></div>
 				<div class="col-md-3 social">
 					<div class="copy">Copyright &copy; nicole_89</div>
 					<ul class="social-network">
@@ -443,10 +271,10 @@
 						<li><a href="#"><i class="fa fa-twitter"></i></a></li>	
 					</ul>
 				</div>
-
 		    </div>	
+		</div>
 	</div>
-	</div>	
+<!-- End Footer -->
 </div>
 
 <!-- script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
