@@ -209,6 +209,24 @@
 				</div>
 			</div>
 			<div class="row">
+				<?php foreach($product as $row):?>
+				<div class="col-md-4">
+					<div class="product">
+						<a href="#">
+						<img src="<?= $row->link_gambar;?>" alt="<?= $row->nama_barang;?>">
+						</a>
+						<div class="name">
+							<a href="#"><?= $row->nama_barang;?> (<?= $row->nama_lain;?>)</a>
+						</div>
+						<div class="price">
+							<p>Rp. <?= $row->harga_barang;?></p>
+							<p>Stock : <?= $row->stok_barang;?></p>
+						</div>
+					</div>
+				</div>
+				<?php endforeach;?>
+			</div>
+			<div class="row">
 				<div class="col-md-12">
 					<div class="newsletter clearfix">
 							<h3>Newsletter</h3>
