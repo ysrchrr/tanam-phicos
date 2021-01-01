@@ -1,7 +1,7 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : phpMyAdmin
+ Source Server         : Roger Connection
  Source Server Type    : MySQL
  Source Server Version : 100316
  Source Host           : localhost:3306
@@ -11,7 +11,7 @@
  Target Server Version : 100316
  File Encoding         : 65001
 
- Date: 30/12/2020 15:11:50
+ Date: 01/01/2021 14:40:38
 */
 
 SET NAMES utf8mb4;
@@ -47,7 +47,7 @@ COMMIT;
 DROP TABLE IF EXISTS `gambar`;
 CREATE TABLE `gambar`  (
   `id_barang` int NOT NULL,
-  `gambar` longtext CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL
+  `link_gambar` longtext CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL
 ) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci;
 
 -- ----------------------------
