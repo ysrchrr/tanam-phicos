@@ -31,7 +31,7 @@
 			  </div>
                  <div class="navbar-collapse collapse navbar-right">
 					<ul class="nav navbar-nav">
-                      <li class="active"><a href="<?= base_url('/front') ?>">Home</a></li>
+                      <li class="active"><a href="<?= base_url('/front')?>">Home</a></li>
                       <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">Pages <b class="caret"></b></a>
                         <ul class="dropdown-menu">
@@ -56,7 +56,7 @@
 							 </li>
                         </ul>
                       </li>
-                      <li><a href="blog.html">Blog</a></li>
+                      <li><a href="<?= base_url('/front/product/') ?>">Our Products</a></li>
                       <li><a href="contact.html" class="ajax_right">Contact</a></li>
                     </ul>
 
@@ -168,76 +168,76 @@
 					    <option>US Dollars</option>
 				    </select>
 				</div>
-		</div>
-		<div class="col-md-9">
-			<div class="row">
-				<div class="col-md-4">
-					<div class="product">
-						<a href="product.html"><img alt="dress1home" src="<?= base_url()?>/front-assets/img/Plant/Adenium -250x300.png"></a>
-						<div class="name">
-						<a href="#">Adenium</a>
-						</div>
-						<div class="price">
-						<p>$200.00</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="product">
-						<div class="product_sale">-30%</div>
-						<a href="product.html"><img alt="dres2" src="<?= base_url()?>/front-assets/img/Plant/Begonia-Tiger-TGS-254x300.png"></a>
-						<div class="name">
-						<a href="#">Begonia Tiger</a>
-						</div>
-						<div class="price">
-						<p>$250.00</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="product">
-						<div class="product_sale">Sale</div>
-						<a href="product.html"><img alt="dress3" src="<?= base_url()?>/front-assets/img/Plant/Asplenium-nidus-TGS-250x300.png"></a>
-						<div class="name">
-							<a href="#">Asplenium Nidus</a>
-						</div>
-						<div class="price">
-							<p>$500.00</p>
-						</div>
-					</div>	
-				</div>
 			</div>
-			<div class="row">
-				<?php foreach($product as $row):?>
-				<div class="col-md-4">
-					<div class="product">
-						<a href="#">
-						<img src="<?= $row->link_gambar;?>" alt="<?= $row->nama_barang;?>">
-						</a>
-						<div class="name">
-							<a href="#"><?= $row->nama_barang;?> (<?= $row->nama_lain;?>)</a>
-						</div>
-						<div class="price">
-							<p>Rp. <?= $row->harga_barang;?></p>
-							<p>Stock : <?= $row->stok_barang;?></p>
-						</div>
-					</div>
-				</div>
-				<?php endforeach;?>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<div class="newsletter clearfix">
-							<h3>Newsletter</h3>
-							<div>
-								<input type="text" name="email" class="email">
-								<input type="submit" value="Subscribe" class="btn btn-primary">
+			<div class="col-md-9">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="product">
+							<a href="product.html"><img alt="dress1home" src="<?= base_url()?>/front-assets/img/Plant/Adenium -250x300.png"></a>
+							<div class="name">
+							<a href="#">Adenium</a>
 							</div>
+							<div class="price">
+							<p>$200.00</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="product">
+							<div class="product_sale">-30%</div>
+							<a href="product.html"><img alt="dres2" src="<?= base_url()?>/front-assets/img/Plant/Begonia-Tiger-TGS-254x300.png"></a>
+							<div class="name">
+							<a href="#">Begonia Tiger</a>
+							</div>
+							<div class="price">
+							<p>$250.00</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="product">
+							<div class="product_sale">Sale</div>
+							<a href="product.html"><img alt="dress3" src="<?= base_url()?>/front-assets/img/Plant/Asplenium-nidus-TGS-250x300.png"></a>
+							<div class="name">
+								<a href="#">Asplenium Nidus</a>
+							</div>
+							<div class="price">
+								<p>$500.00</p>
+							</div>
+						</div>	
+					</div>
+				</div>
+				<div class="row">
+					<?php foreach($product as $row):?>
+					<div class="col-md-4">
+						<div class="product">
+							<a href="#">
+							<img src="<?= $row->link_gambar;?>" alt="<?= $row->nama_barang;?>">
+							</a>
+							<div class="name">
+								<a href="#"><?= $row->nama_barang;?> (<?= $row->nama_lain;?>)</a>
+							</div>
+							<div class="price">
+								<p>Rp. <?= $row->harga_barang;?></p>
+								<p>Stock : <?= $row->stok_barang;?></p>
+							</div>
+						</div>
+					</div>
+					<?php endforeach;?>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="newsletter clearfix">
+								<h3>Newsletter</h3>
+								<div>
+									<input type="text" name="email" class="email">
+									<input type="submit" value="Subscribe" class="btn btn-primary">
+								</div>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	 </div>	
+	 	</div>	
 	</div>
 <!-- End Main Content -->
 
