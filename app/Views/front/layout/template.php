@@ -107,7 +107,7 @@
 
 					<form action="" class="navbar-form navbar-search navbar-right" role="search">
 						<div class="input-group">
-							<input type="text" name="search" placeholder="Search" class="search-query col-md-2"><button type="submit" class="btn btn-default icon-search"></button>
+							<input type="text" name="search" class="caridata" placeholder="Search" class="search-query col-md-2"><button type="submit" class="btn btn-default icon-search"></button>
 						</div>
 					</form>
 				</div>
