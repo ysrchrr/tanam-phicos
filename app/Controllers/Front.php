@@ -44,7 +44,28 @@ class Front extends BaseController
 		echo view('front/index', $data);
 	}
 
-	public function test()
+	public function all_products() {
+		$data = array(
+			'title' => 'All Products',
+			'name' => 'Bunga',
+			'category' => 'Bunga'
+		);
+		echo view('front/pages/all_products', $data);
+	}
+
+	public function show_product() {
+		$model = new Product_view();
+		$data = array(
+			'title' => 'Begonia Flower',
+			'name' => 'Chili 辣椒',
+			'other_name' => 'Capsicum annuum',
+			'category' => 'Herbal',
+			'product' => $model->get_product_detail()->getResult()
+		);
+		echo view('front/pages/product', $data);
+	}
+
+	public function test() 
 	{
 		return view('referensi/front-e-commerce');
 	}

@@ -17,4 +17,11 @@ class Product_view extends Model
         }
         return $this->query($query);
     }
+    public function get_product_detail() {
+        $data = $this->db->table('barang');
+        $data->select('barang.*, gambar.link_gambar');
+        $data->join('gambar', 'gambar.id_barang = barang.id_barang', 'left');
+        // $data->where('barang.id_barang = ' $id);
+        return $data->get();
+    }
 }
