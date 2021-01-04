@@ -34,7 +34,7 @@ class Front extends BaseController
 		$model = new Product_view();
 		$data = array(
 			'title' => 'Front - Sapphire',
-			'product'  => $model->get_product_list()->getResult(),
+			'product'  => $model->get_product_list("")->getResult(),
 			'sub_kategori1' => $this->product_view->query('Select * from sub_kategori'),
 
 		);
@@ -49,21 +49,16 @@ class Front extends BaseController
 		return view('referensi/front-e-commerce');
 	}
 
-	public function tampilkategori()
+	public function tampilkategori($kategori = "")
 	{
-		$a = '<div class="row">
-			<div class="col-md-12">
-				<ul class="pagination pull-right">
-				  <li><a href="#">&laquo;</a></li>
-				  <li class="active"><a href="#">1</a></li>
-				  <li><a href="#">2</a></li>
-				  <li><a href="#">3</a></li>
-				  <li><a href="#">4</a></li>
-				  <li><a href="#">5</a></li>
-				  <li><a href="#">&raquo;</a></li>
-				</ul>
-			</div>
-		</div>';
+
+		$data = array(
+			'title' => 'Kategori - Sapphire',
+			'product'  => $this->product_view->get_product_list($kategori)->getResult(),
+			'sub_kategori1' => $this->product_view->query('Select * from sub_kategori'),
+
+		);
+		return  view('front/index', $data);
 	}
 
 	public function tampildata()

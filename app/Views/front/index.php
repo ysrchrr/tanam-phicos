@@ -45,173 +45,137 @@
 		</div>
 		<div class="col-md-9">
 			<div class="row">
-				<div class="col-md-4">
-					<div class="product">
-						<a href="product.html"><img alt="dress1home" src="<?= base_url() ?>/front-assets/img/Plant/Adenium -250x300.png"></a>
-						<div class="name">
-							<a href="#">Adenium</a>
-						</div>
-						<div class="price">
-							<p>$200.00</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="product">
-						<div class="product_sale">-30%</div>
-						<a href="product.html"><img alt="dres2" src="<?= base_url() ?>/front-assets/img/Plant/Begonia-Tiger-TGS-254x300.png"></a>
-						<div class="name">
-							<a href="#">Begonia Tiger</a>
-						</div>
-						<div class="price">
-							<p>$250.00</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="product">
-						<div class="product_sale">Sale</div>
-						<a href="product.html"><img alt="dress3" src="<?= base_url() ?>/front-assets/img/Plant/Asplenium-nidus-TGS-250x300.png"></a>
-						<div class="name">
-							<a href="#">Asplenium Nidus</a>
-						</div>
-						<div class="price">
-							<p>$500.00</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="tampil_tanaman">
-				<?php foreach ($product as $row) : ?>
-					<div class="col-md-4">
-						<div class="product">
-							<a href="#">
-								<img src="<?= $row->link_gambar; ?>" alt="<?= $row->nama_barang; ?>">
-							</a>
-							<div class="name">
-								<a href="#"><?= $row->nama_barang; ?> (<?= $row->nama_lain; ?>)</a>
-							</div>
-							<div class="price">
-								<p>Rp. <?= $row->harga_barang; ?></p>
-								<p>Stock : <?= $row->stok_barang; ?></p>
+				<div class="tampil_tanaman">
+					<?php foreach ($product as $row) : ?>
+						<div class="col-md-4">
+							<div class="product">
+								<a href="#">
+									<img src="<?= $row->link_gambar; ?>" alt="<?= $row->nama_barang; ?>">
+								</a>
+								<div class="name">
+									<a href="#"><?= $row->nama_barang; ?> (<?= $row->nama_lain; ?>)</a>
+								</div>
+								<div class="price">
+									<p>Rp. <?= $row->harga_barang; ?></p>
+									<p>Stock : <?= $row->stok_barang; ?></p>
+								</div>
 							</div>
 						</div>
-					</div>
-				<?php endforeach; ?>
-			</div>
-			<div class="tampil_halaman">
+					<?php endforeach; ?>
+				</div>
+				<div class="tampil_halaman">
 
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<div class="newsletter clearfix">
-						<h3>Newsletter</h3>
-						<div>
-							<input type="text" name="email" class="email">
-							<input type="submit" value="Subscribe" class="btn btn-primary">
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="newsletter clearfix">
+							<h3>Newsletter</h3>
+							<div>
+								<input type="text" name="email" class="email">
+								<input type="submit" value="Subscribe" class="btn btn-primary">
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-<script>
-	$(document).ready(function() {
-		// load_dudi(1);
-		tampildata(1);
-		// halo();
-
-
-		function tampildata(page) {
-			var action = "tampildata";
-			var kategori = ambilkelas('kategori');
-			$.ajax({
-				url: "<?= base_url(); ?>front/tampildata/" + page,
-				method: "post",
-				dataType: "json",
-				data: {
-					action: action,
-					kategori: kategori,
-				},
-
-				success: function(data) {
-					$('.tampil_tanaman').html(data.tampil_lowongan);
-					$('.tampil_halaman').html(data.tampil_halaman);
-					// $('.data_filter_halaman').html(data.halaman);
-					// console.log();
-
-				},
-				error: function(xhr, ajaxOptions, thrownError) {
-					console.log(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
-					// console.log(Error);
-				}
-
-			});
-		}
-
-
-		$('.ambildata').click(function() {
+	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+	<script>
+		$(document).ready(function() {
+			// load_dudi(1);
 			tampildata(1);
-			// load_dudi(1);
-		});
+			// halo();
 
-		$('.caridata').click(function(e) {
-			e.preventDefault();
-			// alert("aaa");
-			console.log("aa");
-			// tampildata(1);
-			// load_dudi(1);
 
-		});
+			function tampildata(page) {
+				var action = "tampildata";
+				var kategori = ambilkelas('kategori');
+				$.ajax({
+					url: "<?= base_url(); ?>front/tampildata/" + page,
+					method: "post",
+					dataType: "json",
+					data: {
+						action: action,
+						kategori: kategori,
+					},
 
-		// $(document).on("click", ".ambildata", function(e) {
-		//     e.preventDefault();
-		//     var page = $(this).data("ci-pagination-page");
-		//     // tampildata(page);
-		//     load_dudi(page);
-		// });
+					success: function(data) {
+						$('.tampil_tanaman').html(data.tampil_lowongan);
+						$('.tampil_halaman').html(data.tampil_halaman);
+						// $('.data_filter_halaman').html(data.halaman);
+						// console.log();
 
-		function ambilkelas(class_name) {
-			var filter = [];
-			$('.' + class_name + ':checked').each(function() {
-				filter.push($(this).val());
+					},
+					error: function(xhr, ajaxOptions, thrownError) {
+						console.log(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+						// console.log(Error);
+					}
+
+				});
+			}
+
+
+			$('.ambildata').click(function() {
+				tampildata(1);
+				// load_dudi(1);
 			});
 
-			return filter;
-		}
+			$('.caridata').click(function(e) {
+				e.preventDefault();
+				// alert("aaa");
+				console.log("aa");
+				// tampildata(1);
+				// load_dudi(1);
+
+			});
+
+			// $(document).on("click", ".ambildata", function(e) {
+			//     e.preventDefault();
+			//     var page = $(this).data("ci-pagination-page");
+			//     // tampildata(page);
+			//     load_dudi(page);
+			// });
+
+			function ambilkelas(class_name) {
+				var filter = [];
+				$('.' + class_name + ':checked').each(function() {
+					filter.push($(this).val());
+				});
+
+				return filter;
+			}
 
 
-		// $('#data_order').change(function() {
-		//     tampildata(1);
-		//     // load_dudi(1);
+			// $('#data_order').change(function() {
+			//     tampildata(1);
+			//     // load_dudi(1);
 
-		// });
+			// });
 
 
-		$(document).on("click", ".pagination li a", function(e) {
-			e.preventDefault();
-			var page = $(this).data("ci-pagination-page");
-			tampildata(page);
-			// load_dudi(page);
+			$(document).on("click", ".pagination li a", function(e) {
+				e.preventDefault();
+				var page = $(this).data("ci-pagination-page");
+				tampildata(page);
+				// load_dudi(page);
+			});
 		});
-	});
 
 
 
-	// $(document).ready(function() {
-	//     // data_lowongan();
+		// $(document).ready(function() {
+		//     // data_lowongan();
 
-	//     $('.klik').click(function() {
-	//         alert('oke');
-
-
-	//     });
-	// })
-</script>
-<!-- End Main Content -->
+		//     $('.klik').click(function() {
+		//         alert('oke');
 
 
-<?= $this->endSection(); ?>
+		//     });
+		// })
+	</script>
+	<!-- End Main Content -->
+
+
+	<?= $this->endSection(); ?>
