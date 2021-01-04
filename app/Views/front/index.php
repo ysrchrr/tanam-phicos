@@ -25,13 +25,13 @@
 				  <span class="icon-bar"></span>
 				  <span class="icon-bar"></span>
 				</button>
-				<a href="index.html" class="navbar-brand">
+				<a href="<?= base_url('/front') ?>" class="navbar-brand">
 					<img src="<?= base_url()?>/front-assets/img/logo.png" alt="Sapphire">Sapphire
 				</a>
 			  </div>
                  <div class="navbar-collapse collapse navbar-right">
 					<ul class="nav navbar-nav">
-                      <li class="active"><a href="index.html">Home</a></li>
+                      <li class="active"><a href="<?= base_url('/front') ?>">Home</a></li>
                       <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">Pages <b class="caret"></b></a>
                         <ul class="dropdown-menu">
@@ -103,9 +103,9 @@
 			      </li>
 			     </ul>
 
-                    <form action="" class="navbar-form navbar-search navbar-right" role="search">
+                    <form action="" class="navbar-form navbar-search navbar-right" method="get" role="search" autocomplete="off">
 		      			<div class="input-group"> 
-							<input type="text" name="search" placeholder="Search" class="search-query col-md-2"><button type="submit" class="btn btn-default icon-search"></button> 
+							<input type="text" name="search" placeholder="Search" class="search-query col-lg-6"><button type="submit" class="btn btn-default icon-search"></button> 
 						</div>
                     </form>
                   </div>
@@ -169,7 +169,6 @@
 				    </select>
 				</div>
 		</div>
-		<!-- https://www.thegardenstore.sg/image/cache/catalog/products/Plant/Crotalaria%20retusa-460x460.jpg -->
 		<div class="col-md-9">
 			<div class="row">
 				<div class="col-md-4">
