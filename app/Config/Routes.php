@@ -35,7 +35,7 @@ $routes->get('/admin', 'Admin::index');
 $routes->get('/login', 'Login::index');
 $routes->get('/daftar/', 'Login::daftar');
 $routes->get('/kategori/(:any)', 'Front::tampilkategori/$1');
-$routes->get('/cari/(:any)', 'Front::cariproduk/$1');
+$routes->get('/cari', 'Front::cariproduk');
 
 $routes->get('/front', 'Front::index');
 $routes->get('/front/product', 'Front::all_products');

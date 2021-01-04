@@ -85,7 +85,26 @@ class Front extends BaseController
 
 		$data = array(
 			'title' => 'Kategori - Sapphire',
-			'product'  => $produk->paginate(2),
+			'product'  => $produk->paginate(9),
+			'sub_kategori1' => $this->product_view->query('Select * from sub_kategori'),
+			'pager' => $produk->pager
+
+		);
+		return  view('front/index', $data);
+	}
+
+	public function cariproduk()
+	{
+		$cari = $this->request->getVar('search');
+		if (empty($cari)) {
+			$produk = $this->product_view->join('gambar', 'gambar.id_barang = barang.id_barang', 'left');
+		} else {
+			$produk = $this->product_view->join('gambar', 'gambar.id_barang = barang.id_barang', 'left')->like('nama_barang', $cari);
+		}
+
+		$data = array(
+			'title' => 'Hasil Pencarian - Sapphire',
+			'product'  => $produk->paginate(9),
 			'sub_kategori1' => $this->product_view->query('Select * from sub_kategori'),
 			'pager' => $produk->pager
 
