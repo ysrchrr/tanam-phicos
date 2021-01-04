@@ -36,7 +36,9 @@ $routes->get('/front', 'Front::index');
 $routes->get('/admin-test', 'Front::test');
 $routes->get('/front-test', 'Front::test');
 $routes->get('/login', 'Login::index');
-$routes->get('/daftar', 'Login::daftar');
+$routes->get('/daftar/', 'Login::daftar');
+$routes->get('/kategori/(:any)', 'Front::tampilkategori/$1');
+
 
 /**
  * --------------------------------------------------------------------
