@@ -577,8 +577,9 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 	.navbar-search:hover .search-query,.navbar-search.expand .search-query, .search-query:focus 
 	{
 	  padding: 8px 15px 8px;
-	  width: 80px;
+	  width: 180px;
 	  opacity:1;
+	  border: none;
 	  margin:0 0px 0 0px;
 	  background:#f7f7f7;
 	}
