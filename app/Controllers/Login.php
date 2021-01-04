@@ -26,13 +26,6 @@ class Login extends BaseController
 
     public function auth()
     {
-        // if (!$this->validate([
-        //     'username' => 'required',
-        //     'password' => 'required'
-        // ])) {
-        //     return redirect()->to(base_url() . '/login')->withInput();
-        // }
-
         $username = $this->request->getVar('username');
         $password = $this->request->getVar('password');
         if (empty($username) && empty($password)) {
@@ -58,5 +51,57 @@ class Login extends BaseController
         } else {
             return redirect()->to(base_url() . '/login')->withInput();
         }
+    }
+
+    public function daftar()
+    {
+        $data = array(
+            'title' => "Phicos | Daftar",
+            'validation' => \Config\Services::validation(),
+
+        );
+
+        return view('daftar', $data);
+    }
+
+
+    public function proses_daftar()
+    {
+
+        // dd($_POST);
+        if (!$this->validate([
+            'username' => [
+                'rules' => 'required|is_unique[member.username]',
+                'errors' => [
+                    'required' => '{field} username harus diisi.',
+                    'is_unique' => '{field} username sudah ada',
+                ],
+            ],
+            'email' =>  [
+                'rules' => 'required|is_unique[member.email]',
+                'errors' => [
+                    'required' => '{field} email harus diisi.',
+                    'is_unique' => '{field} email sudah ada',
+                ],
+            ],
+            'password' => 'required'
+
+        ])) {
+            // session()->setflashdata('pesan', 'Data yang anda isi belum lengkap');
+            return redirect()->to(base_url() . '/daftar')->withInput();
+        }
+
+
+        $data = [
+            'email' => $this->request->getVar('email'),
+            'username' => $this->request->getVar('username'),
+            'password' => md5($this->request->getVar('password')),
+
+        ];
+
+
+        $this->UserModel->save($data);
+        session()->setflashdata('pesan', 'Silakan Login.');
+        return redirect()->to(base_url() . '/login');
     }
 }
