@@ -52,10 +52,17 @@ class Front extends BaseController
 	public function tampilkategori($kategori = "")
 	{
 
+		if (empty($kategori)) {
+			$produk = $this->product_view->join('gambar', 'gambar.id_barang = barang.id_barang', 'left');
+		} else {
+			$produk = $this->product_view->join('gambar', 'gambar.id_barang = barang.id_barang', 'left')->where('id_kategori', $kategori);
+		}
+
 		$data = array(
 			'title' => 'Kategori - Sapphire',
-			'product'  => $this->product_view->get_product_list($kategori)->getResult(),
+			'product'  => $produk->paginate(2),
 			'sub_kategori1' => $this->product_view->query('Select * from sub_kategori'),
+			'pager' => $produk->pager
 
 		);
 		return  view('front/index', $data);
