@@ -33,7 +33,9 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/admin', 'Admin::index');
 $routes->get('/login', 'Login::index');
-$routes->get('/daftar', 'Login::daftar');
+$routes->get('/daftar/', 'Login::daftar');
+$routes->get('/kategori/(:any)', 'Front::tampilkategori/$1');
+
 
 $routes->get('/front', 'Front::index');
 $routes->get('/front/product', 'Front::all_products');
