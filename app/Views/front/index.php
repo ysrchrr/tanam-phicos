@@ -1,4 +1,4 @@
-<?= $this->extend('front/layout/template'); ?>
+<?= $this->extend('front/layout/home'); ?>
 <?= $this->section('content'); ?>
 <!-- Start Main Content -->
 <div class="container">
@@ -72,7 +72,5 @@
 			</div>
 		</div>
 	</div>
-
-
-
+	<!-- End Main Content -->
 	<?= $this->endSection(); ?>

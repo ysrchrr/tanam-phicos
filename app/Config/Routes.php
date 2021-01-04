@@ -32,14 +32,19 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/admin', 'Admin::index');
-$routes->get('/front', 'Front::index');
-$routes->get('/admin-test', 'Front::test');
-$routes->get('/front-test', 'Front::test');
 $routes->get('/login', 'Login::index');
 $routes->get('/daftar/', 'Login::daftar');
 $routes->get('/kategori/(:any)', 'Front::tampilkategori/$1');
 $routes->get('/cari/(:any)', 'Front::cariproduk/$1');
 
+$routes->get('/front', 'Front::index');
+$routes->get('/front/product', 'Front::all_products');
+$routes->get('/front/product/1', 'Front::show_product');
+
+
+
+$routes->get('/admin-test', 'Front::test');
+$routes->get('/front-test', 'Front::test');
 /**
  * --------------------------------------------------------------------
  * Additional Routing
