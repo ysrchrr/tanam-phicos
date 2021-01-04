@@ -27,19 +27,18 @@
                 <div class="form-group">
                     <label class="control-label col-md-4" for="inputEmail">Username or email<span class="required">*</span></label>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" name="email">
+                        <input type="text" class="form-control" name="username" value="<?= old('username'); ?>">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-md-4" for="inputPassword">Password<span class="required">*</span></label>
                     <div class="col-md-8">
-                        <input type="password" name="password" class="form-control">
+                        <input type="password" name="password" class="form-control" value="<?= old('password'); ?>">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-12">
                         <button class="btn btn-primary" type="submit">Login</button>
-                        <a href="forgot-password.html">Lost Password?</a>
                     </div>
                 </div>
             </form>
