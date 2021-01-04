@@ -32,10 +32,12 @@ class Front extends BaseController
 		// die();
 
 		$model = new Product_view();
+		$produk = $this->product_view->join('gambar', 'gambar.id_barang = barang.id_barang', 'left');
 		$data = array(
 			'title' => 'Front - Sapphire',
-			'product'  => $model->get_product_list("")->getResult(),
+			'product'  => $produk->paginate(9),
 			'sub_kategori1' => $this->product_view->query('Select * from sub_kategori'),
+			'pager' => $produk->pager
 
 		);
 		// $data['title'] = 'Front - Sapphire part 2';
@@ -44,7 +46,8 @@ class Front extends BaseController
 		echo view('front/index', $data);
 	}
 
-	public function all_products() {
+	public function all_products()
+	{
 		$data = array(
 			'title' => 'All Products',
 			'name' => 'Bunga',
@@ -53,7 +56,8 @@ class Front extends BaseController
 		echo view('front/pages/all_products', $data);
 	}
 
-	public function show_product() {
+	public function show_product()
+	{
 		$model = new Product_view();
 		$data = array(
 			'title' => 'Begonia Flower',
@@ -65,7 +69,7 @@ class Front extends BaseController
 		echo view('front/pages/product', $data);
 	}
 
-	public function test() 
+	public function test()
 	{
 		return view('referensi/front-e-commerce');
 	}
