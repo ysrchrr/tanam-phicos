@@ -13,55 +13,44 @@ class Front extends BaseController
 		$this->product_view = new Product_view();
 	}
 
-	public function index()
+	public function index($kategori = "")
 	{
-		// $kategori = $this->product_view->query('Select * from kategori')->getresultarray();
-		// $nama_k = "";
-		// $sub_k = "";
-		// foreach ($kategori as $k) {
-		// 	$nama_k .= $k['nama'];
-		// 	// echo "<b>" . $k['nama'] . "</b><br>";
-		// 	$sub_kategori = $this->product_view->query('Select * from sub_kategori where id_kategori = ' . $k['id_kategori'])->getresultarray();
-		// 	foreach ($sub_kategori as $sk) {
-		// 		// echo $sk['nama'] . "<br>";
-		// 		$nama_k .= $k['nama'] . $sk['nama'] . "<br>";
-		// 	}
-		// }
-
-		// var_dump("<pre>", $nama_k);
-		// die();
-
 		$model = new Product_view();
 		$data = array(
 			'title' => 'Front - Sapphire',
-			'product'  => $model->get_product_list("")->getResult(),
-			'sub_kategori1' => $this->product_view->query('Select * from sub_kategori'),
+			'product'  => $this->product_view->get_product_list($kategori)->getResult(),
+			'category' => $this->product_view->query('Select * from kategori'),
 
 		);
-		// $data['title'] = 'Front - Sapphire part 2';
-		// $data['product'] = $model->get_product_list()->getResult();
 
 		echo view('front/index', $data);
 	}
 
-	public function all_products() {
+	public function all_products($kategori = "") {
+		$model = new Product_view();
+		$ambil = $model->get_product_list($kategori)->getRowArray();
 		$data = array(
 			'title' => 'All Products',
-			'name' => 'Bunga',
-			'category' => 'Bunga'
+			'name' => $ambil['nama_kategori'],
+			// 'category' => 'BBBunga',
+			'product'  => $model->get_product_list($kategori)->getResult(),
+			'category' => $model->query('Select * from kategori')->getResultArray()
 		);
 		echo view('front/pages/all_products', $data);
 	}
 
-	public function show_product() {
+	public function show_product($kategori="", $product_id) {
 		$model = new Product_view();
+		$ambil = $model->get_product_detail($kategori, $product_id)->getRowArray();
 		$data = array(
-			'title' => 'Begonia Flower',
-			'name' => 'Chili 辣椒',
-			'other_name' => 'Capsicum annuum',
-			'category' => 'Herbal',
-			'product' => $model->get_product_detail()->getResult()
+			'title' => 'Product',
+			'name' =>  $ambil['nama_barang'],
+			'other_name' => $ambil['nama_lain'],
+			'id_category' => $ambil['id_kategori'],
+			'category' => $ambil['nama_kategori'],
+			'link_img' => $ambil['link_gambar']
 		);
+
 		echo view('front/pages/product', $data);
 	}
 
@@ -69,23 +58,4 @@ class Front extends BaseController
 	{
 		return view('referensi/front-e-commerce');
 	}
-
-	public function tampilkategori($kategori = "")
-	{
-
-		$data = array(
-			'title' => 'Kategori - Sapphire',
-			'product'  => $this->product_view->get_product_list($kategori)->getResult(),
-			'sub_kategori1' => $this->product_view->query('Select * from sub_kategori'),
-
-		);
-		return  view('front/index', $data);
-	}
-
-	public function tampildata()
-	{
-		$kategori = $this->request->getvar('kategori');
-	}
-	//--------------------------------------------------------------------
-
 }
