@@ -13,69 +13,27 @@ class Front extends BaseController
 		$this->product_view = new Product_view();
 	}
 
-	public function index()
+	public function index($kategori = "")
 	{
-		// $kategori = $this->product_view->query('Select * from kategori')->getresultarray();
-		// $nama_k = "";
-		// $sub_k = "";
-		// foreach ($kategori as $k) {
-		// 	$nama_k .= $k['nama'];
-		// 	// echo "<b>" . $k['nama'] . "</b><br>";
-		// 	$sub_kategori = $this->product_view->query('Select * from sub_kategori where id_kategori = ' . $k['id_kategori'])->getresultarray();
-		// 	foreach ($sub_kategori as $sk) {
-		// 		// echo $sk['nama'] . "<br>";
-		// 		$nama_k .= $k['nama'] . $sk['nama'] . "<br>";
-		// 	}
-		// }
+		if (empty($kategori)) {
+			$produk = $this->product_view->join('gambar', 'gambar.id_barang = barang.id_barang', 'left');
+		} else {
+			$produk = $this->product_view->join('gambar', 'gambar.id_barang = barang.id_barang', 'left')->where('id_kategori', $kategori);
+		}
 
-		// var_dump("<pre>", $nama_k);
-		// die();
-
-		$model = new Product_view();
-		$produk = $this->product_view->join('gambar', 'gambar.id_barang = barang.id_barang', 'left');
 		$data = array(
 			'title' => 'Front - Sapphire',
+			'category' => $this->product_view->query('Select * from kategori'),
 			'product'  => $produk->paginate(9),
-			'sub_kategori1' => $this->product_view->query('Select * from sub_kategori'),
 			'pager' => $produk->pager
-
 		);
-		// $data['title'] = 'Front - Sapphire part 2';
-		// $data['product'] = $model->get_product_list()->getResult();
 
 		echo view('front/index', $data);
 	}
 
-	public function all_products()
-	{
-		$data = array(
-			'title' => 'All Products',
-			'name' => 'Bunga',
-			'category' => 'Bunga'
-		);
-		echo view('front/pages/all_products', $data);
-	}
-
-	public function show_product()
-	{
+	public function all_products($kategori = "") {
 		$model = new Product_view();
-		$data = array(
-			'title' => 'Begonia Flower',
-			'name' => 'Chili 辣椒',
-			'other_name' => 'Capsicum annuum',
-			'category' => 'Herbal',
-			'product' => $model->get_product_detail()->getResult()
-		);
-		echo view('front/pages/product', $data);
-	}
-
-	public function test()
-	{
-		return view('referensi/front-e-commerce');
-	}
-
-	public function tampilkategori($kategori = "")
-	{
+		$ambil = $model->get_product_list($kategori)->getRowArray();
 
 		if (empty($kategori)) {
 			$produk = $this->product_view->join('gambar', 'gambar.id_barang = barang.id_barang', 'left');
@@ -84,13 +42,29 @@ class Front extends BaseController
 		}
 
 		$data = array(
-			'title' => 'Kategori - Sapphire',
+			'title' => 'All Products',
+			'name' => $ambil['nama_kategori'],
+			// 'product'  => $model->get_product_list($kategori)->getResult(),
+			'category' => $model->query('Select * from kategori')->getResultArray(),
 			'product'  => $produk->paginate(9),
-			'sub_kategori1' => $this->product_view->query('Select * from sub_kategori'),
 			'pager' => $produk->pager
-
 		);
-		return  view('front/index', $data);
+		echo view('front/pages/all_products', $data);
+	}
+
+	public function show_product($kategori="", $product_id) {
+		$model = new Product_view();
+		$ambil = $model->get_product_detail($kategori, $product_id)->getRowArray();
+		$data = array(
+			'title' => 'Product',
+			'name' =>  $ambil['nama_barang'],
+			'other_name' => $ambil['nama_lain'],
+			'id_category' => $ambil['id_kategori'],
+			'category' => $ambil['nama_kategori'],
+			'link_img' => $ambil['link_gambar']
+		);
+
+		echo view('front/pages/product', $data);
 	}
 
 	public function cariproduk()
@@ -112,10 +86,9 @@ class Front extends BaseController
 		return  view('front/index', $data);
 	}
 
-	public function tampildata()
+	public function test()
 	{
-		$kategori = $this->request->getvar('kategori');
+		return view('referensi/front-e-commerce');
 	}
-	//--------------------------------------------------------------------
 
 }

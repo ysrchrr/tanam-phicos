@@ -13,18 +13,28 @@ class Product_view extends Model
     // LEFT JOIN gambar on gambar.id_barang = barang.id_barang
     public function get_product_list($where)
     {
-        $query = "select barang.*, gambar.link_gambar from barang left join gambar on gambar.id_barang = barang.id_barang ";
-
-        if (isset($where) && !empty($where)) {
-            $query .= "where id_kategori ='$where'";
-        }
-        return $this->query($query);
-    }
-    public function get_product_detail() {
         $data = $this->db->table('barang');
-        $data->select('barang.*, gambar.link_gambar');
+        $data->select('barang.*, gambar.link_gambar, kategori.nama_kategori');
         $data->join('gambar', 'gambar.id_barang = barang.id_barang', 'left');
-        // $data->where('barang.id_barang = ' $id);
+        $data->join('kategori', 'kategori.id_kategori = barang.id_kategori', 'left');
+
+        if (isset($kategori) && !empty($kategori)) {
+            $data->where("barang.id_kategori = '$kategori'");
+        }
+
+        return $data->get();     
+    }
+
+    public function get_product_detail($kategori, $id) {
+        $data = $this->db->table('barang');
+        $data->select('barang.*, gambar.link_gambar, kategori.nama_kategori');
+        $data->join('gambar', 'gambar.id_barang = barang.id_barang', 'left');
+        $data->join('kategori', 'kategori.id_kategori = barang.id_kategori', 'left');
+
+        if (isset($id) && !empty($id)) {
+            $data->where("barang.id_barang = '$id'");
+        }
+
         return $data->get();
     }
 }
