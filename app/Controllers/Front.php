@@ -15,12 +15,17 @@ class Front extends BaseController
 
 	public function index($kategori = "")
 	{
-		$model = new Product_view();
+		if (empty($kategori)) {
+			$produk = $this->product_view->join('gambar', 'gambar.id_barang = barang.id_barang', 'left');
+		} else {
+			$produk = $this->product_view->join('gambar', 'gambar.id_barang = barang.id_barang', 'left')->where('id_kategori', $kategori);
+		}
+
 		$data = array(
 			'title' => 'Front - Sapphire',
-			'product'  => $this->product_view->get_product_list($kategori)->getResult(),
 			'category' => $this->product_view->query('Select * from kategori'),
-
+			'product'  => $produk->paginate(9),
+			'pager' => $produk->pager
 		);
 
 		echo view('front/index', $data);
@@ -29,12 +34,20 @@ class Front extends BaseController
 	public function all_products($kategori = "") {
 		$model = new Product_view();
 		$ambil = $model->get_product_list($kategori)->getRowArray();
+
+		if (empty($kategori)) {
+			$produk = $this->product_view->join('gambar', 'gambar.id_barang = barang.id_barang', 'left');
+		} else {
+			$produk = $this->product_view->join('gambar', 'gambar.id_barang = barang.id_barang', 'left')->where('id_kategori', $kategori);
+		}
+
 		$data = array(
 			'title' => 'All Products',
 			'name' => $ambil['nama_kategori'],
-			// 'category' => 'BBBunga',
-			'product'  => $model->get_product_list($kategori)->getResult(),
-			'category' => $model->query('Select * from kategori')->getResultArray()
+			// 'product'  => $model->get_product_list($kategori)->getResult(),
+			'category' => $model->query('Select * from kategori')->getResultArray(),
+			'product'  => $produk->paginate(9),
+			'pager' => $produk->pager
 		);
 		echo view('front/pages/all_products', $data);
 	}
@@ -54,8 +67,28 @@ class Front extends BaseController
 		echo view('front/pages/product', $data);
 	}
 
-	public function test() 
+	public function cariproduk()
+	{
+		$cari = $this->request->getVar('search');
+		if (empty($cari)) {
+			$produk = $this->product_view->join('gambar', 'gambar.id_barang = barang.id_barang', 'left');
+		} else {
+			$produk = $this->product_view->join('gambar', 'gambar.id_barang = barang.id_barang', 'left')->like('nama_barang', $cari);
+		}
+
+		$data = array(
+			'title' => 'Hasil Pencarian - Sapphire',
+			'product'  => $produk->paginate(9),
+			'sub_kategori1' => $this->product_view->query('Select * from sub_kategori'),
+			'pager' => $produk->pager
+
+		);
+		return  view('front/index', $data);
+	}
+
+	public function test()
 	{
 		return view('referensi/front-e-commerce');
 	}
+
 }

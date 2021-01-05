@@ -6,7 +6,10 @@ use CodeIgniter\Model;
 
 class Product_view extends Model
 {
-    public function get_product_list($kategori)
+    protected $table = 'barang';
+    protected $primaryKey = 'id_barang';
+
+    public function get_product_list($where)
     {
         $data = $this->db->table('barang');
         $data->select('barang.*, gambar.link_gambar, kategori.nama_kategori');

@@ -1,4 +1,4 @@
-<?= $this->extend('front/layout/template'); ?>
+<?= $this->extend('front/layout/home'); ?>
 <?= $this->section('content'); ?>
 <div class="container">
 
