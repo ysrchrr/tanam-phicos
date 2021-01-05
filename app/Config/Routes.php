@@ -43,6 +43,7 @@ $routes->group('front', function($routes) {
 	$routes->add('product/(:any)/', 'Front::all_products/$1');
 	$routes->get('product/(:any)/(:any)/', 'Front::show_product/$1/$2');
 });
+$routes->get('/account', 'Account::index');
 
 $routes->get('/admin-test', 'Front::test');
 $routes->get('/front-test', 'Front::test');

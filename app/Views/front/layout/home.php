@@ -12,6 +12,7 @@
 	<link rel="stylesheet" type="text/css" href="<?= base_url(); ?>/front-assets/css/style.css">
 	<link href='http://fonts.googleapis.com/css?family=Montserrat:200,300,400,600,700' rel='stylesheet' type='text/css' />
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:200,300,400,600,700' rel='stylesheet' type='text/css' />
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 	<title><?= $title; ?></title>
 </head>
 
@@ -33,7 +34,11 @@
 				</div>
 				<div class="navbar-collapse collapse navbar-right">
 					<ul class="nav navbar-nav">
+<<<<<<< HEAD
 						<li class="active"><a href="<?= base_url('/front') ?>">Home</a></li>
+=======
+						<li class="active"><a href="<?= base_url('/front') ?>">Shop</a></li>
+>>>>>>> 4bd71ab30b00f1962dafdde9989e3a47f55a7201
 						<li class="dropdown">
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">Pages <b class="caret"></b></a>
 							<ul class="dropdown-menu">
@@ -59,7 +64,12 @@
 							</ul>
 						</li>
 						<li><a href="<?= base_url('/front/product/') ?>">Our Products</a></li>
+<<<<<<< HEAD
 						<li><a href="contact.html" class="ajax_right">Contact</a></li>
+=======
+						<li><a href="contact.html" class="ajax_right">About</a></li>
+						<li><a href="<?= base_url(); ?>/account" class="ajax_right">Profile</a></li>
+>>>>>>> 4bd71ab30b00f1962dafdde9989e3a47f55a7201
 					</ul>
 
 					<ul class="nav navbar-right cart">
@@ -173,6 +183,15 @@
 	</div>
 
 	<script type="text/javascript" src="<?= base_url(); ?>/front-assets/js/jquery-1.10.2.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('.provinsi').select2();
+			$('.kota').select2();
+			$('.kecamatan').select2();
+		});
+	</script>
+
 	<script type="text/javascript" src="<?= base_url(); ?>/front-assets/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="<?= base_url(); ?>/front-assets/js/bootstrap-select.min.js"></script>
 	<script type="text/javascript" src="<?= base_url(); ?>/front-assets/js/jquery.easing.1.3.js"></script>

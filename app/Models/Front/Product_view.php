@@ -9,6 +9,8 @@ class Product_view extends Model
     protected $table = 'barang';
     protected $primaryKey = 'id_barang';
 
+    // SELECT * FROM `barang`
+    // LEFT JOIN gambar on gambar.id_barang = barang.id_barang
     public function get_product_list($where)
     {
         $data = $this->db->table('barang');
