@@ -64,10 +64,12 @@
 
 			</div>
 			<div class="row">
-				<div class="col-md-12">
-					<?= $pager->links() ?>
-				</div>
-			</div>
+                <div class="col-md-12">
+                    <div class="pull-right">
+                        <?= $pager->links() ?>
+                    </div>
+                </div>
+            </div>
 		</div>
 	</div>
 </div>
