@@ -50,40 +50,13 @@
                             </div>
                             <hr>
                             <div class="row text-center">
-                                <div class="col-md-12"><a href="">
-                                        <p>Lihat Detail Pesanan</p>
+                                <div class="col-md-12"><a href="<?= base_url(); ?>/account/orders_detail">
+                                        Lihat Detail Pesanan
                                     </a></div>
                             </div>
                         </li>
                     </ul>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                                Launch demo modal
-                            </button>
 
-                            <!-- Modal -->
-                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                <div style="" class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            asdasdbakjbkj
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save changes</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
