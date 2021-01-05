@@ -48,19 +48,19 @@
                 <div class="row">
                     <?php foreach ($product as $row) : ?>
                         <div class="col-md-4">
-                            <div class="product">
-                                <a href="<?= base_url(); ?>/front/product/<?= $row->id_kategori; ?>/<?= $row->id_barang; ?>">
-                                    <img src="<?= $row->link_gambar; ?>" alt="<?= $row->nama_barang; ?>">
-                                </a>
-                                <div class="name">
-                                    <a href="#"><?= $row->nama_barang; ?> (<?= $row->nama_lain; ?>)</a>
-                                </div>
-                                <div class="price">
-                                    <p>Rp. <?= $row->harga_barang; ?></p>
-                                    <p>Stock : <?= $row->stok_barang; ?></p>
-                                </div>
-                            </div>
-                        </div>
+							<div class="product">
+								<a href="<?= base_url(); ?>/front/product/<?= $row['id_kategori']; ?>/<?= $row['id_barang']; ?>">
+									<img src="<?= $row['link_gambar']; ?>" alt="<?= $row['nama_barang']; ?>">
+								</a>
+								<div class="name">
+									<a href="<?= base_url(); ?>/front/product/<?= $row['id_kategori']; ?>/<?= $row['id_barang']; ?>"><?= $row['nama_barang']; ?> (<?= $row['nama_lain']; ?>)</a>
+								</div>
+								<div class="price">
+									<p>Rp. <?= $row['harga_barang']; ?></p>
+									<p>Stock : <?= $row['stok_barang']; ?></p>
+								</div>
+							</div>
+						</div>
                     <?php endforeach; ?>
                 </div>
             </div>
