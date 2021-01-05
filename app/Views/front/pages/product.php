@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="<?= base_url()?>/front-assets/css/style.css">
 	<link href='http://fonts.googleapis.com/css?family=Montserrat:200,300,400,600,700' rel='stylesheet' type='text/css'/>
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:200,300,400,600,700' rel='stylesheet' type='text/css'/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<title><?= $title; ?></title>
 </head>
 <body>
@@ -114,7 +115,7 @@
 		    <ul class="breadcrumb prod">
 			    <li><a href="<?= base_url('/front')?>">Home</a>
                 <span class="divider"></span></li>
-			    <li><a href="<?= base_url('/front/product')?>"><?=$category;?></a>
+			    <li><a href="<?= base_url()?>/front/product/<?= $id_category; ?>"><?=$category;?></a>
                 <span class="divider"></span></li>
 				<li class="active"><?= $name; ?></li>
 		    </ul>
@@ -122,8 +123,8 @@
 		<div class="row product-info">
 		    <div class="col-md-6">
 				<div class="image">
-                    <a class="cloud-zoom" rel="adjustX: 0, adjustY:0" id='zoom1' href="<?= base_url()?>/front-assets/products/dress1home.jpg" title="Nano">
-                        <img src="<?= base_url()?>/front-assets/products/dress1home.jpg" title="Nano" alt="Nano" id="image"/>
+                    <a class="cloud-zoom" rel="adjustX: 0, adjustY:0" id='zoom1' href="<?= $link_img; ?>" title="<?= $name; ?>">
+                        <img src="<?= $link_img; ?>" title="<?= $name; ?>" alt="<?= $name; ?>" id="image"/>
                     </a>
                 </div>
 				<!-- <div class="image-additional">
@@ -184,175 +185,81 @@
 						<button class="btn btn-primary" style="margin-right: 20px;" type="button">Add to Cart</button>
 						<label>Quantity:</label> <input type="text" placeholder="1" class="col-md-1">
 					</form>
-					
-					<div class="tabs">
-					<ul class="nav nav-tabs" id="myTab">
-						<li class="active"><a href="#home">Description</a></li>
-						<li><a href="#profile">Specification</a></li>
-						<li><a href="#messages">Reviews</a></li>
-					</ul>
-					<div class="tab-content">
-						<div class="tab-pane active" id="home">When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then </div>
-						<div class="tab-pane" id="profile">
-							<table class="table specs">
-							    <tr>
-								    <th>Color</th>
-								    <th>Size</th>
-								    <th>Weight</th>
-							    </tr>
-							    <tr>
-								    <td>Blue</td>
-								    <td>XS</td>
-								    <td>1.00</td>
-							    </tr>
-							    <tr>
-								    <th>Composition</th>
-								    <th>Sleeve</th>
-								    <th>Care</th>
-							    </tr>
-							    <tr>
-								    <td>100% Cotton</td>
-								    <td> Long Sleeve</td>
-								    <td>IRON AT 110ºC MAX</td>
-							    </tr>								
-					        </table>
-						</div>
-						<div class="tab-pane" id="messages">
-						    <p>There are no reviews yet, would you like to <a href="#review_btn">submit yours?</a></p>
-							<h3>Be the first to review “Blue Dress” </h3>
-						<form>
-							<fieldset>
-								<label>Name<span class="required">*</span></label>
-								<input type="text" placeholder="Name">
-								<label>Email<span class="required">*</span></label>
-								<input type="text" placeholder="Email">		
-								<label class="rating">Rating</label>
-                                <img alt="rating" src="image/stars-5.png">								
-							</fieldset>
-						</form>
-							<label>Your Review<span class="required">*</span></label>
-							<textarea rows="3"></textarea>
-						<p id="review_btn">
-							<button class="btn btn-default" type="button">Submit Review</button>
-						</p>
+
+					<div class="tabs" id="tabs">
+						<ul class="nav nav-tabs" id="myTab">
+							<li class="tab-li active"><a href="#tabs-1">Description</a></li>
+							<li class="tab-li"><a href="#tabs-2">Specification</a></li>
+							<li class="tab-li"><a href="#tabs-3">Reviews</a></li>
+						</ul>
+						<div class="tab-content">
+							<div class="tab-pane active" id="tabs-1">When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then </div>
+							<div class="tab-pane" id="tabs-2">
+								<table class="table specs">
+									<tr>
+										<th>Color</th>
+										<th>Size</th>
+										<th>Weight</th>
+									</tr>
+									<tr>
+										<td>Blue</td>
+										<td>XS</td>
+										<td>1.00</td>
+									</tr>
+									<tr>
+										<th>Composition</th>
+										<th>Sleeve</th>
+										<th>Care</th>
+									</tr>
+									<tr>
+										<td>100% Cotton</td>
+										<td> Long Sleeve</td>
+										<td>IRON AT 110ºC MAX</td>
+									</tr>								
+								</table>
+							</div>
+							<div class="tab-pane" id="tabs-3">
+								<p>There are no reviews yet, would you like to <a href="#review_btn">submit yours?</a></p>
+								<h3>Be the first to review “Blue Dress” </h3>
+							<form>
+								<fieldset>
+									<label>Name<span class="required">*</span></label>
+									<input type="text" placeholder="Name">
+									<label>Email<span class="required">*</span></label>
+									<input type="text" placeholder="Email">		
+									<label class="rating">Rating</label>
+									<img alt="rating" src="image/stars-5.png">								
+								</fieldset>
+							</form>
+								<label>Your Review<span class="required">*</span></label>
+								<textarea rows="3"></textarea>
+							<p id="review_btn">
+								<button class="btn btn-default" type="button">Submit Review</button>
+							</p>
 						</div>
 					</div>
-					</div>
-			</div>
-		</div>
-		
-		<h3 class="related">Related products</h3>
-		
-		<div class="row">
-		<div class="col-md-12">
-		    <div class="col-md-3">
-			    <div class="product">
-					<div class="product_sale">Sale</div>
-				    <a href="product.html"><img alt="dress1home" src="products/dress1home.jpg"></a>
-					<div class="name">
-				    <a href="#">Elegant Dress</a>
-				    </div>
-				    <div class="price">
-				    <p>$200.00</p>
-				    </div>
 				</div>
 			</div>
-		    <div class="col-md-3">
-			    <div class="product">
-				    <a href="product.html"><img alt="dres2" src="products/dress5home.jpg"></a>
-				    <div class="name">
-				    <a href="#">Lace Dress</a>
-				    </div>
-				    <div class="price">
-				    <p>$250.00</p>
-				    </div>	
-
-				</div>	
-			
-			</div>			
-		    <div class="col-md-3">
-			    <div class="product">
-				    <a href="product.html"><img alt="dress3" src="products/dress6home.jpg"></a>
-					<div class="name">
-				    <a href="#">Floral Dress</a>
-				    </div>
-				    <div class="price">
-				    <p>$500.00</p>
-				    </div>
-				</div>	
-			</div>		
-			
-			
-		    <div class="col-md-3">
-			    <div class="product">
-				    <a href="product.html"><img alt="dress4" src="products/dress2home.jpg"></a>
-				    <div class="name">
-				    <a href="#">Black Dress</a>
-				    </div>
-				    <div class="price">
-				    <p>$150.00</p>
-				    </div>
-
-				</div>	
-			</div>	
-			
-			
-		    <div class="col-md-3">
-			    <div class="product">
-				    <a href="product.html"><img alt="dress6" src="products/dress4home.jpg"></a>
-				    <div class="name">
-				    <a href="#">White Dress</a>
-				    </div>
-				    <div class="price">
-				    <p>$120.00</p>
-				    </div>	
-
-				</div>			
-			</div>		
-			
 		</div>
-		</div>
-	</div>		
 
-	<div id="social_band">
-		<div class="container">
+		<h3 class="related">Related products</h3>
 		<div class="row">
-		<div id="social_about" class="col-md-4">
-			<h3>About</h3>
-			<div>
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br/><br/> Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.			</div>
-		</div>
-		<div id="social_twitter" class="col-md-4">
-			<h3>Twitter</h3>
-			<div>
-				<ul id="twitter_update_list"><li>Twitter feed loading</li></ul>			
-				<script type="text/javascript" src="js/twitterFetcher_v9_min.js"></script>
-				<script>twitterFetcher.fetch('256524641194098690', 'twitter_update_list', 2, true, true, false);</script> 
-
-				<!--
-				<script type="text/javascript" src="https://api.twitter.com/1/statuses/user_timeline.json?screen_name=NicoleThemes&amp;callback=twitterCallback2&amp;count=3"></script>			
-				<a href="http://twitter.com/#!/NicoleThemes" id="twitter_follow">Follow us on twitter</a>
-				-->
+			<div class="col-md-12">
+				<div class="col-md-3">
+					<div class="product">
+						<div class="product_sale">Sale</div>
+						<a href="product.html"><img alt="dress1home" src="products/dress1home.jpg"></a>
+						<div class="name">
+							<a href="#">Elegant Dress</a>
+						</div>
+						<div class="price">
+							<p>$200.00</p>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-		<div id="social_facebook" class="col-md-4">
-			<h3>Facebook</h3>
-			<div>
-			<div id="fb-root"></div>
-			<script>(function(d, s, id) {
-			  var js, fjs = d.getElementsByTagName(s)[0];
-			  if (d.getElementById(id)) return;
-			  js = d.createElement(s); js.id = id;
-			  js.src = "../../connect.facebook.net/en_US/all.js#xfbml=1";
-			  fjs.parentNode.insertBefore(js, fjs);
-			}(document, 'script', 'facebook-jssdk'));</script>
-			<div class="fb-like-box" data-href="https://www.facebook.com/201498429982413" data-width="300" data-color-scheme="light"  data-show-faces="true" data-stream="false" data-header="false" data-border-color="#ffffff" show_border=false></div>
-			</div>		
-		</div>
 	</div>
-	</div>
-	</div>
-	
 	<div class="footer black">
 		<div class="container">
 		    <div class="row">
@@ -406,37 +313,32 @@
 	</div>	
 </div>
 
-<!-- script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script>window.jQuery || document.write("<script src='js/jquery-1.10.2.min.js'><\/script>")</script -->
-<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/bootstrap-select.min.js"></script>
-<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
-<script type="text/javascript" src="js/cloud-zoom.1.0.3.js"></script>
-<script type="text/javascript" src="js/sapphire.js"></script>
+<script type="text/javascript" src="<?=base_url()?>/front-assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<?=base_url()?>/front-assets/js/bootstrap-select.min.js"></script>
+<script type="text/javascript" src="<?=base_url()?>/front-assets/js/cloud-zoom.1.0.3.js"></script>
+<script type="text/javascript" src="<?=base_url()?>/front-assets/js/sapphire.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
 <script>
-$.fn.CloudZoom.defaults = {
-	zoomWidth:"auto",
-	zoomHeight:"auto",
-	position:"inside",
-	adjustX:0,
-	adjustY:0,
-	adjustY:"",
-	tintOpacity:0.5,
-	lensOpacity:0.5,
-	titleOpacity:0.5,
-	smoothMove:3,
-	showTitle:false};
-		
-jQuery(document).ready(function() 
-{
-    $('#myTab a').click(function (e) {
-		e.preventDefault();
-		$(this).tab('show');
-    })
+$(document).ready(function(){
+  $(".nav-tabs a").click(function(e){
+	e.preventDefault()
+    $(this).tab('show');
+  });
 });
 </script>
+<script>
+	$.fn.CloudZoom.defaults = {
+		zoomWidth:"auto",
+		zoomHeight:"auto",
+		position:"inside",
+		adjustX:0,
+		adjustY:0,
+		adjustY:"",
+		tintOpacity:0.5,
+		lensOpacity:0.5,
+		titleOpacity:0.5,
+		smoothMove:3,
+		showTitle:false};
+</script>
 </body>
-
-<!-- Mirrored from www.nicolethemes.com/sapphire-html/product.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 29 Dec 2020 08:08:26 GMT -->
 </html>
