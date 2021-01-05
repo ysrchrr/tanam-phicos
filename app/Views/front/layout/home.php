@@ -34,11 +34,9 @@
 				</div>
 				<div class="navbar-collapse collapse navbar-right">
 					<ul class="nav navbar-nav">
-<<<<<<< HEAD
-						<li class="active"><a href="<?= base_url('/front') ?>">Home</a></li>
-=======
+
 						<li class="active"><a href="<?= base_url('/front') ?>">Shop</a></li>
->>>>>>> 4bd71ab30b00f1962dafdde9989e3a47f55a7201
+
 						<li class="dropdown">
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">Pages <b class="caret"></b></a>
 							<ul class="dropdown-menu">
@@ -64,12 +62,8 @@
 							</ul>
 						</li>
 						<li><a href="<?= base_url('/front/product/') ?>">Our Products</a></li>
-<<<<<<< HEAD
-						<li><a href="contact.html" class="ajax_right">Contact</a></li>
-=======
 						<li><a href="contact.html" class="ajax_right">About</a></li>
 						<li><a href="<?= base_url(); ?>/account" class="ajax_right">Profile</a></li>
->>>>>>> 4bd71ab30b00f1962dafdde9989e3a47f55a7201
 					</ul>
 
 					<ul class="nav navbar-right cart">
