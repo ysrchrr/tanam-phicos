@@ -34,14 +34,13 @@ $routes->setAutoRoute(true);
 $routes->get('/admin', 'Admin::index');
 $routes->get('/login', 'Login::index');
 $routes->get('/daftar/', 'Login::daftar');
-$routes->get('/kategori/(:any)', 'Front::tampilkategori/$1');
-
 
 $routes->get('/front', 'Front::index');
-$routes->get('/front/product', 'Front::all_products');
-$routes->get('/front/product/1', 'Front::show_product');
-
-
+$routes->group('front', function($routes) {
+	$routes->add('product', 'Front::all_products');
+	$routes->add('product/(:any)/', 'Front::all_products/$1');
+	$routes->get('product/(:any)/(:any)/', 'Front::show_product/$1/$2');
+});
 
 $routes->get('/admin-test', 'Front::test');
 $routes->get('/front-test', 'Front::test');
