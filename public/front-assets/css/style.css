@@ -2806,8 +2806,13 @@ a.comment-reply-link
 	width:300px;
 	padding:10px 15px;
 	max-width:80%;
+	color:rgba(0, 0, 0, 0.9);
 	margin-right:5px;
-	background:#fafafa;
+	/* background:#fafafa; */
+	background: #bdc3c7; 
+	border-radius: 5px; 
+	margin-right: 25px; 
+	height:35px;
 }
 
 .newsletter div
