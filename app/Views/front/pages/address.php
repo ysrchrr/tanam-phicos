@@ -25,13 +25,13 @@
                 <form>
                     <div class="form-group">
                         <label for="Alamat">Alamat</label>
-                        <input type="text" class="form-control" id="Alamat" aria-describedby="Alamat" placeholder="Alamat">
+                        <input type="text" class="form-control" value="<?= $bio['alamat']; ?>" id="Alamat" aria-describedby="Alamat" placeholder="Alamat">
                     </div>
                     <div class="form-group">
                         <label for="province">Provinsi</label>
                         <select class="provinsi" name="provinsi" style="width: 100%;">
                             <?php foreach ($provinsi as $p) : ?>
-                                <option value="<?= $p['id']; ?>"><?= $p['nama']; ?></option>
+                                <option value="<?= $p['id']; ?>" <?= ($bio['id_provinsi'] == $p['id']) ? 'selected' : ''; ?>><?= $p['nama']; ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -39,7 +39,7 @@
                         <label for="City">Kota</label>
                         <select class="kota" name="kota" style="width: 100%;">
                             <?php foreach ($kota as $p) : ?>
-                                <option value="<?= $p['id']; ?>"><?= $p['nama']; ?></option>
+                                <option value="<?= $p['id']; ?>" <?= ($bio['id_kabupaten'] == $p['id']) ? 'selected' : ''; ?>><?= $p['nama']; ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -47,7 +47,7 @@
                         <label for="district">Kecamatan</label>
                         <select class="kecamatan" name="kecamatan" style="width: 100%;">
                             <?php foreach ($kecamatan as $p) : ?>
-                                <option value="<?= $p['id']; ?>"><?= $p['nama']; ?></option>
+                                <option value="<?= $p['id']; ?>" <?= ($bio['id_kecamatan'] == $p['id']) ? 'selected' : ''; ?>><?= $p['nama']; ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>

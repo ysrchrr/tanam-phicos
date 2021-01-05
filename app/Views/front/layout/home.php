@@ -63,7 +63,17 @@
 						</li>
 						<li><a href="<?= base_url('/front/product/') ?>">Our Products</a></li>
 						<li><a href="contact.html" class="ajax_right">About</a></li>
-						<li><a href="<?= base_url(); ?>/account" class="ajax_right">Profile</a></li>
+						<?php if (session()->get('login')) { ?>
+							<li class="dropdown">
+								<a data-toggle="dropdown" class="dropdown-toggle" href="#">Profile <b class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<li><a href="<?= base_url(); ?>/account">Account</a></li>
+									<li><a href="<?= base_url(); ?>/account/logout" class="ajax_right">Logout</a></li>
+								</ul>
+							</li>
+						<?php } else { ?>
+							<li><a href="<?= base_url(); ?>/login" class="ajax_right">Login</a></li>
+						<?php } ?>
 					</ul>
 
 					<ul class="nav navbar-right cart">
