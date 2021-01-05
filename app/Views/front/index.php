@@ -64,10 +64,21 @@
 
 			</div>
 			<div class="row">
+                <div class="col-md-12">
+                    <div class="pull-right">
+                        <?= $pager->links() ?>
+                    </div>
+                </div>
 				<div class="col-md-12">
-					<?= $pager->links() ?>
+					<div class="newsletter clearfix">
+						<h3>Newsletter</h3>
+						<div>
+							<input type="text" name="email" class="email">
+							<input type="submit" value="Subscribe" class="btn btn-primary">
+						</div>
+					</div>
 				</div>
-			</div>
+            </div>
 		</div>
 	</div>
 </div>

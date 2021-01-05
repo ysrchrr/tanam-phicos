@@ -34,9 +34,7 @@
 				</div>
 				<div class="navbar-collapse collapse navbar-right">
 					<ul class="nav navbar-nav">
-
 						<li class="active"><a href="<?= base_url('/front') ?>">Shop</a></li>
-
 						<li class="dropdown">
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">Pages <b class="caret"></b></a>
 							<ul class="dropdown-menu">

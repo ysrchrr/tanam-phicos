@@ -12,11 +12,18 @@ class AdminModel extends Model
         $db = \Config\Database::connect();
     }
 
+    public function dotampilkanBarang(){
+        $query = $this->db->query("SELECT * FROM barang ORDER BY id_barang");
+        return $query->getResult();
+    }
+
+    public function dotampilkanKategori(){
+        $query = $this->db->query("SELECT * FROM kategori ORDER BY nama_kategori");
+        return $query->getResult();
+    }
+
     public function get_all_barang() {
-        //$query = $this->db->table('books');
         $query = $this->db->query('SELECT * FROM barang');
-        //print_r($query->getResult());
-        // $query = $this->db->get();
         return $query->getResultArray();
     }
 
@@ -33,10 +40,74 @@ class AdminModel extends Model
         return $this->db->insertID();
     }
     
+    public function donewKategori($nama){
+        $query = $this->db->query("INSERT INTO `kategori`(`nama_kategori`) VALUES ('$nama')");
+        return $query;
+    }
+    
     public function getSubKategori(){
         $db = \Config\Database::connect();
         $builder = $db->table('kategori')->get();
         return $builder->getResultArray();
+    }
+
+    public function dodetailBarang($idne){
+        $hsl = $this->db->query("SELECT * FROM barang WHERE id_barang = '$idne'");
+        foreach ($hsl->getResult() as $data) {
+            $hasil = array(
+                'id_barang' => $data->id_barang,
+                'nama_barang' => $data->nama_barang,
+                'nama_lain' => $data->nama_lain,
+                'harga_barang' => $data->harga_barang,
+                'stok_barang' => $data->stok_barang,
+                'deskripsi' => $data->deskripsi
+            );
+        }
+		return $hasil;
+    }
+
+    public function dodetailKategori($id_kategori){
+        $hsl = $this->db->query("SELECT * FROM kategori WHERE id_kategori = '$id_kategori'");
+        foreach ($hsl->getResult() as $data) {
+            $hasil = array(
+                'id_kategori' => $data->id_kategori,
+                'nama_kategori' => $data->nama_kategori
+            );
+        }
+		return $hasil;
+    }
+
+    public function doupdateRecord($id_barang, $id_kategori, $nama_barang, $nama_lain, $harga_barang, $stok_barang, $deskripsi){
+        $hasil = $this->db->query("UPDATE `barang` SET 
+                                    `id_kategori` = '$id_kategori',
+                                    `nama_barang` = '$nama_barang',
+                                    `nama_lain` = '$nama_lain',
+                                    `harga_barang` = '$harga_barang',
+                                    `stok_barang` = '$stok_barang',
+                                    `deskripsi` = '$deskripsi' 
+                                    WHERE
+                                    `id_barang` = '$id_barang'"
+                                );
+        return $hasil;
+    }
+
+    public function doupdateKategori($id_kategori, $nama_kategori){
+        $hasil = $this->db->query("UPDATE `kategori` SET 
+                                    `nama_kategori` = '$nama_kategori'
+                                    WHERE
+                                    `id_kategori` = '$id_kategori'"
+                                );
+        return $hasil;
+    }
+
+    public function dodeleteRecord($id){
+        $hasil = $this->db->query("DELETE FROM barang WHERE id_barang = '$id'");
+		return $hasil;
+    }
+    
+    public function dodeleteKategori($id){
+        $hasil = $this->db->query("DELETE FROM kategori WHERE id_kategori = '$id'");
+		return $hasil;
     }
 }
 ?>

@@ -24,7 +24,7 @@ class Admin extends BaseController
 
 	public function kelola(){
 		$data = array(
-			'title' => "Admin Panel",
+			'title' => "Kelola Barang",
 			'barang' => $this->barang->get_all_barang(),
 			'kategori' => $this->barang->getSubKategori()
 		);
@@ -32,6 +32,28 @@ class Admin extends BaseController
 		echo view('admin/sidebar');
 		echo view('admin/kelola');
 		echo view('admin/footer');
+	}
+
+	public function kategori(){
+		$data = array(
+			'title' => "Kelola Kategori",
+			'barang' => $this->barang->get_all_barang(),
+			'kategori' => $this->barang->getSubKategori()
+		);
+		echo view('admin/header', $data);
+		echo view('admin/sidebar');
+		echo view('admin/kategori');
+		echo view('admin/footer');
+	}
+
+	public function tampilkanBarang(){
+        $tampilBarang = $this->barang->dotampilkanBarang();
+        echo json_encode($tampilBarang);
+	}
+	
+	public function tampilkanKategori(){
+		$tampilKategori = $this->barang->dotampilkanKategori();
+		echo json_encode($tampilKategori);
 	}
 
 	public function book_add() {
@@ -46,18 +68,68 @@ class Admin extends BaseController
 		// print_r($data);
         $insert = $this->barang->book_add($data);
         echo json_encode(array("status" => TRUE));
+	}
+	
+	public function newKategori(){
+		$nama = $this->request->getPost('nama_kategori');
+        $data = $this->barang->donewKategori($nama);
+        echo json_encode($data);
     }
 
-	public function test()
-	{
+	public function test(){
 		return view('referensi/admin-e-commerce');
 	}
 
-	public function tes_aja()
-	{
+	public function tes_aja(){
 		$a = $this->TestModel->query('select * from admin')->getresultarray();
 		dd($a);
 	}
 	
+	public function detailBarang(){
+		$id_barang = $this->request->getVar('id_barang');
+		// print_r($_POST);
+		$data = $this->barang->dodetailBarang($id_barang);
+        echo json_encode($data);
+	}
 
+	public function detailKategori(){
+		$id_kategori = $this->request->getVar('id_kategori');
+		// print_r($_POST);
+		$data = $this->barang->dodetailKategori($id_kategori);
+        echo json_encode($data);
+	}
+
+	public function updateBarang(){
+		$id_barang = $this->request->getVar('id_barang');
+		$id_kategori = $this->request->getVar('id_kategori');
+		$nama_barang = $this->request->getVar('nama_barang');
+		$nama_lain = $this->request->getVar('nama_lain');
+		$harga_barang = $this->request->getVar('harga_barang');
+		$stok_barang = $this->request->getVar('stok_barang');
+		$deskripsi = $this->request->getVar('deskripsi');
+        // print_r($_POST);
+        $data = $this->barang->doupdateRecord($id_barang, $id_kategori, $nama_barang, $nama_lain, $harga_barang, $stok_barang, $deskripsi);
+        echo json_encode($data);
+	}
+
+	public function updateKategori(){
+		$id_kategori = $this->request->getVar('id_kategori');
+		$nama_kategori = $this->request->getVar('nama_kategori');
+        // print_r($_POST);
+        $data = $this->barang->doupdateKategori($id_kategori, $nama_kategori);
+        echo json_encode($data);
+	}
+
+	public function deleteRecord(){
+		$id = $this->request->getVar('kode');
+        $data = $this->barang->dodeleteRecord($id);
+        echo json_encode($data);
+	}
+	
+	public function deleteKategori(){
+		$id = $this->request->getVar('kode');
+		// print_r($_POST);
+        $data = $this->barang->dodeleteKategori($id);
+        echo json_encode($data);
+	}
 }

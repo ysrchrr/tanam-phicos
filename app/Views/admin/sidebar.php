@@ -71,7 +71,7 @@
                 </a>
             </li>
             <li class="nav-item dropdown">
-                <a class="dropdown-toggle" href="<?= base_url();?>/admin/kelola">
+                <a class="dropdown-toggle" href="<?= base_url();?>/admin/kategori">
                     <span class="icon-holder">
                         <i class="fas fa-code-branch"></i>
                     </span>
