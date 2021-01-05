@@ -40,6 +40,7 @@ $routes->get('/cari', 'Front::cariproduk');
 $routes->get('/front', 'Front::index');
 $routes->get('/front/product', 'Front::all_products');
 $routes->get('/front/product/1', 'Front::show_product');
+$routes->get('/account', 'Account::index');
 
 
 
