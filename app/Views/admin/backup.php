@@ -3,12 +3,12 @@
     <!-- Content Wrapper START -->
     <div class="main-content">
         <div class="page-header">
-            <h2 class="header-title"><?php echo $title;?></h2>
+            <h2 class="header-title">Data Table</h2>
             <div class="header-sub-title">
                 <nav class="breadcrumb breadcrumb-dash">
-                    <a href="<?= base_url()?>/Admin/kelola" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Admin Panel</a>
-                    <!-- <a class="breadcrumb-item" href="#">Tables</a> -->
-                    <span class="breadcrumb-item active"><?php echo $title;?></span>
+                    <a href="#" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+                    <a class="breadcrumb-item" href="#">Tables</a>
+                    <span class="breadcrumb-item active">Data Table</span>
                 </nav>
             </div>
         </div>
@@ -22,6 +22,7 @@
                     <table id="data-table" class="table">
                         <thead>
                             <tr>
+                                <th>No.</th>
                                 <th>Nama Barang</th>
                                 <th>Nama Lain</th>
                                 <th>Harga</th>
@@ -30,6 +31,26 @@
                             </tr>
                         </thead>
                         <tbody id="show_data">
+                        <?php 
+                        function rupiah($angka){
+                            $hasil_rupiah = "Rp " . number_format($angka,0,',','.');
+                            return $hasil_rupiah;
+                        }
+                        foreach($barang as $key => $data) { ?>
+                        <tr>
+                            <td><?php echo $key+1; ?></td>
+                            <td><?php echo $data['nama_barang']; ?></td>
+                            <td><?php echo $data['nama_lain']; ?></td>
+                            <td><?php echo rupiah($data['harga_barang']); ?></td>
+                            <td><?php echo $data['stok_barang']; ?></td>
+                            <td>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary btn-tone btn-sm edit_data"  idb="<?php echo $data['id_barang']?>"><i class="fas fa-edit"></i></button>
+                                    <a href="<?php echo base_url('product/delete/'.$data['id_barang']); ?>" class="btn btn-danger btn-tone btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus produk <?php echo $data['nama_barang']; ?> ini?')"><i class="fas fa-trash-alt"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                        <?php } ?>
                         </tbody>
                     </table>
                 </div>
@@ -83,11 +104,6 @@
                             <label for="inputAddress2">Deskripsi</label>
                             <textarea class="form-control" name="deskripsi" placeholder="Tuliskan deksripsi produk..."></textarea>
                         </div>
-                        <!-- <div class="form-group">
-                            <div class="file-loading">
-                                <input id="file-1" type="file" name="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="2">
-                            </div>
-                        </div> -->
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -181,54 +197,37 @@
     <!-- delete modal end -->
     <!-- Content Wrapper END -->
     <script src="<?= base_url() ?>/back-assets/js/jquery-3.5.1.min.js"></script>
-    <script src="<?= base_url() ?>/back-assets/js/theme.js"></script>
-    <script src="<?= base_url() ?>/back-assets/js/popper.min.js"></script>
-    <script src="<?= base_url() ?>/back-assets/js/bootstrap.min.js"></script>
     <script type="text/javascript">
-        function convertToRupiah(angka){
-            var rupiah = '';		
-            var angkarev = angka.toString().split('').reverse().join('');
-            for(var i = 0; i < angkarev.length; i++) if(i%3 == 0) rupiah += angkarev.substr(i,3)+'.';
-            return 'Rp. '+rupiah.split('',rupiah.length-1).reverse().join('');
-        }
-        function showTableBarang(){
-            $.ajax({
-                type  : 'GET',
-                url   : '<?= base_url()?>/Admin/tampilkanBarang',
-                async : true,
-                dataType : 'json',
-                success : function(data){
-                    var html = '';
-                    var i;
-                    for(i=0; i<data.length; i++){
-                        html += '<tr>'+
-                                '<td>'+data[i].nama_barang+'</td>'+
-                                '<td>'+data[i].nama_lain+'</td>'+
-                                '<td>'+convertToRupiah(data[i].harga_barang)+'</td>'+
-                                '<td>'+data[i].stok_barang+'</td>'+
-                                '<td align="center"><button type="button" class="btn btn-primary btn-tone btn-sm edit_data" idb="'+data[i].id_barang+'"><i class="fas fa-edit"></i></button></td>'+
-                                // '<td align="center"> <button type="button" idx="'+data[i].id+'" class="btn btn-warning btn-sm edit_data"><i class="fas fa-edit"></i></button></td>'+
-                                '</tr>';
-                    }
-                    $('#show_data').html(html);
-                    $('#data-table').DataTable({
-                        "order": [],
-                        "language" : {
-                            "emptyTable" : "Belum ada data:(",
-                            "zeroRecords" : "Tidak ada yang cocok dengan database kami"
-                        }
-                    });
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    console.log(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
-                }
-                // complete: function(){
-                //     loading.hide();
-                // }
-            });
-        }
         $(document).ready(function(){
-            showTableBarang();
+            $('#data-table').DataTable();
+            var save_method = 'add'; //for save method string
+            var table;
+            function save(){
+                var url;
+                if(save_method == 'add'){
+                    url = "<?php echo site_url('Admin/book_add')?>";
+                } else {
+                    url = "<?php echo site_url('public/index.php/book/book_update')?>";
+                }
+
+                // ajax adding data to database
+                $.ajax({
+                    url : url,
+                    type: "POST",
+                    data: $('#form').serialize(),
+                    dataType: "JSON",
+                    success: function(data)
+                    {
+                    //if success close modal and reload ajax table
+                    $('#modal_form').modal('hide');
+                    location.reload();// for reload a page
+                    },
+                    error: function (jqXHR, textStatus, errorThrown)
+                    {
+                        alert('Error adding / update data');
+                    }
+                });
+            }
             $('#btn-simpan').on('click', function(){
                 $('#data-table').DataTable().destroy();
                 $.ajax({
@@ -239,7 +238,7 @@
                     success: function(data){
                         //if success close modal and reload ajax table
                         $('#exampleModal').modal('hide');
-                        showTableBarang();
+                        $('#data-table').DataTable();
                         Command: toastr["success"]("Data telah disimpan", "Berhasil")
                         toastr.options = {
                             "closeButton": false,
@@ -258,23 +257,13 @@
                             "showMethod": "fadeIn",
                             "hideMethod": "fadeOut"
                         }
+                        $('#data-table').DataTable();
                     },
                     error: function(xhr, ajaxOptions, thrownError) {
                     console.log(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
                     }
                 });
             });
-            // $("#file-1").fileinput({
-            //     theme: 'fa',
-            //     uploadUrl: "/imageUpload.php",
-            //     allowedFileExtensions: ['jpg', 'png', 'gif'],
-            //     overwriteInitial: false,
-            //     maxFileSize:2000,
-            //     maxFilesNum: 10,
-            //     slugCallback: function (filename) {
-            //         return filename.replace('(', '_').replace(']', '_');
-            //     }
-            // });
             $('#show_data').on('click', '.edit_data', function() {
                 // alert('hii');
                 var id = $(this).attr('idb');
@@ -334,7 +323,6 @@
                         $('[id="stok_barang_e"]').val("");
                         $('[id="deskripsi_e"]').val("");
                         $('#editModal').modal('hide');
-                        showTableBarang();
                         Command: toastr["success"]("Data berhasil di-update", "Berhasil")
                         toastr.options = {
                             "closeButton": false,
@@ -367,7 +355,7 @@
                 $('[name="id_d"]').val(id);
             });
             $('#btn-hapus').on('click', function(){
-                $('#data-table').DataTable().destroy();
+                $('#dataTable').DataTable().destroy();
                 var kode = $('#id_d').val();
                 // alert(kode);
                 $.ajax({
@@ -379,7 +367,7 @@
                     },
                     success: function(data) {
                         $('#modalHapus').modal('hide');
-                        showTableBarang();
+                        //datatable disini
                         Command: toastr["success"]("Data berhasil dihapus", "Berhasil")
                         toastr.options = {
                             "closeButton": false,
