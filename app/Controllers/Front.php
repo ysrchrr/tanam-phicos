@@ -31,7 +31,8 @@ class Front extends BaseController
 		echo view('front/index', $data);
 	}
 
-	public function all_products($kategori = "") {
+	public function all_products($kategori = "")
+	{
 		$model = new Product_view();
 		$ambil = $model->get_product_list($kategori)->getRowArray();
 
@@ -52,7 +53,8 @@ class Front extends BaseController
 		echo view('front/pages/all_products', $data);
 	}
 
-	public function show_product($kategori="", $product_id) {
+	public function show_product($kategori = "", $product_id)
+	{
 		$model = new Product_view();
 		$ambil = $model->get_product_detail($kategori, $product_id)->getRowArray();
 		$data = array(
@@ -79,7 +81,7 @@ class Front extends BaseController
 		$data = array(
 			'title' => 'Hasil Pencarian - Sapphire',
 			'product'  => $produk->paginate(9),
-			'sub_kategori1' => $this->product_view->query('Select * from sub_kategori'),
+			'category' => $this->product_view->query('Select * from kategori'),
 			'pager' => $produk->pager
 
 		);
@@ -90,5 +92,4 @@ class Front extends BaseController
 	{
 		return view('referensi/front-e-commerce');
 	}
-
 }
