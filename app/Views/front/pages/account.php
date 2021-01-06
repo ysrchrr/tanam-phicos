@@ -22,30 +22,34 @@
         </div>
         <div class="col-md-8">
             <div class="box padding">
-                <form>
+                <form action="<?= base_url(); ?>/account/akun_update" method="post">
+                    <?= csrf_field(); ?>
+                    <input type="hidden" value="<?= $bio['id_member']; ?>" name="id">
+                    <input type="hidden" name="password_old" value="<?= $bio['password']; ?>">
+                    <input type="hidden" name="username" value="<?= $bio['username']; ?>">
                     <div class="form-group">
                         <label for="nama">Nama</label>
-                        <input type="text" class="form-control" id="nama" aria-describedby="nama" placeholder="Masukkan Namamu">
+                        <input type="text" name="nama" value="<?= $bio['nama']; ?>" class="form-control" id="nama" aria-describedby="nama" placeholder="Masukkan Namamu">
                     </div>
                     <div class="form-group">
                         <label for="Email">Alamat Email</label>
-                        <input type="email" class="form-control" id="Email" aria-describedby="email" placeholder="Masukkan Email">
+                        <input type="text" name="email" value="<?= $bio['email']; ?>" class="form-control" id="Email" aria-describedby="email" placeholder="Masukkan Email">
                     </div>
                     <div class="form-group">
                         <label for="Telp">Telp</label>
-                        <input type="text" class="form-control" id="Telp" aria-describedby="telp" placeholder="telp">
+                        <input type="text" name="telp" class="form-control" value="<?= $bio['telp']; ?>" id="Telp" aria-describedby="telp" placeholder="telp">
                     </div>
                     <div class="form-group">
                         <label for="tgl_lahir">Tanggal Lahir</label>
-                        <input type="text" class="form-control" id="tgl_lahir" aria-describedby="tgl_lahir" placeholder="tgl_lahir">
+                        <input type="date" name="tgl_lahir" class="form-control" value="<?= $bio['tgl_lahir']; ?>" id="tgl_lahir" aria-describedby="tgl_lahir" placeholder="tgl_lahir">
                     </div>
                     <div class="form-group">
                         <label for="username">Username</label>
-                        <input type="text" class="form-control" id="username" aria-describedby="Username" placeholder="Username">
+                        <input type="text" class="form-control" name="tumbal" value="<?= $bio['username']; ?>" id="username" aria-describedby="Username" placeholder="Username" readonly>
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Password">
+                        <input type="password" name="password" class="form-control" value="abcde" id="password" placeholder="Password">
                     </div>
 
                     <button type="submit" class="btn btn-primary">Simpan</button>
