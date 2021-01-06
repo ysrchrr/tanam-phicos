@@ -9,9 +9,9 @@ class Account extends BaseController
 {
     public function __construct()
     {
+
         $this->UserModel = new UserModel();
     }
-
 
     public function index()
     {
@@ -31,6 +31,7 @@ class Account extends BaseController
 
     public function akun_update()
     {
+
         if (!$this->validate([
             'username'  => 'required',
             'password' => 'required',
@@ -69,6 +70,9 @@ class Account extends BaseController
 
     public function address()
     {
+        if (!session()->get('login')) {
+            return redirect()->to(base_url() . '/front');
+        }
         $data = array(
             'title' => "Phicos | Address",
             'validation' => \Config\Services::validation(),
@@ -84,6 +88,10 @@ class Account extends BaseController
 
     public function orders()
     {
+        if (!session()->get('login')) {
+            return redirect()->to(base_url() . '/front');
+        }
+
         $data = array(
             'title' => "Phicos | Address",
             'validation' => \Config\Services::validation(),
@@ -96,6 +104,9 @@ class Account extends BaseController
 
     public function orders_detail()
     {
+        if (!session()->get('login')) {
+            return redirect()->to(base_url() . '/front');
+        }
         $data = array(
             'title' => "Phicos | Pesanan Detail",
             'validation' => \Config\Services::validation(),
