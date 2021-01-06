@@ -98,6 +98,14 @@ class Account extends BaseController
 
         $a = "";
         $pemesanan = $this->UserModel->query('select * from pemesanan where id_member =' . session()->get('user_id'))->getresultarray();
+
+        if (count($pemesanan) == 0) {
+            $data = array(
+                'title' => "Phicos | Address",
+            );
+            return view('front/pages/orders_blank', $data);
+        }
+
         foreach ($pemesanan as $p) {
             $a .= $p['id_pemesanan'];
         }
