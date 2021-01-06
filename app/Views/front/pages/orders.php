@@ -21,44 +21,54 @@
             </div>
         </div>
         <div class="col-md-8">
-            <div class="box padding">
-                <div class="card-body">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <div class="row mt-2">
-                                <div class="col-md-6">
-                                    <small>Status</small>
-                                    <p style="font-weight: 800;">Pesanan Selesai</p>
+            <?php foreach ($pemesanan as $p) : ?>
+                <div class="box padding">
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <div class="row mt-2">
+                                    <div class="col-md-6">
+                                        <small>Status</small>
+                                        <p style="font-weight: 800;"><?= $p['status_pemesanan']; ?></p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <small>Total Belanja</small>
+                                        <p style="font-weight: 800;color:green"><?= $p['total']; ?></p>
+                                    </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <small>Total Belanja</small>
-                                    <p style="font-weight: 800;color:green">Rp. 150.000</p>
+                                <hr style="margin: 0;">
+                                <?php foreach ($pemesanan_detail as $pd) : ?>
+                                    <?php if ($p['id_pemesanan'] == $pd['id_pemesanan']) : ?>
+                                        <div class="row">
+                                            <div class="col-md-4 ">
+                                                <small>Total Harga Produk</small>
+                                                <p style="font-weight: 800;color:green"><?= $pd['total']; ?></p>
+                                            </div>
+                                            <div class="col-md-8 mt-1">
+                                                <?php foreach ($gambar_pd as $g) : ?>
+                                                    <?php if ($pd['id_barang'] == $g['id_barang']) : ?>
+                                                        <img style="width: 100px;height: 100px;" src="<?= $g['link_gambar']; ?>" alt="">
+                                                    <?php endif; ?>
+                                                <?php endforeach; ?>
+                                                <label style="margin-top: 10px;color:black;"><?= $pd['nama_barang']; ?><p style="margin-bottom: 0;font-weight:500;color:green"><?= $pd['harga']; ?></p>
+                                                    <label for="" style="font-weight: 500;"><?= $pd['jumlah_barang']; ?> Produk</label>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                                <hr>
+                                <div class="row text-center">
+                                    <div class="col-md-12"><a href="<?= base_url(); ?>/account/orders_detail">
+                                            Lihat Detail Pesanan
+                                        </a></div>
                                 </div>
-                            </div>
-                            <hr style="margin: 0;">
-                            <div class="row">
-                                <div class="col-md-4 ">
-                                    <small>Total Harga Produk</small>
-                                    <p style="font-weight: 800;color:green">Rp. 100.000</p>
-                                </div>
-                                <div class="col-md-8 mt-1">
-                                    <img style="width: 100px;height: 100px;" src="https://www.thegardenstore.sg/image/cache/catalog/products/Plant/Aloe%20vera%20Small-460x460.png" alt="">
-                                    <label style="margin-top: 10px;color:black;">Aglaonema Hybrid White<p style="margin-bottom: 0;font-weight:500;color:green">Rp. 100.000</p>
-                                        <label for="" style="font-weight: 500;">1 Produk</label>
-                                    </label>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row text-center">
-                                <div class="col-md-12"><a href="<?= base_url(); ?>/account/orders_detail">
-                                        Lihat Detail Pesanan
-                                    </a></div>
-                            </div>
-                        </li>
-                    </ul>
+                            </li>
+                        </ul>
 
+                    </div>
                 </div>
-            </div>
+            <?php endforeach; ?>
         </div>
     </div>
 </div>

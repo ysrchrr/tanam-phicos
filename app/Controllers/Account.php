@@ -13,6 +13,10 @@ class Account extends BaseController
         $this->UserModel = new UserModel();
     }
 
+    public function test()
+    {
+    }
+
     public function index()
     {
 
@@ -92,12 +96,23 @@ class Account extends BaseController
             return redirect()->to(base_url() . '/front');
         }
 
+        $a = "";
+        $pemesanan = $this->UserModel->query('select * from pemesanan where id_member =' . session()->get('user_id'))->getresultarray();
+        foreach ($pemesanan as $p) {
+            $a .= $p['id_pemesanan'];
+        }
+        $b = implode(',', str_split($a));
+
         $data = array(
             'title' => "Phicos | Address",
             'validation' => \Config\Services::validation(),
-
-
+            'pemesanan' => $pemesanan,
+            'pemesanan_detail' => $this->UserModel->query('select * from pemesanan_detail as pd,barang as b where pd.id_barang = b.id_barang and pd.id_pemesanan in (' . $b . ')')->getresultarray(),
+            'gambar_pd' => $this->UserModel->query('select * from gambar group by id_barang')->getresultarray()
         );
+
+        // dd($data['pemesanan_detail']);
+
 
         return view('front/pages/orders', $data);
     }
@@ -110,10 +125,37 @@ class Account extends BaseController
         $data = array(
             'title' => "Phicos | Pesanan Detail",
             'validation' => \Config\Services::validation(),
-
-
         );
 
+
         return view('front/pages/orders_detail', $data);
+    }
+
+    public function address_update()
+    {
+        if (!$this->validate([
+            'id'  => 'required',
+            'alamat' => 'required',
+            'provinsi' => 'required',
+            'kota' => 'required',
+            'kecamatan' => 'required',
+
+        ])) {
+            // session()->setflashdata('pesan', 'Data yang anda isi belum lengkap');
+            return redirect()->to(base_url() . '/account/address')->withInput();
+        }
+
+        $data = [
+            'id_member' => $this->request->getVar('id'),
+            'alamat' => $this->request->getVar('alamat'),
+            'id_provinsi' => $this->request->getVar('provinsi'),
+            'id_kabupaten' => $this->request->getVar('kota'),
+            'id_kecamatan' => $this->request->getVar('kecamatan'),
+
+        ];
+
+
+        $this->UserModel->save($data);
+        return redirect()->to(base_url() . '/account/address');
     }
 }
