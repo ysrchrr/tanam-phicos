@@ -22,10 +22,12 @@
         </div>
         <div class="col-md-8">
             <div class="box padding">
-                <form>
+                <form action="<?=base_url();?>/account/address_update" method="post">
+                <?=csrf_field();?>
+                <input type="hidden" name="id" id="" value="<?= $bio['id_member']; ?>">
                     <div class="form-group">
                         <label for="Alamat">Alamat</label>
-                        <input type="text" class="form-control" value="<?= $bio['alamat']; ?>" id="Alamat" aria-describedby="Alamat" placeholder="Alamat">
+                        <input type="text" name="alamat" class="form-control" value="<?= $bio['alamat']; ?>" id="Alamat" aria-describedby="Alamat" placeholder="Alamat">
                     </div>
                     <div class="form-group">
                         <label for="province">Provinsi</label>

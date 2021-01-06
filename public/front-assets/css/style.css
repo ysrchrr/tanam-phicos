@@ -54,7 +54,8 @@ ul, ol
 {
     margin:0px auto;
 	padding:0px;
-	background:#f5f5f5;
+	background:#d3f3d2;
+	/* background:#f5f5f5; */
 }
 
 p
@@ -231,7 +232,9 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 		padding-top:40px;
 		padding-bottom:20px;
 		margin-bottom:30px;
-		background:#fff;
+		background:#d3f3d2;
+		/* background:#f5f5f5; */
+		
 	}
 
 
@@ -779,9 +782,6 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 		padding:0px;
 	}
 	
-	.page-container
-	{
-	}
 	
 	.footer
 	{
