@@ -138,12 +138,14 @@
 				<h1><?=$name;?> (<?=$other_name;?>)</h1>
 				    <div class="line"></div>
 						<ul>
-							<li><span>Brand:</span> <a href="#">Shop Online</a></li>
-							<li><span>Product Code:</span> Product 001</li>
-							<li><span>Availability: </span>In Stock</li>
+							<li><span>Jenis Tanaman:</span> <a href="#"><?= $category; ?></a></li>
+							<!-- <li><span>Product Code:</span> Product 001</li> -->
+							<li><span>Ketersediaan: </span>Tersedia</li>
 						</ul>
 					<div class="price">
-						Price <span class="strike">$150.00</span> <strong>$125.00</strong>
+						Harga : &nbsp;
+						<!-- <span class="strike">$150.00</span>  -->
+						<strong>Rp. <?= $price; ?></strong>
 					</div>
 					<!--
 						<span class="price-tax">Ex Tax: $400.00</span>
@@ -171,15 +173,12 @@
 							</div> -->
 
 					<select class="selectpicker" data-width="150px">
+						<option readonly>Pilih Warna</option>
 						<option>Red</option>
 						<option>Blue</option>
 						<option>Green</option>
 					</select>
-					<select class="selectpicker" data-width="150px">
-						<option>180 cm</option>
-						<option>160 cm</option>
-						<option>140 cm</option>
-					</select>
+
 					<div class="line"></div>
 					<form class="form-inline">
 						<button class="btn btn-primary" style="margin-right: 20px;" type="button">Add to Cart</button>
@@ -190,10 +189,9 @@
 						<ul class="nav nav-tabs" id="myTab">
 							<li class="tab-li active"><a href="#tabs-1">Description</a></li>
 							<li class="tab-li"><a href="#tabs-2">Specification</a></li>
-							<li class="tab-li"><a href="#tabs-3">Reviews</a></li>
 						</ul>
 						<div class="tab-content">
-							<div class="tab-pane active" id="tabs-1">When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then </div>
+							<div class="tab-pane active" id="tabs-1"><?= $description; ?></div>
 							<div class="tab-pane" id="tabs-2">
 								<table class="table specs">
 									<tr>
@@ -218,45 +216,28 @@
 									</tr>								
 								</table>
 							</div>
-							<div class="tab-pane" id="tabs-3">
-								<p>There are no reviews yet, would you like to <a href="#review_btn">submit yours?</a></p>
-								<h3>Be the first to review “Blue Dress” </h3>
-							<form>
-								<fieldset>
-									<label>Name<span class="required">*</span></label>
-									<input type="text" placeholder="Name">
-									<label>Email<span class="required">*</span></label>
-									<input type="text" placeholder="Email">		
-									<label class="rating">Rating</label>
-									<img alt="rating" src="image/stars-5.png">								
-								</fieldset>
-							</form>
-								<label>Your Review<span class="required">*</span></label>
-								<textarea rows="3"></textarea>
-							<p id="review_btn">
-								<button class="btn btn-default" type="button">Submit Review</button>
-							</p>
 						</div>
 					</div>
-				</div>
 			</div>
 		</div>
-
+		<!-- /front-assets/products/dress1home.jpg -->
 		<h3 class="related">Related products</h3>
 		<div class="row">
 			<div class="col-md-12">
+				<?php foreach($related_product as $row) : ?>
 				<div class="col-md-3">
 					<div class="product">
 						<div class="product_sale">Sale</div>
-						<a href="product.html"><img alt="dress1home" src="products/dress1home.jpg"></a>
+						<a href="<?= base_url(); ?>/front/product/<?= $row['id_kategori']; ?>/<?= $row['id_barang']; ?>"><img alt="<?= $row['nama_barang'] ?>" src="<?= $row['link_gambar'] ?>"></a>
 						<div class="name">
-							<a href="#">Elegant Dress</a>
+							<a href="<?= base_url(); ?>/front/product/<?= $row['id_kategori']; ?>/<?= $row['id_barang']; ?>"><?= $row['nama_barang'] ?></a>
 						</div>
 						<div class="price">
-							<p>$200.00</p>
+							<p><?= $row['harga_barang'] ?></p>
 						</div>
 					</div>
 				</div>
+				<?php endforeach; ?>
 			</div>
 		</div>
 	</div>

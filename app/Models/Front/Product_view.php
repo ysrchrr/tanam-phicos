@@ -11,7 +11,7 @@ class Product_view extends Model
 
     // SELECT * FROM `barang`
     // LEFT JOIN gambar on gambar.id_barang = barang.id_barang
-    public function get_product_list($where)
+    public function get_product_list($kategori)
     {
         $data = $this->db->table('barang');
         $data->select('barang.*, gambar.link_gambar, kategori.nama_kategori');
