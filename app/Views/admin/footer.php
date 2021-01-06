@@ -17,6 +17,7 @@
     <script src="<?= base_url() ?>/back-assets/js/vendors.min.js"></script>
     <!-- page js -->
     <script src="<?= base_url() ?>/back-assets/vendors/chartjs/Chart.min.js"></script>
+    
     <script src="<?= base_url() ?>/back-assets/vendors/datatables/jquery.dataTables.min.js"></script>
     <script src="<?= base_url() ?>/back-assets/vendors/datatables/dataTables.bootstrap.min.js"></script>
     

@@ -22,6 +22,20 @@ class AdminModel extends Model
         return $query->getResult();
     }
 
+    public function dotampilkanBlog(){
+        $query = $this->db->query("SELECT * FROM blog ORDER BY terakhir_diperbarui");
+        return $query->getResult();
+    }
+
+    public function summary(){
+        $query = $this->db->query("SELECT 
+                                    (SELECT COUNT(id_barang) FROM barang) AS totalProduk,
+                                    (SELECT COUNT(id_kategori) FROM kategori) AS totalKategori,
+                                    (SELECT COUNT(id_pemesanan) FROM pemesanan) AS totalPesanan,
+                                    (SELECT COUNT(id_member) FROM member) AS totalMember");
+        return $query->getResult();
+    }
+
     public function get_all_barang() {
         $query = $this->db->query('SELECT * FROM barang');
         return $query->getResultArray();
@@ -42,6 +56,11 @@ class AdminModel extends Model
     
     public function donewKategori($nama){
         $query = $this->db->query("INSERT INTO `kategori`(`nama_kategori`) VALUES ('$nama')");
+        return $query;
+    }
+
+    public function donewBlog($judul, $isi, $today){
+        $query = $this->db->query("INSERT INTO `blog`(`judul_blog`, `terakhir_diperbarui`, `isi_blog`) VALUES ('$judul', '$today', '$isi')");
         return $query;
     }
     
@@ -108,6 +127,31 @@ class AdminModel extends Model
     public function dodeleteKategori($id){
         $hasil = $this->db->query("DELETE FROM kategori WHERE id_kategori = '$id'");
 		return $hasil;
+    }
+
+    public function dodeleteBlog($id){
+        $hasil = $this->db->query("DELETE FROM blog WHERE id_blog = '$id'");
+		return $hasil;
+    }
+
+    public function detailPost($id_blog){
+        $query = $this->db->query("SELECT * FROM blog WHERE id_blog = '$id_blog'");
+        return $query;
+    }
+
+    public function doupdateBlog($id, $judul, $isi, $tanggal){
+        // print_r($_POST);
+        $query = $this->db->query("UPDATE `blog` SET 
+                                    `judul_blog` = '$judul', 
+                                    `terakhir_diperbarui` = '$tanggal', 
+                                    `isi_blog` = '$isi' 
+                                    WHERE `id_blog` = '$id'");
+        // if($query){
+        //     echo "yyyy";
+        // } else {
+        //     echo "nnnn";
+        // }
+        return $query;
     }
 }
 ?>
