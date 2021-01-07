@@ -2,70 +2,70 @@
 <div class="page-container">
     <!-- Content Wrapper START -->
     <div class="main-content">
-    <div class="row">
-    <?php
-    foreach($summary as $r){
-    ?>
-        <div class="col-md-6 col-lg-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="media align-items-center">
-                        <div class="avatar avatar-icon avatar-lg avatar-blue">
-                            <i class="anticon anticon-dollar"></i>
-                        </div>
-                        <div class="m-l-15">
-                            <h2 class="m-b-0"><?php echo $r->totalProduk; ?></h2>
-                            <p class="m-b-0 text-muted">Produk</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 col-lg-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="media align-items-center">
-                        <div class="avatar avatar-icon avatar-lg avatar-cyan">
-                            <i class="anticon anticon-line-chart"></i>
-                        </div>
-                        <div class="m-l-15">
-                            <h2 class="m-b-0"><?php echo $r->totalKategori; ?></h2>
-                            <p class="m-b-0 text-muted">Jenis Produk</p>
+        <div class="row">
+            <?php
+            foreach ($summary as $r) {
+            ?>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="media align-items-center">
+                                <div class="avatar avatar-icon avatar-lg avatar-blue">
+                                    <i class="anticon anticon-dollar"></i>
+                                </div>
+                                <div class="m-l-15">
+                                    <h2 class="m-b-0"><?php echo $r->totalProduk; ?></h2>
+                                    <p class="m-b-0 text-muted">Produk</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-md-6 col-lg-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="media align-items-center">
-                        <div class="avatar avatar-icon avatar-lg avatar-gold">
-                            <i class="anticon anticon-profile"></i>
-                        </div>
-                        <div class="m-l-15">
-                            <h2 class="m-b-0"><?php echo $r->totalPesanan; ?></h2>Terjual</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 col-lg-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="media align-items-center">
-                        <div class="avatar avatar-icon avatar-lg avatar-purple">
-                            <i class="anticon anticon-user"></i>
-                        </div>
-                        <div class="m-l-15">
-                            <h2 class="m-b-0"><?php echo $r->totalMember; ?></h2>
-                            <p class="m-b-0 text-muted">Member</p>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="media align-items-center">
+                                <div class="avatar avatar-icon avatar-lg avatar-cyan">
+                                    <i class="anticon anticon-line-chart"></i>
+                                </div>
+                                <div class="m-l-15">
+                                    <h2 class="m-b-0"><?php echo $r->totalKategori; ?></h2>
+                                    <p class="m-b-0 text-muted">Jenis Produk</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="media align-items-center">
+                                <div class="avatar avatar-icon avatar-lg avatar-gold">
+                                    <i class="anticon anticon-profile"></i>
+                                </div>
+                                <div class="m-l-15">
+                                    <h2 class="m-b-0"><?php echo $r->totalPesanan; ?></h2>Terjual</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="media align-items-center">
+                                <div class="avatar avatar-icon avatar-lg avatar-purple">
+                                    <i class="anticon anticon-user"></i>
+                                </div>
+                                <div class="m-l-15">
+                                    <h2 class="m-b-0"><?php echo $r->totalMember; ?></h2>
+                                    <p class="m-b-0 text-muted">Member</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
         </div>
-    </div>
     <?php } ?>
     <div class="row">
         <div class="col-md-6">
@@ -85,75 +85,32 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="media align-items-center">
-                                                <div class="avatar avatar-image rounded">
-                                                    <img src="assets/images/others/thumb-11.jpg" alt="">
+                                    <?php foreach ($terlaris as $l) : ?>
+                                        <tr>
+                                            <td>
+                                                <div class="media align-items-center">
+                                                    <div class="avatar avatar-image rounded">
+                                                        <img src="<?= $l['link']; ?>" alt="">
+                                                    </div>
+                                                    <div class="m-l-10">
+                                                        <span><?= $l['nama']; ?></span>
+                                                    </div>
                                                 </div>
-                                                <div class="m-l-10">
-                                                    <span>Wooden Rhino</span>
+                                            </td>
+                                            <td><?= $l['total']; ?></td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="progress progress-sm w-100 m-b-0">
+                                                        <div class="progress-bar bg-<?= ($l['stok'] > 50) ? 'success' : 'danger'; ?>" style="width: <?= $l['stok']; ?>%"></div>
+                                                    </div>
+                                                    <div class="m-l-10">
+                                                        <?= $l['stok']; ?>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                        <td>71</td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <div class="progress progress-sm w-100 m-b-0">
-                                                    <div class="progress-bar bg-danger" style="width: 23%"></div>
-                                                </div>
-                                                <div class="m-l-10">
-                                                    23
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="media align-items-center">
-                                                <div class="avatar avatar-image rounded">
-                                                    <img src="assets/images/others/thumb-12.jpg" alt="">
-                                                </div>
-                                                <div class="m-l-10">
-                                                    <span>Red Chair</span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>79</td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <div class="progress progress-sm w-100 m-b-0">
-                                                    <div class="progress-bar bg-warning" style="width: 54%"></div>
-                                                </div>
-                                                <div class="m-l-10">
-                                                    54
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="media align-items-center">
-                                                <div class="avatar avatar-image rounded">
-                                                    <img src="assets/images/others/thumb-13.jpg" alt="">
-                                                </div>
-                                                <div class="m-l-10">
-                                                    <span>Wristband</span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>60</td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <div class="progress progress-sm w-100 m-b-0">
-                                                    <div class="progress-bar bg-success" style="width: 76%"></div>
-                                                </div>
-                                                <div class="m-l-10">
-                                                    76
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+
                                 </tbody>
                             </table>
                         </div>
@@ -178,75 +135,31 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="media align-items-center">
-                                                <div class="avatar avatar-image rounded">
-                                                    <img src="assets/images/others/thumb-9.jpg" alt="">
+                                    <?php foreach ($terjual as $j) : ?>
+                                        <tr>
+                                            <td>
+                                                <div class="media align-items-center">
+                                                    <div class="avatar avatar-image rounded">
+                                                        <img src="<?= $j['link']; ?>" alt="">
+                                                    </div>
+                                                    <div class="m-l-10">
+                                                        <span><?= $j['nama']; ?></span>
+                                                    </div>
                                                 </div>
-                                                <div class="m-l-10">
-                                                    <span>Gray Sofa</span>
+                                            </td>
+                                            <td><?= $j['total']; ?></td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="progress progress-sm w-100 m-b-0">
+                                                        <div class="progress-bar bg-<?= ($j['stok'] > 50) ? 'success' : 'danger'; ?>" style="width: <?= $j['stok']; ?>%"></div>
+                                                    </div>
+                                                    <div class="m-l-10">
+                                                        <?= $j['stok']; ?>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                        <td>81</td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <div class="progress progress-sm w-100 m-b-0">
-                                                    <div class="progress-bar bg-success" style="width: 82%"></div>
-                                                </div>
-                                                <div class="m-l-10">
-                                                    82
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="media align-items-center">
-                                                <div class="avatar avatar-image rounded">
-                                                    <img src="assets/images/others/thumb-10.jpg" alt="">
-                                                </div>
-                                                <div class="m-l-10">
-                                                    <span>Gray Sofa</span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>26</td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <div class="progress progress-sm w-100 m-b-0">
-                                                    <div class="progress-bar bg-success" style="width: 61%"></div>
-                                                </div>
-                                                <div class="m-l-10">
-                                                    61
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="media align-items-center">
-                                                <div class="avatar avatar-image rounded">
-                                                    <img src="assets/images/others/thumb-11.jpg" alt="">
-                                                </div>
-                                                <div class="m-l-10">
-                                                    <span>Wooden Rhino</span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>71</td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <div class="progress progress-sm w-100 m-b-0">
-                                                    <div class="progress-bar bg-danger" style="width: 23%"></div>
-                                                </div>
-                                                <div class="m-l-10">
-                                                    23
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -255,12 +168,12 @@
             </div>
         </div>
     </div>
-    
-        <div class="row">
-            <div class="col">
-                <?= chat('test'); ?>
-            </div>
+
+    <div class="row">
+        <div class="col">
+            <?= chat('test'); ?>
         </div>
+    </div>
     </div>
     <!-- Content Wrapper END -->
 
