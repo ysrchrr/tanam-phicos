@@ -181,9 +181,6 @@
     <!-- delete modal end -->
     <!-- Content Wrapper END -->
     <script src="<?= base_url() ?>/back-assets/js/jquery-3.5.1.min.js"></script>
-    <script src="<?= base_url() ?>/back-assets/js/theme.js"></script>
-    <script src="<?= base_url() ?>/back-assets/js/popper.min.js"></script>
-    <script src="<?= base_url() ?>/back-assets/js/bootstrap.min.js"></script>
     <script type="text/javascript">
         function convertToRupiah(angka){
             var rupiah = '';		
@@ -263,6 +260,7 @@
                     console.log(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
                     }
                 });
+                return false;
             });
             // $("#file-1").fileinput({
             //     theme: 'fa',

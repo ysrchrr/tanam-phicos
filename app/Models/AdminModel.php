@@ -8,6 +8,7 @@ class AdminModel extends Model
     
     // protected $allowedFields = ['id_barang', 'id_kategori', 'nama_barang', 'nama_lain', 'harga_barang', 'stok_barang', 'deskripsi', 'created_at', 'updated_at'];
     public function __construct() {
+        // helper('form');
         parent::__construct();
         $db = \Config\Database::connect();
     }
@@ -59,8 +60,8 @@ class AdminModel extends Model
         return $query;
     }
 
-    public function donewBlog($judul, $isi, $today){
-        $query = $this->db->query("INSERT INTO `blog`(`judul_blog`, `terakhir_diperbarui`, `isi_blog`) VALUES ('$judul', '$today', '$isi')");
+    public function donewBlog($judul, $isi, $today, $gambar, $slug){;
+        $query = $this->db->query("INSERT INTO `blog`(`judul_blog`, `terakhir_diperbarui`, `isi_blog`, `gambar_blog`, `slug`) VALUES ('$judul', '$today', '$isi', '$gambar', '$slug')");
         return $query;
     }
     
@@ -139,12 +140,14 @@ class AdminModel extends Model
         return $query;
     }
 
-    public function doupdateBlog($id, $judul, $isi, $tanggal){
+    public function doupdateBlog($id, $judul, $isi, $today, $gambar, $slug){
         // print_r($_POST);
         $query = $this->db->query("UPDATE `blog` SET 
                                     `judul_blog` = '$judul', 
-                                    `terakhir_diperbarui` = '$tanggal', 
-                                    `isi_blog` = '$isi' 
+                                    `terakhir_diperbarui` = '$today', 
+                                    `isi_blog` = '$isi',
+                                    `gambar_blog` = '$gambar',
+                                    `slug` = '$slug'
                                     WHERE `id_blog` = '$id'");
         // if($query){
         //     echo "yyyy";

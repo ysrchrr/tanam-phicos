@@ -7,7 +7,7 @@
             <div class="header-sub-title">
                 <nav class="breadcrumb breadcrumb-dash">
                     <a href="<?= base_url()?>/Admin/kelola" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Admin Panel</a>
-                    <a class="breadcrumb-item" href="#">Kelola Blog</a>
+                    <a class="breadcrumb-item" href="<?= base_url()?>/Admin/blog">Kelola Blog</a>
                     <span class="breadcrumb-item active"><?php echo $title;?></span>
                 </nav>
             </div>
@@ -16,19 +16,22 @@
             <div class="col-md-12 mb-4">
                 <div class="card">
                     <div class="card-body">
-                        <h4>Tulis Postingan</h4>
+                    <a href="<?= base_url()?>/Admin/blog"><i class="anticon anticon-arrow-left"></i></a>
                         <div class="m-t-25">
-                            <form>
+                            <form enctype="multipart/form-data" id="new-post">
                                 <div class="form-group">
                                     <label>Judul Postingan</label>
-                                    <input type="text" class="form-control" id="judul_blog" placeholder="The Quick Brown Fox Jumps Over The Lazy Dog" autofocus>
+                                    <input type="text" class="form-control" id="judul_blog" name="judul_blog" placeholder="The Quick Brown Fox Jumps Over The Lazy Dog" autofocus>
                                 </div>
                                 <div id="editor">
                                     <p>Hello World!</p>
-                                    <p>Some initial <strong>bold</strong> text</p>
-                                    <p><br></p>
                                 </div>
-                                <button type="button" class="btn btn-primary m-r-5 mt-2 float-right" id="btn-save">
+                                <div class="form-group">
+                                    <label class="mt-2">Gambar</label>
+                                    <input type="file" class="form-control-file" id="gambar_blog" name="gambar_blog" accept="image/*">
+                                </div>
+                                <textarea name="isi" id="isi" style="display:none;"></textarea>
+                                <button type="submit" class="btn btn-primary m-r-5 mt-2 float-right" id="btn-save">
                                     <i class="anticon anticon-notification"></i> Tulis postingan
                                 </button>
                             </form>
@@ -47,33 +50,24 @@
         theme: 'snow'
     });
     $(document).ready(function(){
-        $('#btn-save').on('click', function(){
+        $('#new-post').submit(function(){
             var judul = $('#judul_blog').val();
+            var file = $('#gambar_blog').val();
             var quillText = quill.root.innerHTML.trim();
-            var today = new Date();
-            var dd = today.getDate();
-            var mm = today.getMonth()+1; 
-            var yyyy = today.getFullYear();
-            if(dd<10) 
-            {
-                dd='0'+dd;
-            } 
-            if(mm<10) 
-            {
-                mm='0'+mm;
-            }
-            today = yyyy+'-'+mm+'-'+dd;
+            $('#isi').val(quillText);
             $.ajax({
                 type: "POST",
                 url: "<?php echo base_url('Admin/newBlog') ?>",
                 dataType: "JSON",
-                data: {
-                    judul: judul,
-                    isi: quillText,
-                    tanggal: today
-                },
+                data: new FormData(this),  
+                contentType: false,  
+                cache: false,  
+                processData:false,
                 success: function(data) {
                     $('[id="judul_blog"]').val("");
+                    window.setTimeout( function(){
+                        window.location = "<?= base_url()?>/admin/blog";
+                    }, 300 );
                     Command: toastr["success"](" Post telah di-publish", "Berhasil")
                     toastr.options = {
                         "closeButton": false,

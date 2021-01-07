@@ -7,8 +7,9 @@ use App\Models\AdminModel;
 
 class Admin extends BaseController
 {
-	public function __construct()
-	{
+	public function __construct(){
+		// helper('form');
+		// helper('filesystem');
 		$this->barang = new AdminModel();
 	}
 
@@ -93,13 +94,18 @@ class Admin extends BaseController
 	}
 
 	public function book_add() {
+		$rnama = $this->request->getPost('nama_barang');
+		$exnama = explode(" ", $rnama);
+		$imnama = implode("-", $exnama);
+		$slug = strtolower($imnama);
         $data = array(
             'nama_barang' => $this->request->getPost('nama_barang'),
             'nama_lain' => $this->request->getPost('nama_lain'),
             'id_kategori' => $this->request->getPost('id_kategori'),
             'harga_barang' => $this->request->getPost('harga_barang'),
 			'stok_barang' => $this->request->getPost('stok_barang'),
-			'deskripsi' => $this->request->getPost('deskripsi')
+			'deskripsi' => $this->request->getPost('deskripsi'),
+			'slug' => $slug
 		);
         $insert = $this->barang->book_add($data);
         echo json_encode(array("status" => TRUE));
@@ -112,10 +118,34 @@ class Admin extends BaseController
 	}
 	
 	public function newBlog(){
-		$judul = $this->request->getPost('judul');
+		$judul = $this->request->getPost('judul_blog');
+		$xslug = explode(" ", $judul);
+		$yslug = implode("-", $xslug);
+		$nslug = strtolower($yslug);
+		$cekslug = $this->database->query("SELECT slug FROM blog WHERE slug = '$nslug'")->getRowArray();
+		// var_dump($cekslug['slug']);
+		if($cekslug['slug'] == ''){
+			$slug = $nslug;
+			// echo $slug;
+		} else{
+			$zslug = $cekslug['slug'] . '-2';
+			$cekslugtwo = $this->database->query("SELECT slug FROM blog WHERE slug = '$zslug'")->getRowArray();
+			if($cekslugtwo['slug'] == ''){
+				$slug = $zslug;
+			} else {
+				$slug = $zslug . '-2';
+			}
+		}
 		$isi = $this->request->getPost('isi');
-		$today = $this->request->getPost('tanggal');
-        $data = $this->barang->donewBlog($judul, $isi, $today);
+		$today = date("Y-m-d");
+		if (empty($_FILES['gambar_blog']['name'])) {
+			$gambar = '';
+		} else {
+			$img = $this->request->getFile('gambar_blog');
+			$gambar = $img->getName();
+			$img->move(ROOTPATH . 'public/gambar-blog', $gambar);
+		}
+        $data = $this->barang->donewBlog($judul, $isi, $today, $gambar, $slug);
         echo json_encode($data);
     }
 
@@ -151,13 +181,36 @@ class Admin extends BaseController
 	}
 
 	public function updateBlog(){
-		$id = $this->request->getVar('id_blog');
-		$judul = $this->request->getVar('judul_blog');
-		$isi = $this->request->getVar('quillText');
-		$tanggal =$this->request->getVar('today');
-		print_r($_POST);
-        // $data = $this->barang->doupdateBlog($id, $judul, $isi, $tanggal);
-        // echo json_encode($data);
+		$id = $this->request->getPost('id_blog_e');
+		$judul = $this->request->getPost('judul_blog_e');
+		$isi = $this->request->getPost('isi');
+		$today = date("Y-m-d");
+		$xslug = explode(" ", $judul);
+		$yslug = implode("-", $xslug);
+		$nslug = strtolower($yslug);
+		$cekslug = $this->database->query("SELECT slug FROM blog WHERE slug = '$nslug'")->getRowArray();
+		// var_dump($cekslug['slug']);
+		if($cekslug['slug'] == ''){
+			$slug = $nslug;
+			// echo $slug;
+		} else{
+			$zslug = $cekslug['slug'] . '-2';
+			$cekslugtwo = $this->database->query("SELECT slug FROM blog WHERE slug = '$zslug'")->getRowArray();
+			if($cekslugtwo['slug'] == ''){
+				$slug = $zslug;
+			} else {
+				$slug = $zslug . '-2';
+			}
+		}
+		if (empty($_FILES['gambar_blog']['name'])) {
+			$gambar = '';
+		} else {
+			$img = $this->request->getFile('gambar_blog');
+			$gambar = $img->getName();
+			$img->move(ROOTPATH . 'public/gambar-blog', $gambar);
+		}
+        $data = $this->barang->doupdateBlog($id, $judul, $isi, $today, $gambar, $slug);
+        echo json_encode($data);
 	}
 
 	public function deleteRecord(){
