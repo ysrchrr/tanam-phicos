@@ -37,7 +37,7 @@
 						<li class="active"><a href="<?= base_url('/front') ?>">Shop</a></li>
 						<li class=""><a href="<?= base_url('/blog') ?>">Blog</a></li>
 						<li><a href="<?= base_url('/front/product/') ?>">Our Products</a></li>
-						<li><a href="contact.html" class="ajax_right">About</a></li>
+						<li><a href="contact.html" class="ajax_right">Consultation</a></li>
 						<?php if (session()->get('login')) { ?>
 							<li class="dropdown">
 								<a data-toggle="dropdown" class="dropdown-toggle" href="#">Profile <b class="caret"></b></a>
