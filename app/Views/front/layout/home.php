@@ -53,47 +53,54 @@
 
 					<ul class="nav navbar-right cart">
 						<li class="dropdown">
-							<a href="<?= base_url(); ?>/front/cart" class="dropdown-toggle" data-toggle="dropdown"><span><?= count($cart_d); ?></span></a>
-							<div class="cart-info dropdown-menu text-center">
-								<table class="table">
-									<thead>
-										<tr>
-											<td></td>
-											<td>Nama</td>
-											<td>Jumlah</td>
-											<td>Harga</td>
-										<tr>
-									</thead>
-									<tbody>
-										<?php foreach ($cart_d as $cd) : ?>
+							<?php if (count($cart_d) > 0) { ?>
+								<a href="<?= base_url(); ?>/front/cart" class="dropdown-toggle" data-toggle="dropdown"><span><?= count($cart_d); ?></span></a>
+								<div class="cart-info dropdown-menu text-center">
+									<table class="table">
+										<thead>
 											<tr>
-												<?php foreach ($gambar as $g) : ?>
-													<?php if ($g['id_barang'] == $cd['id_barang']) : ?>
-														<td class="image"><img alt="IMAGE" class="img-responsive" src="<?= $g['link_gambar']; ?>"></td>
-													<?php endif; ?>
-												<?php endforeach; ?>
-												<td class="name"><a href="project.html"><?= $cd['nama_barang']; ?></a></td>
-												<td class="quantity"><?= $cd['sub_jumlah']; ?></td>
-												<td class="total"><?= $cd['sub_total']; ?></td>
-												<td class="remove"><img src="<?= base_url() ?>/front-assets/image/remove-small.png" alt="Remove" title="Remove"></td>
-											</tr>
-										<?php endforeach; ?>
-									</tbody>
-								</table>
-								<div class="cart-total">
-									<table>
+												<td></td>
+												<td>Nama</td>
+												<td>Jumlah</td>
+												<td>Harga</td>
+											<tr>
+										</thead>
 										<tbody>
-											<tr>
-												<td><b>Total:</b></td>
-												<td>Rp. <?= $cart['total']; ?></td>
-											</tr>
+											<?php foreach ($cart_d as $cd) : ?>
+												<tr>
+													<?php foreach ($gambar as $g) : ?>
+														<?php if ($g['id_barang'] == $cd['id_barang']) : ?>
+															<td class="image"><img alt="IMAGE" class="img-responsive" src="<?= $g['link_gambar']; ?>"></td>
+														<?php endif; ?>
+													<?php endforeach; ?>
+													<td class="name"><a href="project.html"><?= $cd['nama_barang']; ?></a></td>
+													<td class="quantity"><?= $cd['sub_jumlah']; ?></td>
+													<td class="total"><?= $cd['sub_total']; ?></td>
+													<td class="remove"><img src="<?= base_url() ?>/front-assets/image/remove-small.png" alt="Remove" title="Remove"></td>
+												</tr>
+											<?php endforeach; ?>
 										</tbody>
 									</table>
-									<div class="checkout"><a href="<?= base_url(); ?>/front/view_cart" class="ajax_right">View Cart</a> | <a href="<?= base_url(); ?>/front/checkout" class="ajax_right">Checkout</a></div>
+									<div class="cart-total">
+										<table>
+											<tbody>
+												<tr>
+													<td><b>Total:</b></td>
+													<td>Rp. <?= $cart['total']; ?></td>
+												</tr>
+											</tbody>
+										</table>
+										<div class="checkout"><a href="<?= base_url(); ?>/front/view_cart" class="ajax_right">View Cart</a> | <a href="<?= base_url(); ?>/front/checkout" class="ajax_right">Checkout</a></div>
+
+									</div>
 
 								</div>
-
-							</div>
+							<?php } else { ?>
+								<a href="<?= base_url(); ?>/front/cart" class="dropdown-toggle" data-toggle="dropdown"><span>0</span></a>
+								<div class="cart-info dropdown-menu text-center">
+									<h3> Keranjang masih kosong</h3>
+								</div>
+							<?php } ?>
 						</li>
 					</ul>
 

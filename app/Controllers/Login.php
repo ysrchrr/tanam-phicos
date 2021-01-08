@@ -3,20 +3,45 @@
 namespace App\Controllers;
 
 use App\Models\Front\UserModel;
-// use App\Models\Front\Product_view;
+use App\Models\Front\Product_view;
 
 class Login extends BaseController
 {
     public function __construct()
     {
         $this->UserModel = new UserModel();
+        $this->product_view = new Product_view();
     }
+
+    public function get_cart()
+    {
+
+        if (session()->get('login')) {
+            $cart['total'] = $this->product_view->get_cart_home(session()->get('user_id'));
+            $cart['detail'] = [];
+            if (count($cart['total']->getresultarray()) > 0) {
+                $cart['total'] = $cart['total']->getrowarray();
+                $cart['detail'] = $this->product_view->get_cart_home_detail(session()->get('user_id'))->getresultarray();
+            }
+            $cart['gambar'] = $this->product_view->query('select * from gambar group by id_barang')->getresultarray();
+        } else {
+            $cart['total'] = "";
+            $cart['detail'] = [];
+            $cart['gambar'] = "";
+        }
+
+        return $cart;
+    }
+
 
 
     public function index()
     {
         $data = array(
             'title' => "Phicos | Login",
+            'cart' =>     $this->get_cart()['total'],
+            'cart_d' =>     $this->get_cart()['detail'],
+            'gambar' =>     $this->get_cart()['gambar'],
             'validation' => \Config\Services::validation(),
 
         );
@@ -57,6 +82,9 @@ class Login extends BaseController
     {
         $data = array(
             'title' => "Phicos | Daftar",
+            'cart' =>     $this->get_cart()['total'],
+            'cart_d' =>     $this->get_cart()['detail'],
+            'gambar' =>     $this->get_cart()['gambar'],
             'validation' => \Config\Services::validation(),
 
         );

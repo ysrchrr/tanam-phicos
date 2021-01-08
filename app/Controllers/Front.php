@@ -13,6 +13,28 @@ class Front extends BaseController
 		$this->product_view = new Product_view();
 	}
 
+
+	public function get_cart()
+	{
+
+		if (session()->get('login')) {
+			$cart['total'] = $this->product_view->get_cart_home(session()->get('user_id'));
+			$cart['detail'] = [];
+			if (count($cart['total']->getresultarray()) > 0) {
+				$cart['total'] = $cart['total']->getrowarray();
+				$cart['detail'] = $this->product_view->get_cart_home_detail(session()->get('user_id'))->getresultarray();
+			}
+			$cart['gambar'] = $this->product_view->query('select * from gambar group by id_barang')->getresultarray();
+		} else {
+			$cart['total'] = "";
+			$cart['detail'] = [];
+			$cart['gambar'] = "";
+		}
+
+		return $cart;
+	}
+
+
 	public function index($kategori = "")
 	{
 		if (empty($kategori)) {
@@ -23,9 +45,9 @@ class Front extends BaseController
 
 		$data = array(
 			'title' => 'Front - Sapphire',
-			'cart' => $this->product_view->get_cart_home(session()->get('user_id'))->getrowarray(),
-			'cart_d' => $this->product_view->get_cart_home_detail(session()->get('user_id'))->getresultarray(),
-			'gambar' => $this->product_view->query('select * from gambar group by id_barang')->getresultarray(),
+			'cart' => 	$this->get_cart()['total'],
+			'cart_d' => 	$this->get_cart()['detail'],
+			'gambar' => 	$this->get_cart()['gambar'],
 			'category' => $this->product_view->query('Select * from kategori'),
 			'product'  => $produk->paginate(9),
 			'pager' => $produk->pager
