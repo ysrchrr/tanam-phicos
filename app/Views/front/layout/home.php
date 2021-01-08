@@ -53,8 +53,9 @@
 
 					<ul class="nav navbar-right cart">
 						<li class="dropdown">
-							<a href="cart.html" class="dropdown-toggle" data-toggle="dropdown"><span>5</span></a>
-							<div class="cart-info dropdown-menu">
+							<a href="<?= base_url(); ?>/front/cart" class="dropdown-toggle" data-toggle="dropdown"><span>0</span></a>
+							<div class="cart-info dropdown-menu text-center">
+								<p>keranjang masih kosong</p>
 								<table class="table">
 									<thead>
 									</thead>
@@ -89,7 +90,9 @@
 										</tbody>
 									</table>
 									<div class="checkout"><a href="cart.html" class="ajax_right">View Cart</a> | <a href="checkout.html" class="ajax_right">Checkout</a></div>
+
 								</div>
+
 							</div>
 						</li>
 					</ul>
