@@ -46,7 +46,7 @@ class Blog extends BaseController
         return view('front/pages/blogpost', $data);
     }
 
-    public function archive($bulan, $tahun)
+    public function archive($bulan = "", $tahun = "")
     {
         if ((empty($bulan)) or (empty($tahun))) {
             return redirect()->to(base_url() . '/blog');

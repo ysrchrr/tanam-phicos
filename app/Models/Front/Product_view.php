@@ -24,10 +24,11 @@ class Product_view extends Model
             $data->where("kategori.slug_kategori = '$kategori'");
         }
 
-        return $data->get();     
+        return $data->get();
     }
 
-    public function get_product_detail($kategori, $id) {
+    public function get_product_detail($kategori, $id)
+    {
         $data = $this->db->table('barang');
         $data->select('barang.*, gambar.link_gambar, kategori.*');
         $data->join('gambar', 'gambar.id_barang = barang.id_barang', 'left');
@@ -38,5 +39,17 @@ class Product_view extends Model
         }
 
         return $data->get();
+    }
+
+    public function get_cart_home($id_member)
+    {
+        $query = 'select * from cart where id_member =' . $id_member;
+        return $this->query($query);
+    }
+    public function get_cart_detail_home($id_member)
+    {
+        $cart_detail = $this->get_cart_home($id_member)->getrowarray();
+        $query = "select * from cart_detail where id_cart =" . $cart_detail['id_cart'];
+        return $this->query($query);
     }
 }
