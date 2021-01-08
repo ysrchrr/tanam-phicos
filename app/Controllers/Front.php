@@ -75,6 +75,9 @@ class Front extends BaseController
 			// 'slug_barang' => $ambil['slug_barang'],
 			'slug_category' => $ambil['slug_kategori'],
 			// 'product'  => $model->get_product_list($kategori)->getResult(),
+			'cart' => 	$this->get_cart()['total'],
+			'cart_d' => 	$this->get_cart()['detail'],
+			'gambar' => 	$this->get_cart()['gambar'],
 			'category' => $model->query('Select * from kategori')->getResultArray(),
 			'product'  => $produk->paginate(9),
 			'pager' => $produk->pager
@@ -93,6 +96,9 @@ class Front extends BaseController
 			'name' =>  $ambil['nama_barang'],
 			'other_name' => $ambil['nama_lain'],
 			'price' => $ambil['harga_barang'],
+			'cart' => 	$this->get_cart()['total'],
+			'cart_d' => 	$this->get_cart()['detail'],
+			'gambar' => 	$this->get_cart()['gambar'],
 			'description' => $ambil['deskripsi'],
 			'slug_category' => $ambil['slug_kategori'],
 			'category' => $ambil['nama_kategori'],
@@ -118,6 +124,9 @@ class Front extends BaseController
 		$data = array(
 			'title' => 'Hasil Pencarian - Sapphire',
 			'product'  => $produk->paginate(9),
+			'cart' => 	$this->get_cart()['total'],
+			'cart_d' => 	$this->get_cart()['detail'],
+			'gambar' => 	$this->get_cart()['gambar'],
 			'category' => $this->product_view->query('Select * from kategori'),
 			'pager' => $produk->pager
 
@@ -130,6 +139,9 @@ class Front extends BaseController
 	{
 		$data = array(
 			'title' => 'Phicos | Checkout',
+			'cart' => 	$this->get_cart()['total'],
+			'cart_d' => 	$this->get_cart()['detail'],
+			'gambar' => 	$this->get_cart()['gambar'],
 
 
 		);

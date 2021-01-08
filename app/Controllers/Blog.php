@@ -4,19 +4,44 @@ namespace App\Controllers;
 
 use CodeIgniter\Controller;
 use App\Models\Front\BlogModel;
+use App\Models\Front\Product_view;
 
 class Blog extends BaseController
 {
     public function __construct()
     {
         $this->BlogModel = new BlogModel();
+        $this->product_view = new Product_view();
     }
+    public function get_cart()
+    {
+
+        if (session()->get('login')) {
+            $cart['total'] = $this->product_view->get_cart_home(session()->get('user_id'));
+            $cart['detail'] = [];
+            if (count($cart['total']->getresultarray()) > 0) {
+                $cart['total'] = $cart['total']->getrowarray();
+                $cart['detail'] = $this->product_view->get_cart_home_detail(session()->get('user_id'))->getresultarray();
+            }
+            $cart['gambar'] = $this->product_view->query('select * from gambar group by id_barang')->getresultarray();
+        } else {
+            $cart['total'] = "";
+            $cart['detail'] = [];
+            $cart['gambar'] = "";
+        }
+
+        return $cart;
+    }
+
     public function index()
     {
         $data = array(
             'title' => 'HydroPhicos | Blog',
             'archive' => $this->BlogModel->archive()->getresultarray(),
             'recent' => $this->BlogModel->recent()->getresultarray(),
+            'cart' =>     $this->get_cart()['total'],
+            'cart_d' =>     $this->get_cart()['detail'],
+            'gambar' =>     $this->get_cart()['gambar'],
             'data_blog' => $this->BlogModel->join('admin', 'blog.id_admin = admin.id_admin')->paginate(3),
             'pager'     => $this->BlogModel->join('admin', 'blog.id_admin = admin.id_admin')->pager
         );
