@@ -14,12 +14,14 @@ class Product_view extends Model
     public function get_product_list($kategori)
     {
         $data = $this->db->table('barang');
-        $data->select('barang.*, gambar.link_gambar, kategori.nama_kategori');
+        $data->select('barang.*, barang.slug_barang as slug_barang, gambar.link_gambar, kategori.*');
         $data->join('gambar', 'gambar.id_barang = barang.id_barang', 'left');
         $data->join('kategori', 'kategori.id_kategori = barang.id_kategori', 'left');
 
         if (isset($kategori) && !empty($kategori)) {
-            $data->where("barang.id_kategori = '$kategori'");
+        //     $data->where("kategori.slug = '$kategori'");
+        // } else {
+            $data->where("kategori.slug_kategori = '$kategori'");
         }
 
         return $data->get();     
@@ -27,12 +29,12 @@ class Product_view extends Model
 
     public function get_product_detail($kategori, $id) {
         $data = $this->db->table('barang');
-        $data->select('barang.*, gambar.link_gambar, kategori.nama_kategori');
+        $data->select('barang.*, gambar.link_gambar, kategori.*');
         $data->join('gambar', 'gambar.id_barang = barang.id_barang', 'left');
         $data->join('kategori', 'kategori.id_kategori = barang.id_kategori', 'left');
 
         if (isset($id) && !empty($id)) {
-            $data->where("barang.id_barang = '$id'");
+            $data->where("barang.slug_barang = '$id'");
         }
 
         return $data->get();

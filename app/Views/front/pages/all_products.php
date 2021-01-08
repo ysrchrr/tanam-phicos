@@ -6,9 +6,10 @@
         <div class="col-md-3 left-menu">
             <div class="sidebar">
                 <ul>
+                <li><a href="<?= base_url(); ?>/front/product/">Semua Produk</a></li>
                     <?php $i = 1;
                     foreach ($category as $row) : ?>
-                        <li><a href="<?= base_url(); ?>/front/product/<?= $row['id_kategori']; ?>"><?= $row['nama_kategori']; ?></a></li>
+                        <li><a href="<?= base_url(); ?>/front/product/<?= $row['slug_kategori']; ?>"><?= $row['nama_kategori']; ?></a></li>
                     <?php endforeach; ?>
                 </ul>
             </div>
@@ -50,11 +51,11 @@
                 <?php foreach ($product as $row) : ?>
                     <div class="col-md-4">
                         <div class="product">
-                            <a href="<?= base_url(); ?>/front/product/<?= $row['id_kategori']; ?>/<?= $row['id_barang']; ?>">
+                            <a href="<?= base_url(); ?>/front/product/<?= $row['slug_kategori']; ?>/<?= $row['slug_barang']; ?>">
                                 <img src="<?= $row['link_gambar']; ?>" alt="<?= $row['nama_barang']; ?>">
                             </a>
                             <div class="name">
-                                <a href="<?= base_url(); ?>/front/product/<?= $row['id_kategori']; ?>/<?= $row['id_barang']; ?>"><?= $row['nama_barang']; ?> (<?= $row['nama_lain']; ?>)</a>
+                                <a href="<?= base_url(); ?>/front/product/<?= $row['slug_kategori']; ?>/<?= $row['slug_barang']; ?>"><?= $row['nama_barang']; ?> (<?= $row['nama_lain']; ?>)</a>
                             </div>
                             <div class="price">
                                 <p>Rp. <?= $row['harga_barang']; ?></p>
