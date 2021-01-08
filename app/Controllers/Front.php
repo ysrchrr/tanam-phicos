@@ -23,6 +23,9 @@ class Front extends BaseController
 
 		$data = array(
 			'title' => 'Front - Sapphire',
+			'cart' => $this->product_view->get_cart_home(session()->get('user_id'))->getrowarray(),
+			'cart_d' => $this->product_view->get_cart_home_detail(session()->get('user_id'))->getresultarray(),
+			'gambar' => $this->product_view->query('select * from gambar group by id_barang')->getresultarray(),
 			'category' => $this->product_view->query('Select * from kategori'),
 			'product'  => $produk->paginate(9),
 			'pager' => $produk->pager
@@ -37,21 +40,25 @@ class Front extends BaseController
 		$ambil = $model->get_product_list($kategori)->getRowArray();
 
 		if (empty($kategori)) {
-			$produk = $this->product_view->join('gambar', 'gambar.id_barang = barang.id_barang', 'left');
+			$produk = $this->product_view->join('gambar', 'gambar.id_barang = barang.id_barang', 'left')->join('kategori', 'kategori.id_kategori = barang.id_kategori', 'left');
 			$nama = "Semua Produk";
 		} else {
-			$produk = $this->product_view->join('gambar', 'gambar.id_barang = barang.id_barang', 'left')->where('id_kategori', $kategori);
+			$produk = $this->product_view->join('gambar', 'gambar.id_barang = barang.id_barang', 'left')->join('kategori', 'kategori.id_kategori = barang.id_kategori', 'left')->where('slug_kategori', $kategori);
 			$nama = $ambil['nama_kategori'];
 		}
 
 		$data = array(
 			'title' => 'All Products',
 			'name' => $nama,
+			// 'slug_barang' => $ambil['slug_barang'],
+			'slug_category' => $ambil['slug_kategori'],
 			// 'product'  => $model->get_product_list($kategori)->getResult(),
 			'category' => $model->query('Select * from kategori')->getResultArray(),
 			'product'  => $produk->paginate(9),
 			'pager' => $produk->pager
 		);
+		// dd($produk);
+		// dd($data['tes']);
 		echo view('front/pages/all_products', $data);
 	}
 
@@ -65,14 +72,14 @@ class Front extends BaseController
 			'other_name' => $ambil['nama_lain'],
 			'price' => $ambil['harga_barang'],
 			'description' => $ambil['deskripsi'],
-			'id_category' => $ambil['id_kategori'],
+			'slug_category' => $ambil['slug_kategori'],
 			'category' => $ambil['nama_kategori'],
 			'link_img' => $ambil['link_gambar'],
-			'related_product' => $model->get_product_list($ambil['id_kategori'])->getResultArray()
+			'related_product' => $model->get_product_list($ambil['slug_kategori'])->getResultArray()
 		);
 		// $related_product = $this->product_view->join('gambar', 'gambar.id_barang = barang.id_barang', 'left')->where('id_kategori', $kategori);
 		// $related_product = $model->get_product_list()->where('id_kategori', $kategori);
-		// dd($related_product);
+		// dd($data['category']);
 		// dd($data['related_product']);
 		echo view('front/pages/product', $data);
 	}
@@ -96,6 +103,16 @@ class Front extends BaseController
 		return  view('front/index', $data);
 	}
 
+
+	public function checkout()
+	{
+		$data = array(
+			'title' => 'Phicos | Checkout',
+
+
+		);
+		return  view('front/pages/checkout', $data);
+	}
 	public function test()
 	{
 		return view('referensi/front-e-commerce');
