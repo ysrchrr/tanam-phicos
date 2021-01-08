@@ -169,8 +169,10 @@ class AdminModel extends Model
         // print_r($_POST);
         $query = $this->db->query("UPDATE `blog` SET 
                                     `judul_blog` = '$judul', 
-                                    `terakhir_diperbarui` = '$tanggal', 
-                                    `isi_blog` = '$isi' 
+                                    `terakhir_diperbarui` = '$today', 
+                                    `isi_blog` = '$isi',
+                                    `gambar_blog` = '$gambar',
+                                    `slug` = '$slug'
                                     WHERE `id_blog` = '$id'");
         // if($query){
         //     echo "yyyy";
