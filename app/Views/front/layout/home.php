@@ -35,32 +35,9 @@
 				<div class="navbar-collapse collapse navbar-right">
 					<ul class="nav navbar-nav">
 						<li class="active"><a href="<?= base_url('/front') ?>">Shop</a></li>
-						<li class="dropdown">
-							<a data-toggle="dropdown" class="dropdown-toggle" href="#">Pages <b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li class="dropdown-header">sliders</li>
-								<li><a href="nivo-slider.html">Nivo slider</a></li>
-								<li><a href="flexslider.html" class="ajax_right">Flexslider</a></li>
-								<li><a href="index.html" class="ajax_right">Camera</a></li>
-								<li class="divider"></li>
-								<li class="dropdown-header">ecommerce</li>
-								<li><a href="category.html">Category page</a></li>
-								<li><a href="category_menu.html">Category page left menu</a></li>
-								<li><a href="product.html" class="ajax_right">Product page</a></li>
-								<li><a href="cart.html" class="ajax_right">Cart</a></li>
-								<li><a href="checkout.html" class="ajax_right">Checkout</a></li>
-								<li class="divider"></li>
-								<li class="dropdown-submenu">
-									<a data-toggle="dropdown" class="dropdown-toggle" href="#">Blog</a>
-									<ul class="dropdown-menu">
-										<li><a href="blog.html" class="ajax_right">Blog</a></li>
-										<li><a href="blog-post.html" class="ajax_right">Blog post</a></li>
-									</ul>
-								</li>
-							</ul>
-						</li>
+						<li class=""><a href="<?= base_url('/blog') ?>">Blog</a></li>
 						<li><a href="<?= base_url('/front/product/') ?>">Our Products</a></li>
-						<li><a href="contact.html" class="ajax_right">About</a></li>
+						<li><a href="contact.html" class="ajax_right">Consultation</a></li>
 						<?php if (session()->get('login')) { ?>
 							<li class="dropdown">
 								<a data-toggle="dropdown" class="dropdown-toggle" href="#">Profile <b class="caret"></b></a>

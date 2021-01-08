@@ -125,16 +125,33 @@ class Account extends BaseController
         return view('front/pages/orders', $data);
     }
 
-    public function orders_detail()
+    public function orders_detail($nomor_order = "")
     {
+
         if (!session()->get('login')) {
             return redirect()->to(base_url() . '/front');
         }
+
+        if (empty($nomor_order)) {
+            return redirect()->to(base_url() . '/account/orders');
+        }
+
+        $pemesanan = $this->UserModel->query('select * from pemesanan p, member m where m.id_member =' . session()->get('user_id') . ' and p.id_member =' . session()->get('user_id') . ' and p.id_pemesanan =' . $nomor_order);
+
+        if (count($pemesanan->getresultarray()) < 1) {
+            return redirect()->to(base_url() . '/account/orders');
+        }
+
+        $pemesanan = $pemesanan->getrowarray();
         $data = array(
             'title' => "Phicos | Pesanan Detail",
-            'validation' => \Config\Services::validation(),
+            'bio' => $pemesanan,
+            'pemesanan_detail' => $this->UserModel->query('select * from pemesanan_detail as pd,barang as b where pd.id_barang = b.id_barang and pd.id_pemesanan =' . $pemesanan['id_pemesanan'])->getresultarray(),
+            'provinsi' => $this->UserModel->query('select * from wilayah_provinsi where id =' . $pemesanan['id_provinsi'])->getrowarray(),
+            'kabupaten' => $this->UserModel->query('select * from wilayah_kabupaten where id =' . $pemesanan['id_kabupaten'])->getrowarray(),
+            'kecamatan' => $this->UserModel->query('select * from wilayah_kecamatan where id =' . $pemesanan['id_kecamatan'])->getrowarray(),
+            'gambar_pd' => $this->UserModel->query('select * from gambar group by id_barang')->getresultarray()
         );
-
 
         return view('front/pages/orders_detail', $data);
     }

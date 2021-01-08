@@ -59,7 +59,7 @@
                                 <?php endforeach; ?>
                                 <hr>
                                 <div class="row text-center">
-                                    <div class="col-md-12"><a href="<?= base_url(); ?>/account/orders_detail">
+                                    <div class="col-md-12"><a href="<?= base_url(); ?>/account/orders_detail/<?= $p['id_pemesanan']; ?>">
                                             Lihat Detail Pesanan
                                         </a></div>
                                 </div>
