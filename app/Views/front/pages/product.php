@@ -115,7 +115,7 @@
 		    <ul class="breadcrumb prod">
 			    <li><a href="<?= base_url('/front')?>">Home</a>
                 <span class="divider"></span></li>
-			    <li><a href="<?= base_url()?>/front/product/<?= $id_category; ?>"><?=$category;?></a>
+			    <li><a href="<?= base_url()?>/front/product/<?= $slug_category; ?>"><?=$category;?></a>
                 <span class="divider"></span></li>
 				<li class="active"><?= $name; ?></li>
 		    </ul>
