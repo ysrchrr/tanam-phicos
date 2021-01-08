@@ -19,8 +19,8 @@ class Product_view extends Model
         $data->join('kategori', 'kategori.id_kategori = barang.id_kategori', 'left');
 
         if (isset($kategori) && !empty($kategori)) {
-        //     $data->where("kategori.slug = '$kategori'");
-        // } else {
+            //     $data->where("kategori.slug = '$kategori'");
+            // } else {
             $data->where("kategori.slug_kategori = '$kategori'");
         }
 
@@ -46,10 +46,11 @@ class Product_view extends Model
         $query = 'select * from cart where id_member =' . $id_member;
         return $this->query($query);
     }
-    public function get_cart_detail_home($id_member)
+    public function get_cart_home_detail($id_member)
     {
         $cart_detail = $this->get_cart_home($id_member)->getrowarray();
-        $query = "select * from cart_detail where id_cart =" . $cart_detail['id_cart'];
+        $query = "select * from cart_detail 
+        join barang on cart_detail.id_barang = barang.id_barang where cart_detail.id_cart =" . $cart_detail['id_cart'];
         return $this->query($query);
     }
 }
