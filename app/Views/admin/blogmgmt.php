@@ -16,6 +16,21 @@
             <div class="col-md-12 mb-4">
                 <div class="card">
                     <div class="card-body">
+                        <?php
+                        if(isset($_GET['act'])){
+                        ?>
+                        <div class="alert alert-success alert-dismissible fade show">
+                            <div class="d-flex align-items-center justify-content-start">
+                                <span class="alert-icon">
+                                    <i class="anticon anticon-check-o"></i>
+                                </span>
+                                <span>Postingan telah dihapus</span>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                        <?php } ?>
                         <a class="btn btn-primary btn-tone m-r-5 float-right" href="<?= base_url()?>/Admin/newpost">
                             <i class="anticon anticon-bulb"></i> Tulis postingan
                         </a>

@@ -7,8 +7,9 @@ use App\Models\AdminModel;
 
 class Admin extends BaseController
 {
-	public function __construct()
-	{
+	public function __construct(){
+		// helper('form');
+		// helper('filesystem');
 		$this->barang = new AdminModel();
 	}
 
@@ -112,7 +113,8 @@ class Admin extends BaseController
 			'id_kategori' => $this->request->getPost('id_kategori'),
 			'harga_barang' => $this->request->getPost('harga_barang'),
 			'stok_barang' => $this->request->getPost('stok_barang'),
-			'deskripsi' => $this->request->getPost('deskripsi')
+			'deskripsi' => $this->request->getPost('deskripsi'),
+			'slug' => $slug
 		);
 		$insert = $this->barang->book_add($data);
 		echo json_encode(array("status" => TRUE));
