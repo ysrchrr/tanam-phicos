@@ -23,6 +23,9 @@ class Front extends BaseController
 
 		$data = array(
 			'title' => 'Front - Sapphire',
+			'cart' => $this->product_view->get_cart_home(session()->get('user_id'))->getrowarray(),
+			'cart_d' => $this->product_view->get_cart_home_detail(session()->get('user_id'))->getresultarray(),
+			'gambar' => $this->product_view->query('select * from gambar group by id_barang')->getresultarray(),
 			'category' => $this->product_view->query('Select * from kategori'),
 			'product'  => $produk->paginate(9),
 			'pager' => $produk->pager
@@ -100,6 +103,16 @@ class Front extends BaseController
 		return  view('front/index', $data);
 	}
 
+
+	public function checkout()
+	{
+		$data = array(
+			'title' => 'Phicos | Checkout',
+
+
+		);
+		return  view('front/pages/checkout', $data);
+	}
 	public function test()
 	{
 		return view('referensi/front-e-commerce');
