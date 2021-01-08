@@ -33,10 +33,14 @@
                                 <textarea name="isi" id="isi" style="display:none;"></textarea>
                                     <label>Gambar</label>
                                 <div class="form-group">
-                                    <input type="file" class="form-control-file" id="gambar_blog" name="gambar_blog" accept="image/*">
-                                    <img src="<?php echo base_url(). '/gambar-blog/' . $d->gambar_blog; ?>" alt="<?php echo $d->judul_blog; ?>" style="width: 300px; max-height: 100%; max-width: 100%;" id="thumbnail">
-                                    <span class="badge badge-pill badge-magenta" style="cursor: pointer;" id="deleteGambar">Hapus Gambar</span>
-                                    <p id="tampung"></p>
+                                    <?php
+                                    if($d->gambar_blog == ""){
+                                        ?>
+                                        <input type="file" class="form-control-file" id="gambar_blog"       name="gambar_blog" accept="image/*">
+                                    <?php } else {?>
+                                        <img src="<?php echo base_url(). '/gambar-blog/' . $d->gambar_blog; ?>" alt="<?php echo $d->judul_blog; ?>" style="width: 300px; max-height: 100%; max-width: 100%;" id="thumbnail">
+                                        <a href="<?= base_url()?>/Admin/delimg?id_blog=<?php echo $d->id_blog; ?>" class="badge badge-pill badge-magenta">Hapus Gambar</a>
+                                    <?php } ?>
                                 </div>
                                 <button type="button" class="btn btn-danger m-r-5 mt-2 float-right" id="btn-chapus">
                                 <i class="anticon anticon-minus-circle"></i> Hapus postingan
@@ -82,7 +86,6 @@
         theme: 'snow'
     });
     $(document).ready(function(){
-        $('#gambar_blog').hide();
         var input = $("#judul_blog_e");
         var len = input.val().length;
         input[0].focus();
