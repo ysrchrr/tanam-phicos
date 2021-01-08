@@ -129,6 +129,9 @@ class Account extends BaseController
         if (count($pemesanan) == 0) {
             $data = array(
                 'title' => "Phicos | Address",
+                'cart' =>     $this->get_cart()['total'],
+                'cart_d' =>     $this->get_cart()['detail'],
+                'gambar' =>     $this->get_cart()['gambar'],
             );
             return view('front/pages/orders_blank', $data);
         }
