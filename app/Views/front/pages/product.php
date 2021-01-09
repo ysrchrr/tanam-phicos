@@ -12,6 +12,7 @@
 	</ul>
 
 	<div class="row product-info">
+		<input type="hidden" value="<?= $id; ?>" id="id_barang">
 		<div class="col-md-6">
 			<div class="image">
 				<a class="cloud-zoom" rel="adjustX: 0, adjustY:0" id='zoom1' href="<?= $link_img; ?>" title="<?= $name; ?>">
@@ -73,7 +74,7 @@
 			<div class="line"></div>
 			<!-- <form class="form-inline"> -->
 			<button class="btn btn-primary" id="add-cart" style="margin-right: 20px;">Add to Cart</button>
-			<label>Quantity:</label> <input type="text" placeholder="1" class="col-md-1">
+			<label>Quantity:</label> <input type="text" id="jumlah_barang" placeholder="1" value="1" class="col-md-1">
 			<!-- </form> -->
 
 			<div class="tabs" id="tabs">
@@ -136,7 +137,39 @@
 <script>
 	$(document).ready(function() {
 		// alert('aaa');
-	
+		$('#add-cart').click(function() {
+			console.log('aaa');
+			tampilcart();
+
+		});
+
+
+
+		function tampilcart() {
+			var action = "ambildatabarang";
+			var id_barang = $('#id_barang').val();
+			var jumlah_barang = $('#jumlah_barang').val();
+			$.ajax({
+				url: "<?= base_url(); ?>/front/tambahcart",
+				method: "post",
+				dataType: "json",
+				data: {
+					action: action,
+					id_barang: id_barang,
+					jumlah_barang: jumlah_barang
+				},
+
+				success: function(data) {
+					// $('#sukses').html(data.barang.stok);
+					console.log(data.sukses);
+					// $('#harga').html(data.barang.harga);
+				},
+				error: function(xhr, ajaxOptions, thrownError) {
+					console.log(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+				}
+
+			});
+		}
 
 	});
 </script>
