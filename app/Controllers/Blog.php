@@ -64,6 +64,9 @@ class Blog extends BaseController
             'title' => 'HydroPhicos | Blog',
             'archive' => $this->BlogModel->archive()->getresultarray(),
             'recent' => $this->BlogModel->recent()->getresultarray(),
+            'cart' =>     $this->get_cart()['total'],
+            'cart_d' =>     $this->get_cart()['detail'],
+            'gambar' =>     $this->get_cart()['gambar'],
             'data_blog' => $data_blog->getrowarray(),
         );
 
@@ -92,6 +95,9 @@ class Blog extends BaseController
             'data_blog' => $data_blog->getresultarray(),
             'archive' => $this->BlogModel->archive()->getresultarray(),
             'recent' => $this->BlogModel->recent()->getresultarray(),
+            'cart' =>     $this->get_cart()['total'],
+            'cart_d' =>     $this->get_cart()['detail'],
+            'gambar' =>     $this->get_cart()['gambar'],
             'pager' => ''
         );
 
