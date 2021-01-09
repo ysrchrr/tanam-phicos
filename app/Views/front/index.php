@@ -20,13 +20,13 @@
 	<div class="row">
 		<div class="col-md-3 left-menu">
 			<div class="sidebar">
-                <ul>
-                    <?php $i = 1;
-                    foreach ($category->getresultarray() as $row) : ?>
-						<li><a href="<?= base_url(); ?>/front/product/<?= $row['id_kategori']; ?>"><?= $row['nama_kategori']; ?></a></li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
+				<ul>
+					<?php $i = 1;
+					foreach ($category->getresultarray() as $row) : ?>
+						<li><a href="<?= base_url(); ?>/front/product/<?= $row['slug_kategori']; ?>"><?= $row['nama_kategori']; ?></a></li>
+					<?php endforeach; ?>
+				</ul>
+			</div>
 			<div class="options">
 				<h3>Pilih salah satu</h3>
 				<select class="selectpicker" data-width="150px">
@@ -44,14 +44,14 @@
 		<div class="col-md-9">
 			<div class="row">
 				<div class="tampil_tanaman">
-				<?php foreach ($product as $row) : ?>
+					<?php foreach ($product as $row) : ?>
 						<div class="col-md-4">
 							<div class="product">
-								<a href="<?= base_url(); ?>/front/product/<?= $row['id_kategori']; ?>/<?= $row['id_barang']; ?>">
+								<a href="<?= base_url(); ?>/front/product/<?= $row['slug_kategori']; ?>/<?= $row['slug_barang']; ?>">
 									<img src="<?= $row['link_gambar']; ?>" alt="<?= $row['nama_barang']; ?>">
 								</a>
 								<div class="name">
-									<a href="<?= base_url(); ?>/front/product/<?= $row['id_kategori']; ?>/<?= $row['id_barang']; ?>"><?= $row['nama_barang']; ?> (<?= $row['nama_lain']; ?>)</a>
+									<a href="<?= base_url(); ?>/front/product/<?= $row['slug_kategori']; ?>/<?= $row['slug_barang']; ?>"><?= $row['nama_barang']; ?> (<?= $row['nama_lain']; ?>)</a>
 								</div>
 								<div class="price">
 									<p>Rp. <?= $row['harga_barang']; ?></p>
@@ -64,11 +64,11 @@
 
 			</div>
 			<div class="row">
-                <div class="col-md-12">
-                    <div class="pull-right">
-                        <?= $pager->links() ?>
-                    </div>
-                </div>
+				<div class="col-md-12">
+					<div class="pull-right">
+						<?= $pager->links() ?>
+					</div>
+				</div>
 				<div class="col-md-12">
 					<div class="newsletter clearfix">
 						<h3>Newsletter</h3>
@@ -78,9 +78,9 @@
 						</div>
 					</div>
 				</div>
-            </div>
+			</div>
 		</div>
 	</div>
 </div>
-	<!-- End Main Content -->
-	<?= $this->endSection(); ?>
+<!-- End Main Content -->
+<?= $this->endSection(); ?>

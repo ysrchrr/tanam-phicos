@@ -37,11 +37,13 @@ class Front extends BaseController
 
 	public function index($kategori = "")
 	{
+
 		if (empty($kategori)) {
-			$produk = $this->product_view->join('gambar', 'gambar.id_barang = barang.id_barang', 'left');
+			$produk = $this->product_view->join('gambar', 'gambar.id_barang = barang.id_barang', 'left')->join('kategori', 'barang.id_kategori= kategori.id_kategori');
 		} else {
-			$produk = $this->product_view->join('gambar', 'gambar.id_barang = barang.id_barang', 'left')->where('id_kategori', $kategori);
+			$produk = $this->product_view->join('gambar', 'gambar.id_barang = barang.id_barang', 'left')->join('kategori', 'barang.id_kategori= kategori.id_kategori')->where('slug_kategori', $kategori);
 		}
+
 
 		$data = array(
 			'title' => 'Front - Sapphire',
@@ -134,6 +136,18 @@ class Front extends BaseController
 		return  view('front/index', $data);
 	}
 
+	public function konsultasi()
+	{
+		$data = array(
+			'title' => 'Phicos | Konsultasi',
+			'cart' => 	$this->get_cart()['total'],
+			'cart_d' => 	$this->get_cart()['detail'],
+			'gambar' => 	$this->get_cart()['gambar'],
+
+
+		);
+		return  view('front/pages/konsul', $data);
+	}
 
 	public function checkout()
 	{

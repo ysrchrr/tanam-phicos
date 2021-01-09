@@ -35,14 +35,16 @@ $routes->get('/admin', 'Admin::index');
 $routes->get('/login', 'Login::index');
 $routes->get('/daftar/', 'Login::daftar');
 $routes->get('/cari', 'Front::cariproduk');
-$routes->get('/blog', 'Blog::index');	
+$routes->get('/blog', 'Blog::index');
+$routes->get('/konsultasi', 'Front::konsultasi');
 
-$routes->group('front', function($routes) {
+$routes->group('front', function ($routes) {
 	$routes->add('/', 'Front::index');
 	$routes->add('product/', 'Front::all_products');
 	$routes->add('product/(:any)/', 'Front::all_products/$1');
 	$routes->get('product/(:any)/(:any)/', 'Front::show_product/$1/$2');
 });
+$routes->get('product/(:any)/(:any)/', 'Front::show_product/$1/$2');
 
 $routes->get('/account', 'Account::index');
 
