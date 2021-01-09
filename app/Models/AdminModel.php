@@ -72,9 +72,9 @@ class AdminModel extends Model
         return $query;
     }
 
-    public function donewBlog($judul, $isi, $today)
+    public function donewBlog($judul, $isi, $today, $gambar, $slug)
     {
-        $query = $this->db->query("INSERT INTO `blog`(`judul_blog`, `terakhir_diperbarui`, `isi_blog`) VALUES ('$judul', '$today', '$isi')");
+        $query = $this->db->query("INSERT INTO `blog`(`judul_blog`, `terakhir_diperbarui`, `isi_blog`, `gambar_blog`, `slug`) VALUES ('$judul', '$today', '$isi', '$gambar', '$slug')");
         return $query;
     }
 
@@ -164,7 +164,7 @@ class AdminModel extends Model
         return $query;
     }
 
-    public function doupdateBlog($id, $judul, $isi, $tanggal)
+    public function doupdateBlog($id, $judul, $isi, $today, $gambar, $slug)
     {
         // print_r($_POST);
         $query = $this->db->query("UPDATE `blog` SET 
@@ -174,11 +174,6 @@ class AdminModel extends Model
                                     `gambar_blog` = '$gambar',
                                     `slug` = '$slug'
                                     WHERE `id_blog` = '$id'");
-        // if($query){
-        //     echo "yyyy";
-        // } else {
-        //     echo "nnnn";
-        // }
         return $query;
     }
 
@@ -187,8 +182,8 @@ class AdminModel extends Model
         $query = 'SELECT
         barang.nama_barang as nama,
         sum(pemesanan_detail.jumlah_barang) as total,
-         barang.stok_barang as stok,
-         gambar.link_gambar as link
+        barang.stok_barang as stok,
+        gambar.link_gambar as link
     FROM
         barang,
         pemesanan,
@@ -212,7 +207,7 @@ class AdminModel extends Model
         barang.nama_barang as nama,
         sum(pemesanan_detail.jumlah_barang) as total,
         gambar.link_gambar as link,
-         barang.stok_barang as stok
+        barang.stok_barang as stok
     FROM
         barang,
         pemesanan,
