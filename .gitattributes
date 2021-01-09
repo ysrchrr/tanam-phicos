@@ -3,5 +3,5 @@
 # public/js/script.js linguist-vendored=false
 # public/js/bootstrap.min.js linguist-vendored=false
 # public/js/datepicker-id.js linguist-vendored=false
-back-office/* linguist-vendored
-front-office/* linguist-vendored
+public/back-assets/js linguist-vendored
+public/front-assets/js linguist-vendored
