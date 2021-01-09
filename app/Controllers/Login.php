@@ -69,7 +69,7 @@ class Login extends BaseController
                     'login' => TRUE
                 ];
                 session()->set($session_login);
-                return redirect()->to(base_url() . '/front');
+                return redirect()->to(base_url() . '/');
             } else {
                 return redirect()->to(base_url() . '/login')->withInput();
             }
