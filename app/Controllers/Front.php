@@ -153,9 +153,9 @@ class Front extends BaseController
 	{
 		$data = array(
 			'title' => 'Phicos | Checkout',
-			'cart' => 	$this->get_cart()['total'],
-			'cart_d' => 	$this->get_cart()['detail'],
-			'gambar' => 	$this->get_cart()['gambar'],
+			'cart' => $this->get_cart()['total'],
+			'cart_d' => $this->get_cart()['detail'],
+			'gambar' => $this->get_cart()['gambar'],
 
 
 		);
