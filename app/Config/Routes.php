@@ -37,16 +37,15 @@ $routes->get('/daftar/', 'Login::daftar');
 $routes->get('/cari', 'Front::cariproduk');
 $routes->get('/blog', 'Blog::index');
 $routes->get('/konsultasi', 'Front::konsultasi');
+$routes->get('/account', 'Account::index');
 
-$routes->group('front', function ($routes) {
-	$routes->add('/', 'Front::index');
+$routes->group('/', function ($routes) {
+	$routes->add('', 'Front::index');
 	$routes->add('product/', 'Front::all_products');
 	$routes->add('product/(:any)/', 'Front::all_products/$1');
 	$routes->get('product/(:any)/(:any)/', 'Front::show_product/$1/$2');
 });
-$routes->get('product/(:any)/(:any)/', 'Front::show_product/$1/$2');
 
-$routes->get('/account', 'Account::index');
 
 $routes->get('/admin-test', 'Front::test');
 $routes->get('/front-test', 'Front::test');

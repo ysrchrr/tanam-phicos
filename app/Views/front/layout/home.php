@@ -34,9 +34,9 @@
 				</div>
 				<div class="navbar-collapse collapse navbar-right">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="<?= base_url('/front') ?>">Shop</a></li>
+						<li class="active"><a href="<?= base_url('/') ?>">Shop</a></li>
 						<li class=""><a href="<?= base_url('/blog') ?>">Blog</a></li>
-						<li><a href="<?= base_url('/front/product/') ?>">Our Products</a></li>
+						<li><a href="<?= base_url('/product/') ?>">Our Products</a></li>
 						<li><a href="<?= base_url(); ?>/konsultasi" class="ajax_right">Consultation</a></li>
 						<?php if (session()->get('login')) { ?>
 							<li class="dropdown">
@@ -98,7 +98,7 @@
 							<?php } else { ?>
 								<a href="<?= base_url(); ?>/front/cart" class="dropdown-toggle" data-toggle="dropdown"><span>0</span></a>
 								<div class="cart-info dropdown-menu text-center">
-									<h3> Keranjang masih kosong</h3>
+									<h6>Keranjang masih kosong</h6>
 								</div>
 							<?php } ?>
 						</li>
