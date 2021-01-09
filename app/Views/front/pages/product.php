@@ -1,153 +1,45 @@
-<!doctype html>
-<html>
-<head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="<?= base_url()?>/front-assets/img/logo.png">
-    <link rel="stylesheet" type="text/css" href="<?= base_url()?>/front-assets/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="<?= base_url()?>/front-assets/css/bootstrap-select.css">
-	<link rel='stylesheet' type='text/css' href='<?= base_url()?>/front-assets/css/font-awesome.min.css'/>
-    <link rel="stylesheet" type="text/css" href="<?= base_url()?>/front-assets/css/style.css">
-	<link href='http://fonts.googleapis.com/css?family=Montserrat:200,300,400,600,700' rel='stylesheet' type='text/css'/>
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:200,300,400,600,700' rel='stylesheet' type='text/css'/>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<title><?= $title; ?></title>
-</head>
-<body>
-<div class="page-container">
-<!-- Start Header -->
-    <div class="header">
-			<nav class="navbar container">
-			  <div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-				  <span class="sr-only">Toggle navigation</span>
-				  <span class="icon-bar"></span>
-				  <span class="icon-bar"></span>
-				  <span class="icon-bar"></span>
-				</button>
-				<a href="<?= base_url('/front') ?>" class="navbar-brand">
-					<img src="<?= base_url()?>/front-assets/img/logo.png" alt="Sapphire">Sapphire
+<?= $this->extend('front/layout/home'); ?>
+<?= $this->section('content'); ?>
+<div class="container">
+	<ul class="breadcrumb prod">
+		<li><a href="<?= base_url('/') ?>">Home</a>
+			<span class="divider"></span>
+		</li>
+		<li><a href="<?= base_url() ?>/product/<?= $slug_category; ?>"><?= $category; ?></a>
+			<span class="divider"></span>
+		</li>
+		<li class="active"><?= $name; ?></li>
+	</ul>
+
+	<div class="row product-info">
+		<input type="hidden" value="<?= $id; ?>" id="id_barang">
+		<div class="col-md-6">
+			<div class="image">
+				<a class="cloud-zoom" rel="adjustX: 0, adjustY:0" id='zoom1' href="<?= $link_img; ?>" title="<?= $name; ?>">
+					<img src="<?= $link_img; ?>" title="<?= $name; ?>" alt="<?= $name; ?>" id="image" />
 				</a>
-			  </div>
-                 <div class="navbar-collapse collapse navbar-right">
-					<ul class="nav navbar-nav">
-                      <li><a href="<?= base_url('/front') ?>">Home</a></li>
-                      <li class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">Pages <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                          <li class="dropdown-header">sliders</li>
-                          <li><a href="nivo-slider.html">Nivo slider</a></li>
-                          <li><a href="flexslider.html" class="ajax_right">Flexslider</a></li>
-                          <li><a href="index.html" class="ajax_right">Camera</a></li>
-						  <li class="divider"></li>
-                          <li class="dropdown-header">ecommerce</li>
-                          <li><a href="category.html">Category page</a></li>
-                          <li><a href="category_menu.html">Category page left menu</a></li>
-                          <li><a href="product.html" class="ajax_right">Product page</a></li>
-                          <li><a href="cart.html" class="ajax_right">Cart</a></li>
-                          <li><a href="checkout.html" class="ajax_right">Checkout</a></li>
-						  <li class="divider"></li>
-						  <li class="dropdown-submenu">
-							<a data-toggle="dropdown" class="dropdown-toggle" href="#">Blog</a>
-							  <ul class="dropdown-menu">                          
-								  <li><a href="blog.html" class="ajax_right">Blog</a></li>
-								  <li><a href="blog-post.html" class="ajax_right">Blog post</a></li>
-							  </ul>
-							 </li>
-                        </ul>
-                      </li>
-                      <li class="active"><a href="<?= base_url('/front/product/') ?>">Our Products</a></li>
-                      <li><a href="contact.html" class="ajax_right">Contact</a></li>
-                    </ul>
-                    <ul class="nav navbar-right cart">
-                      <li class="dropdown">
-					<a href="cart.html" class="dropdown-toggle" data-toggle="dropdown"><span>5</span></a>
-					<div class="cart-info dropdown-menu">
-						<table class="table">
-							<thead>
-							</thead>
-							<tbody>
-								<tr>
-									<td class="image"><img alt="IMAGE" class="img-responsive" src="<?= base_url()?>/front-assets/products/dress33.jpg"></td>
-									<td class="name"><a href="project.html">Black Dress</a></td>
-									<td class="quantity">x&nbsp;3</td>
-									<td class="total">$130.00</td>
-									<td class="remove"><img src="<?= base_url()?>/front-assets/image/remove-small.png" alt="Remove" title="Remove"></td>											
-								</tr>
-								<tr>
-									<td class="image"><img alt="IMAGE" class="img-responsive" src="<?= base_url()?>/front-assets/products/dress11.jpg"></td>
-									<td class="name"><a href="project.html">Blue Dress</a></td>
-									<td class="quantity">x&nbsp;3</td>
-									<td class="total">$230.00</td>
-									<td class="remove"><img src="<?= base_url()?>/front-assets/image/remove-small.png" alt="Remove" title="Remove"></td>											
-								</tr>
-							</tbody>									
-						</table>
-						<div class="cart-total">
-						  <table>
-							 <tbody>
-								<tr>
-								  <td><b>Sub-Total:</b></td>
-								  <td>$400.00</td>
-								</tr>
-								<tr>
-								  <td><b>Total:</b></td>
-								  <td>$400.00</td>
-								</tr>
-							</tbody>
-						  </table>
-						  <div class="checkout"><a href="cart.html" class="ajax_right">View Cart</a> | <a href="checkout.html" class="ajax_right">Checkout</a></div>
-						</div>
-					</div> 
-			      </li>
-			     </ul>
-
-                    <form action="" class="navbar-form navbar-search navbar-right" method="get" role="search" autocomplete="off">
-		      			<div class="input-group"> 
-							<input type="text" name="search" placeholder="Search" class="search-query col-lg-6"><button type="submit" class="btn btn-default icon-search"></button> 
-						</div>
-                    </form>
-                  </div>
-			</nav>		
-	</div>
-<!-- End Header -->
-    <div class="container">
-		    <ul class="breadcrumb prod">
-			    <li><a href="<?= base_url('/front')?>">Home</a>
-                <span class="divider"></span></li>
-			    <li><a href="<?= base_url()?>/front/product/<?= $slug_category; ?>"><?=$category;?></a>
-                <span class="divider"></span></li>
-				<li class="active"><?= $name; ?></li>
-		    </ul>
-
-		<div class="row product-info">
-		    <div class="col-md-6">
-				<div class="image">
-                    <a class="cloud-zoom" rel="adjustX: 0, adjustY:0" id='zoom1' href="<?= $link_img; ?>" title="<?= $name; ?>">
-                        <img src="<?= $link_img; ?>" title="<?= $name; ?>" alt="<?= $name; ?>" id="image"/>
-                    </a>
-                </div>
-				<!-- <div class="image-additional">
+			</div>
+			<!-- <div class="image-additional">
 					<a title="Dress" rel="useZoom: 'zoom1', smallImage: 'products/dress1home.jpg'" class="cloud-zoom-gallery" href="products/dress1home.jpg"><img alt="Dress" title="Dress" src="products/dress1home.jpg"></a>
 					<a title="Dress" rel="useZoom: 'zoom1', smallImage: 'products/dress5home.jpg'" class="cloud-zoom-gallery" href="products/dress5home.jpg"><img alt="Dress" title="Dress" src="products/dress5home.jpg"></a>
 					<a title="Dress" rel="useZoom: 'zoom1', smallImage: 'products/dress6home.jpg'" class="cloud-zoom-gallery" href="products/dress6home.jpg"><img alt="Dress" title="Dress" src="products/dress6home.jpg"></a>
 					<a title="Dress" rel="useZoom: 'zoom1', smallImage: 'products/dress4home.jpg'" class="cloud-zoom-gallery" href="products/dress4home.jpg"><img alt="Dress" title="Dress" src="products/dress4home.jpg"></a>
 				</div> -->
-  			</div>
-		    <div class="col-md-6">
-				<h1><?=$name;?> (<?=$other_name;?>)</h1>
-				    <div class="line"></div>
-						<ul>
-							<li><span>Jenis Tanaman:</span> <a href="#"><?= $category; ?></a></li>
-							<!-- <li><span>Product Code:</span> Product 001</li> -->
-							<li><span>Ketersediaan: </span>Tersedia</li>
-						</ul>
-					<div class="price">
-						Harga : &nbsp;
-						<!-- <span class="strike">$150.00</span>  -->
-						<strong>Rp. <?= $price; ?></strong>
-					</div>
-					<!--
+		</div>
+		<div class="col-md-6">
+			<h1><?= $name; ?> (<?= $other_name; ?>)</h1>
+			<div class="line"></div>
+			<ul>
+				<li><span>Jenis Tanaman:</span> <a href="#"><?= $category; ?></a></li>
+				<!-- <li><span>Product Code:</span> Product 001</li> -->
+				<li><span>Ketersediaan: </span>Tersedia</li>
+			</ul>
+			<div class="price">
+				Harga : &nbsp;
+				<!-- <span class="strike">$150.00</span>  -->
+				<strong>Rp. <?= $price; ?></strong>
+			</div>
+			<!--
 						<span class="price-tax">Ex Tax: $400.00</span>
 						    <div class="control-group">
 							<label class="control-label">Color<span class="required">*</span></label>
@@ -172,154 +64,114 @@
 								</div>
 							</div> -->
 
-					<select class="selectpicker" data-width="150px">
-						<option readonly>Pilih Warna</option>
-						<option>Red</option>
-						<option>Blue</option>
-						<option>Green</option>
-					</select>
+			<select class="selectpicker" data-width="150px">
+				<option readonly>Pilih Warna</option>
+				<option>Red</option>
+				<option>Blue</option>
+				<option>Green</option>
+			</select>
 
-					<div class="line"></div>
-					<form class="form-inline">
-						<button class="btn btn-primary" style="margin-right: 20px;" type="button">Add to Cart</button>
-						<label>Quantity:</label> <input type="text" placeholder="1" class="col-md-1">
-					</form>
+			<div class="line"></div>
+			<!-- <form class="form-inline"> -->
+			<button class="btn btn-primary" id="add-cart" style="margin-right: 20px;">Add to Cart</button>
+			<label>Quantity:</label> <input type="text" id="jumlah_barang" placeholder="1" value="1" class="col-md-1">
+			<!-- </form> -->
 
-					<div class="tabs" id="tabs">
-						<ul class="nav nav-tabs" id="myTab">
-							<li class="tab-li active"><a href="#tabs-1">Description</a></li>
-							<li class="tab-li"><a href="#tabs-2">Specification</a></li>
-						</ul>
-						<div class="tab-content">
-							<div class="tab-pane active" id="tabs-1"><?= $description; ?></div>
-							<div class="tab-pane" id="tabs-2">
-								<table class="table specs">
-									<tr>
-										<th>Color</th>
-										<th>Size</th>
-										<th>Weight</th>
-									</tr>
-									<tr>
-										<td>Blue</td>
-										<td>XS</td>
-										<td>1.00</td>
-									</tr>
-									<tr>
-										<th>Composition</th>
-										<th>Sleeve</th>
-										<th>Care</th>
-									</tr>
-									<tr>
-										<td>100% Cotton</td>
-										<td> Long Sleeve</td>
-										<td>IRON AT 110ºC MAX</td>
-									</tr>								
-								</table>
-							</div>
-						</div>
+			<div class="tabs" id="tabs">
+				<ul class="nav nav-tabs" id="myTab">
+					<li class="tab-li active"><a href="#tabs-1">Description</a></li>
+					<!-- <li class="tab-li"><a href="#tabs-2">Specification</a></li> -->
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane active" id="tabs-1"><?= $description; ?></div>
+					<div class="tab-pane" id="tabs-2">
+						<table class="table specs">
+							<tr>
+								<th>Color</th>
+								<th>Size</th>
+								<th>Weight</th>
+							</tr>
+							<tr>
+								<td>Blue</td>
+								<td>XS</td>
+								<td>1.00</td>
+							</tr>
+							<tr>
+								<th>Composition</th>
+								<th>Sleeve</th>
+								<th>Care</th>
+							</tr>
+							<tr>
+								<td>100% Cotton</td>
+								<td> Long Sleeve</td>
+								<td>IRON AT 110ºC MAX</td>
+							</tr>
+						</table>
 					</div>
+				</div>
 			</div>
 		</div>
-		<!-- /front-assets/products/dress1home.jpg -->
-		<h3 class="related">Related products</h3>
-		<div class="row">
-			<div class="col-md-12">
-				<?php foreach($related_product as $row) : ?>
+	</div>
+	<!-- front-assets/products/dress1home.jpg -->
+	<h3 class="related">Related products</h3>
+	<div class="row">
+		<div class="col-md-12">
+			<?php foreach ($related_product as $row) : ?>
 				<div class="col-md-3">
 					<div class="product">
 						<div class="product_sale">Sale</div>
-						<a href="<?= base_url(); ?>/front/product/<?= $row['id_kategori']; ?>/<?= $row['id_barang']; ?>"><img alt="<?= $row['nama_barang'] ?>" src="<?= $row['link_gambar'] ?>"></a>
+						<a href="<?= base_url(); ?>/product/<?= $row['slug_kategori']; ?>/<?= $row['slug_barang']; ?>"><img alt="<?= $row['nama_barang'] ?>" src="<?= $row['link_gambar'] ?>"></a>
 						<div class="name">
-							<a href="<?= base_url(); ?>/front/product/<?= $row['id_kategori']; ?>/<?= $row['id_barang']; ?>"><?= $row['nama_barang'] ?></a>
+							<a href="<?= base_url(); ?>/product/<?= $row['slug_kategori']; ?>/<?= $row['slug_barang']; ?>"><?= $row['nama_barang'] ?></a>
 						</div>
 						<div class="price">
 							<p><?= $row['harga_barang'] ?></p>
 						</div>
 					</div>
 				</div>
-				<?php endforeach; ?>
-			</div>
+			<?php endforeach; ?>
 		</div>
 	</div>
-	<div class="footer black">
-		<div class="container">
-		    <div class="row">
-		        <div class="col-md-3">
-					<div>
-			        <h3>Information</h3>
-				        <ul>
-					        <li><a href="about.html">About Us</a></li>
-						    <li><a href="#">Delivery Information</a></li>
-						    <li><a href="#">Privacy Policy</a></li>
-						    <li><a href="#">Terms & Conditions</a></li>
-					    </ul>
-					  </div>
-				</div>
-		        <div class="col-md-3">
-					<div>
-			        <h3>Customer Service</h3>
-				        <ul>
-					        <li><a href="contact.html" class="ajax_right">Contact Us</a></li>
-						    <li><a href="#">Returns</a></li>
-						    <li><a href="#">Site Map</a></li>
-							<li><a href="#">Shipping</a></li>
-				        </ul>	
-					  </div>
-				</div>	
-		        
-		        <!-- div class="col-md-3 twitter">
-					<div class="row">
-						<h3>Follow us</h3>
-						<script type="text/javascript" src="js/twitterFetcher_v9_min.js"></script>
-						<ul id="twitter_update_list"><li class="col-md-2">Twitter feed loading</li></ul>			
-						<script>twitterFetcher.fetch('256524641194098690', 'twitter_update_list', 2, true, true, false);</script> 
-					</div>				
-				</div-->	
-				<div class="col-md-3">
-				</div>
-				
-				<div class="col-md-3 social">
-					<div class="copy">Copyright &copy; nicole_89</div>
-					<ul class="social-network">
-						<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-						<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-						<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-						<li><a href="#"><i class="fa fa-rss"></i></a></li>
-						<li><a href="#"><i class="fa fa-twitter"></i></a></li>	
-					</ul>
-				</div>
-
-		    </div>	
-	</div>
-	</div>	
 </div>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script>
+	$(document).ready(function() {
+		// alert('aaa');
+		$('#add-cart').click(function() {
+			console.log('aaa');
+			tampilcart();
 
-<script type="text/javascript" src="<?=base_url()?>/front-assets/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="<?=base_url()?>/front-assets/js/bootstrap-select.min.js"></script>
-<script type="text/javascript" src="<?=base_url()?>/front-assets/js/cloud-zoom.1.0.3.js"></script>
-<script type="text/javascript" src="<?=base_url()?>/front-assets/js/sapphire.js"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
-<script>
-$(document).ready(function(){
-  $(".nav-tabs a").click(function(e){
-	e.preventDefault()
-    $(this).tab('show');
-  });
-});
+		});
+
+
+
+		function tampilcart() {
+			var action = "ambildatabarang";
+			var id_barang = $('#id_barang').val();
+			var jumlah_barang = $('#jumlah_barang').val();
+			$.ajax({
+				url: "<?= base_url(); ?>/front/tambahcart",
+				method: "post",
+				dataType: "json",
+				data: {
+					action: action,
+					id_barang: id_barang,
+					jumlah_barang: jumlah_barang
+				},
+
+				success: function(data) {
+					// $('#sukses').html(data.barang.stok);
+					console.log(data.sukses);
+					// $('#harga').html(data.barang.harga);
+				},
+				error: function(xhr, ajaxOptions, thrownError) {
+					console.log(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+				}
+
+			});
+		}
+
+	});
 </script>
-<script>
-	$.fn.CloudZoom.defaults = {
-		zoomWidth:"auto",
-		zoomHeight:"auto",
-		position:"inside",
-		adjustX:0,
-		adjustY:0,
-		adjustY:"",
-		tintOpacity:0.5,
-		lensOpacity:0.5,
-		titleOpacity:0.5,
-		smoothMove:3,
-		showTitle:false};
-</script>
-</body>
-</html>
+
+<?= $this->endSection(); ?>
