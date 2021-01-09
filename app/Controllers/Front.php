@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use CodeIgniter\Controller;
 use App\Models\Front\Product_view;
+use App\Models\Front\CartModel;
 
 class Front extends BaseController
 {
@@ -11,6 +12,7 @@ class Front extends BaseController
 	public function __construct()
 	{
 		$this->product_view = new Product_view();
+		$this->CartModel = new CartModel();
 	}
 
 
@@ -89,12 +91,27 @@ class Front extends BaseController
 		echo view('front/pages/all_products', $data);
 	}
 
+	public function tambahcart()
+	{
+		$id_barang = $this->request->getVar('id_barang');
+		$jumlah	= $this->request->getVar('jumlah_barang');
+
+		$data = array(
+			'sukses' => $jumlah
+		);
+
+		
+
+		echo json_encode($data);
+	}
+
 	public function show_product($kategori = "", $product_id)
 	{
 		$model = new Product_view();
 		$ambil = $model->get_product_detail($kategori, $product_id)->getRowArray();
 		$data = array(
 			'title' => 'Product',
+			'id' =>  $ambil['id_barang'],
 			'name' =>  $ambil['nama_barang'],
 			'other_name' => $ambil['nama_lain'],
 			'price' => $ambil['harga_barang'],
