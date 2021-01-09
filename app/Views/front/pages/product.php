@@ -2,10 +2,10 @@
 <?= $this->section('content'); ?>
 <div class="container">
 	<ul class="breadcrumb prod">
-		<li><a href="<?= base_url('/front') ?>">Home</a>
+		<li><a href="<?= base_url('/') ?>">Home</a>
 			<span class="divider"></span>
 		</li>
-		<li><a href="<?= base_url() ?>/front/product/<?= $slug_category; ?>"><?= $category; ?></a>
+		<li><a href="<?= base_url() ?>/product/<?= $slug_category; ?>"><?= $category; ?></a>
 			<span class="divider"></span>
 		</li>
 		<li class="active"><?= $name; ?></li>
@@ -111,7 +111,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- /front-assets/products/dress1home.jpg -->
+	<!-- front-assets/products/dress1home.jpg -->
 	<h3 class="related">Related products</h3>
 	<div class="row">
 		<div class="col-md-12">
@@ -119,9 +119,9 @@
 				<div class="col-md-3">
 					<div class="product">
 						<div class="product_sale">Sale</div>
-						<a href="<?= base_url(); ?>/front/product/<?= $row['slug_kategori']; ?>/<?= $row['slug_barang']; ?>"><img alt="<?= $row['nama_barang'] ?>" src="<?= $row['link_gambar'] ?>"></a>
+						<a href="<?= base_url(); ?>/product/<?= $row['slug_kategori']; ?>/<?= $row['slug_barang']; ?>"><img alt="<?= $row['nama_barang'] ?>" src="<?= $row['link_gambar'] ?>"></a>
 						<div class="name">
-							<a href="<?= base_url(); ?>/front/product/<?= $row['slug_kategori']; ?>/<?= $row['slug_barang']; ?>"><?= $row['nama_barang'] ?></a>
+							<a href="<?= base_url(); ?>/product/<?= $row['slug_kategori']; ?>/<?= $row['slug_barang']; ?>"><?= $row['nama_barang'] ?></a>
 						</div>
 						<div class="price">
 							<p><?= $row['harga_barang'] ?></p>
