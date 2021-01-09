@@ -129,10 +129,34 @@ class Admin extends BaseController
 
 	public function newBlog()
 	{
-		$judul = $this->request->getPost('judul');
+		$judul = $this->request->getPost('judul_blog');
+			$xslug = explode(" ", $judul);
+			$yslug = implode("-", $xslug);
+			$nslug = strtolower($yslug);
+			$cekslug = $this->database->query("SELECT slug FROM blog WHERE slug = '$nslug'")->getRowArray();
+			// var_dump($cekslug['slug']);
+			if($cekslug['slug'] == ''){
+				$slug = $nslug;
+				// echo $slug;
+			} else{
+				$zslug = $cekslug['slug'] . '-2';
+				$cekslugtwo = $this->database->query("SELECT slug FROM blog WHERE slug = '$zslug'")->getRowArray();
+				if($cekslugtwo['slug'] == ''){
+					$slug = $zslug;
+				} else {
+					$slug = $zslug . '-2';
+				}
+			}
 		$isi = $this->request->getPost('isi');
-		$today = $this->request->getPost('tanggal');
-		$data = $this->barang->donewBlog($judul, $isi, $today);
+		$today = date('Y-m-d');
+		if (empty($_FILES['gambar_blog']['name'])) {
+			$gambar = '';
+		} else {
+			$img = $this->request->getFile('gambar_blog');
+			$gambar = $img->getName();
+			$img->move(ROOTPATH . 'public/gambar-blog', $gambar);
+		}
+        $data = $this->barang->donewBlog($judul, $isi, $today, $gambar, $slug);
 		echo json_encode($data);
 	}
 
@@ -173,13 +197,37 @@ class Admin extends BaseController
 
 	public function updateBlog()
 	{
-		$id = $this->request->getVar('id_blog');
-		$judul = $this->request->getVar('judul_blog');
-		$isi = $this->request->getVar('quillText');
-		$tanggal = $this->request->getVar('today');
-		print_r($_POST);
-		// $data = $this->barang->doupdateBlog($id, $judul, $isi, $tanggal);
-		// echo json_encode($data);
+		$id = $this->request->getPost('id_blog_e');
+		$judul = $this->request->getPost('judul_blog_e');
+		$isi = $this->request->getPost('isi');
+		$today = date("Y-m-d");
+		$xslug = explode(" ", $judul);
+		$yslug = implode("-", $xslug);
+		$nslug = strtolower($yslug);
+		$cekslug = $this->database->query("SELECT slug FROM blog WHERE slug = '$nslug'")->getRowArray();
+		// var_dump($cekslug['slug']);
+		if($cekslug['slug'] == ''){
+			$slug = $nslug;
+			// echo $slug;
+		} else{
+			$zslug = $cekslug['slug'] . '-2';
+			$cekslugtwo = $this->database->query("SELECT slug FROM blog WHERE slug = '$zslug'")->getRowArray();
+			if($cekslugtwo['slug'] == ''){
+				$slug = $zslug;
+			} else {
+				$slug = $zslug . '-2';
+			}
+		}
+		if (empty($_FILES['gambar_blog']['name'])) {
+			$cekgambar = $this->database->query("SELECT gambar_blog FROM blog WHERE id_blog = '$id'")->getRowArray();
+			$gambar = $cekgambar['gambar_blog'];
+		} else {
+			$img = $this->request->getFile('gambar_blog');
+			$gambar = $img->getName();
+			$img->move(ROOTPATH . 'public/gambar-blog', $gambar);
+		}
+        $data = $this->barang->doupdateBlog($id, $judul, $isi, $today, $gambar, $slug);
+        echo json_encode($data);
 	}
 
 	public function deleteRecord()
@@ -203,49 +251,18 @@ class Admin extends BaseController
 		echo json_encode($data);
 	}
 
-	public function myupload()
-	{
-		$this->load->library('upload'); //loading the library
-		$imagePath = realpath(APPPATH . '../assets/images/carImages'); //this is your real path APPPATH means you are at the application folder
-		$number_of_files_uploaded = count($_FILES['files']['name']);
-		if ($number_of_files_uploaded > 5) { // checking how many images your user/client can upload
-			$carImages['return'] = false;
-			$carImages['message'] = "You can upload 5 Images";
-			echo json_encode($carImages);
-		} else {
-			for ($i = 0; $i <  $number_of_files_uploaded; $i++) {
-				$_FILES['userfile']['name']     = $_FILES['files']['name'][$i];
-				$_FILES['userfile']['type']     = $_FILES['files']['type'][$i];
-				$_FILES['userfile']['tmp_name'] = $_FILES['files']['tmp_name'][$i];
-				$_FILES['userfile']['error']    = $_FILES['files']['error'][$i];
-				$_FILES['userfile']['size']     = $_FILES['files']['size'][$i];
-				//configuration for upload your images
-				$config = array(
-					'file_name'     => random_string('alnum', 16),
-					'allowed_types' => 'jpg|jpeg|png|gif',
-					'max_size'      => 3000,
-					'overwrite'     => FALSE,
-					'upload_path'
-					=> $imagePath
-				);
-				$this->upload->initialize($config);
-				$errCount = 0; //counting errrs
-				if (!$this->upload->do_upload()) {
-					$error = array('error' => $this->upload->display_errors());
-					$carImages[] = array(
-						'errors' => $error
-					); //saving arrors in the array
-				} else {
-					$filename = $this->upload->data();
-					$carImages[] = array(
-						'fileName' => $filename['file_name'],
-						'watermark' => $this->createWatermark($filename['file_name'])
-					);
-				} //if file uploaded
-
-			} //for loop ends here
-			echo json_encode($carImages); //sending the data to the jquery/ajax or you can save the files name inside your database.
-		} //else
+	public function delimg(){
+		$id_blog = $this->request->getVar('id_blog');
+		$del = $this->database->query("UPDATE blog SET gambar_blog = '' WHERE id_blog = '$id_blog'");
+		$cekgambar = $this->database->query("SELECT gambar_blog FROM blog WHERE id_blog = '$id_blog'")->getRowArray();
+		$gambar = $cekgambar['gambar_blog'];
+		$path_to_file = ROOTPATH . 'public/gambar-blog' . $gambar;
+		if(unlink($path_to_file)) {
+			return redirect()->to('/Admin/showpost?id_blog=' . $id_blog);
+		}
+		else {
+			echo 'errors occured';
+		}
 	}
 
 	public function test()
