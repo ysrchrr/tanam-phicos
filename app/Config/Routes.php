@@ -37,6 +37,7 @@ $routes->get('/daftar/', 'Login::daftar');
 $routes->get('/cari', 'Front::cariproduk');
 $routes->get('/blog', 'Blog::index');
 $routes->get('/konsultasi', 'Front::konsultasi');
+$routes->get('/account', 'Account::index');
 
 $routes->group('/', function ($routes) {
 	$routes->add('', 'Front::index');
@@ -45,7 +46,6 @@ $routes->group('/', function ($routes) {
 	$routes->get('product/(:any)/(:any)/', 'Front::show_product/$1/$2');
 });
 
-$routes->get('/account', 'Account::index');
 
 $routes->get('/admin-test', 'Front::test');
 $routes->get('/front-test', 'Front::test');
