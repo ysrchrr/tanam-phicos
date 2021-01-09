@@ -50,7 +50,7 @@ class Product_view extends Model
     {
         $cart_detail = $this->get_cart_home($id_member)->getrowarray();
         $query = "select * from cart_detail 
-        join barang on cart_detail.id_barang = barang.id_barang where cart_detail.id_cart =" . $cart_detail['id_cart'];
+            join barang on cart_detail.id_barang = barang.id_barang where cart_detail.id_cart =" . $cart_detail['id_cart'];
         return $this->query($query);
     }
 }
