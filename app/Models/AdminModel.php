@@ -19,7 +19,38 @@ class AdminModel extends Model
 
     public function dotampilkanBarang()
     {
-        $query = $this->db->query("SELECT * FROM barang ORDER BY id_barang");
+        $query = $this->db->query("SELECT
+        barang.id_barang,
+        barang.id_kategori,
+        barang.nama_barang,
+        barang.nama_lain,
+        barang.harga_barang,
+        barang.stok_barang,
+        barang.deskripsi,
+        gambar.link_gambar 
+    FROM
+        barang
+        JOIN gambar ON gambar.id_barang = barang.id_barang");
+        return $query->getResult();
+    }
+
+    public function dotampilkanMember()
+    {
+        $query = $this->db->query("SELECT * FROM member ORDER BY nama");
+        return $query->getResult();
+    }
+    
+    public function dotampilkanPesanan()
+    {
+        $query = $this->db->query("SELECT DISTINCT
+        pemesanan.id_pemesanan,
+        member.nama,
+        pemesanan.total,
+        pemesanan.tgl_pesan,
+        pemesanan.status_pemesanan
+    FROM
+        pemesanan
+    JOIN member on member.id_member = pemesanan.id_member");
         return $query->getResult();
     }
 
@@ -101,6 +132,21 @@ class AdminModel extends Model
         return $hasil;
     }
 
+    public function dodetailMember($id_member)
+    {
+        $hsl = $this->db->query("SELECT * FROM member WHERE id_member = '$id_member'");
+        foreach ($hsl->getResult() as $data) {
+            $hasil = array(
+                'id_member' => $data->id_member,
+                'nama' => $data->nama,
+                'username' => $data->username,
+                'email' => $data->email,
+                'alamat' => $data->alamat
+            );
+        }
+        return $hasil;
+    }
+
     public function dodetailKategori($id_kategori)
     {
         $hsl = $this->db->query("SELECT * FROM kategori WHERE id_kategori = '$id_kategori'");
@@ -143,6 +189,12 @@ class AdminModel extends Model
     public function dodeleteRecord($id)
     {
         $hasil = $this->db->query("DELETE FROM barang WHERE id_barang = '$id'");
+        return $hasil;
+    }
+
+    public function dodeleteMember($id)
+    {
+        $hasil = $this->db->query("DELETE FROM member WHERE id_member = '$id'");
         return $hasil;
     }
 

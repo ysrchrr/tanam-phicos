@@ -121,19 +121,18 @@ $_SESSION['logged-in'] = true;
                         </li>
                         <li class="dropdown dropdown-animated scale-left">
                             <div class="pointer" data-toggle="dropdown">
-                                <div class="avatar avatar-image  m-h-10 m-r-15">
-                                    <img src="<?= base_url() ?>/back-assets/images/avatars/thumb-3.jpg" alt="">
+                                <div class="avatar avatar-text bg-primary">
+                                    <span>A</span>
                                 </div>
                             </div>
                             <div class="p-b-15 p-t-20 dropdown-menu pop-profile">
                                 <div class="p-h-20 p-b-15 m-b-10 border-bottom">
                                     <div class="d-flex m-r-50">
-                                        <div class="avatar avatar-lg avatar-image">
-                                            <img src="<?= base_url() ?>/back-assets/images/avatars/thumb-3.jpg" alt="">
+                                        <div class="avatar avatar-text bg-primary">
+                                            <span>A</span>
                                         </div>
                                         <div class="m-l-10">
                                             <p class="m-b-0 text-dark font-weight-semibold">Marshall Nichols</p>
-                                            <p class="m-b-0 opacity-07">UI/UX Desinger</p>
                                         </div>
                                     </div>
                                 </div>
@@ -150,16 +149,7 @@ $_SESSION['logged-in'] = true;
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div>
                                             <i class="anticon opacity-04 font-size-16 anticon-lock"></i>
-                                            <span class="m-l-10">Account Setting</span>
-                                        </div>
-                                        <i class="anticon font-size-10 anticon-right"></i>
-                                    </div>
-                                </a>
-                                <a href="javascript:void(0);" class="dropdown-item d-block p-h-15 p-v-10">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div>
-                                            <i class="anticon opacity-04 font-size-16 anticon-project"></i>
-                                            <span class="m-l-10">Projects</span>
+                                            <span class="m-l-10">Security Setting</span>
                                         </div>
                                         <i class="anticon font-size-10 anticon-right"></i>
                                     </div>
