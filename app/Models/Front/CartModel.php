@@ -83,6 +83,57 @@ class CartModel extends Model
         }
     }
 
+    public function updatecart($id_cart, $id_barang, $jumlah)
+    {
+        $barang = $this->query("select * from barang where id_barang =" . $id_barang)->getrowarray();
+        $sub_total = $jumlah * $barang['harga_barang'];
+        $query1 = "Update cart_detail set 
+        sub_jumlah=$jumlah,
+        sub_total=$sub_total 
+        where id_cart=$id_cart 
+        and id_barang=$id_barang
+        ";
+        $this->query($query1);
+
+        $query = "select sum(sub_jumlah) as jumlah,sum(sub_total) as total from cart_detail where id_cart=" . $id_cart;
+        $cek = $this->query($query)->getrowarray();
+        $data_post_cart = array(
+            'id_cart' => $id_cart,
+            'id_member' =>    session()->get('user_id'),
+            'jumlah' => $cek['jumlah'],
+            'total'  => $cek['total']
+
+        );
+        $this->save($data_post_cart);
+
+        return true;
+    }
+
+    public function delete_cart($id_cart, $id_barang)
+    {
+
+        $cek_cd =  $this->query('select * from cart_detail where id_cart=' . $id_cart);
+        if (count($cek_cd->getresultarray()) > 1) {
+            $qd = "delete from cart_detail where id_cart= $id_cart and id_barang = $id_barang";
+            $this->query($qd);
+            $query = "select sum(sub_jumlah) as jumlah,sum(sub_total) as total from cart_detail where id_cart=" . $id_cart;
+            $cek = $this->query($query)->getrowarray();
+            $data_post_cart = array(
+                'id_cart' => $id_cart,
+                'id_member' =>    session()->get('user_id'),
+                'jumlah' => $cek['jumlah'],
+                'total'  => $cek['total']
+
+            );
+            $this->save($data_post_cart);
+        } else if (count($cek_cd->getresultarray()) == 1) {
+            $qd = "delete from cart_detail where id_cart= $id_cart and id_barang = $id_barang";
+            $this->query($qd);
+            $qd2 = "delete from cart where id_cart= $id_cart";
+            $this->query($qd2);
+        }
+    }
+
     public function tampilcart($id_barang, $jumlah_akhir)
     {
 

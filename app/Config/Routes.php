@@ -39,6 +39,7 @@ $routes->get('/blog', 'Blog::index');
 $routes->get('/konsultasi', 'Front::konsultasi');
 $routes->get('/account', 'Account::index');
 $routes->get('/checkout', 'Front::checkout');
+$routes->get('/cart', 'Front::cart_detail');
 
 $routes->group('/', function ($routes) {
 	$routes->add('', 'Front::index');

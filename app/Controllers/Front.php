@@ -16,8 +16,38 @@ class Front extends BaseController
 	}
 
 
+	public function update_cart()
+	{
+		$id_barang = $this->request->getVar('id_barang');
+		$id_cart = $this->request->getVar('id_cart');
+		$jumlah = $this->request->getVar('jumlah');
+
+		$save = $this->CartModel->updatecart($id_cart, $id_barang, $jumlah);
+		if ($save) {
+			return redirect()->to(base_url() . '/cart');
+		}
+	}
+
+	public function hapus_cart($id_cart, $id_barang)
+	{
+		if (empty($id_cart) && empty($id_barang)) {
+			return redirect()->to(base_url() . '/cart');
+		}
+
+		$cek_user = $this->CartModel->query("select * from cart where id_cart =$id_cart")->getrowarray();
+		if ($cek_user['id_member'] != session()->get('user_id')) {
+			return redirect()->to(base_url() . '/cart');
+		}
+
+		$this->CartModel->delete_cart($id_cart, $id_barang);
+		return redirect()->to(base_url() . '/cart');
+	}
 	public function cart_detail()
 	{
+		if (!session()->get('login')) {
+			return redirect()->to(base_url() . '/');
+		}
+
 		$data = array(
 			'title' => 'Front - Sapphire',
 			'cart' => 	$this->get_cart()['total'],
