@@ -27,11 +27,27 @@
                 </a>
             </li>
             <li class="nav-item dropdown">
+                <a class="dropdown-toggle" href="<?= base_url();?>/admin/pesanan">
+                    <span class="icon-holder">
+                        <i class="anticon anticon-shopping-cart"></i>
+                    </span>
+                    <span class="title">Kelola Pesanan</span>
+                </a>
+            </li>
+            <li class="nav-item dropdown">
                 <a class="dropdown-toggle" href="<?= base_url();?>/admin/blog">
                     <span class="icon-holder">
                         <i class="far fa-newspaper"></i>
                     </span>
                     <span class="title">Kelola Blog</span>
+                </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="dropdown-toggle" href="<?= base_url();?>/admin/member">
+                    <span class="icon-holder">
+                        <i class="fas fa-users-cog"></i>
+                    </span>
+                    <span class="title">Kelola Member</span>
                 </a>
             </li>
         </ul>

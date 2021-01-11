@@ -63,6 +63,17 @@ class Admin extends BaseController
 		echo view('admin/footer');
 	}
 
+	public function member()
+	{
+		$data = array(
+			'title' => "Kelola Member"
+		);
+		echo view('admin/header', $data);
+		echo view('admin/sidebar');
+		echo view('admin/members');
+		echo view('admin/footer');
+	}
+
 	public function newpost()
 	{
 		$data = array(
@@ -71,6 +82,17 @@ class Admin extends BaseController
 		echo view('admin/header', $data);
 		echo view('admin/sidebar');
 		echo view('admin/new-post');
+		echo view('admin/footer');
+	}
+
+	public function pesanan()
+	{
+		$data = array(
+			'title' => "Kelola Pesanan"
+		);
+		echo view('admin/header', $data);
+		echo view('admin/sidebar');
+		echo view('admin/order-list');
 		echo view('admin/footer');
 	}
 
@@ -93,6 +115,18 @@ class Admin extends BaseController
 		echo json_encode($tampilBarang);
 	}
 
+	public function tampilkanPesanan()
+	{
+		$tampilPesanan = $this->barang->dotampilkanPesanan();
+		echo json_encode($tampilPesanan);
+	}
+
+	public function tampilkanMember()
+	{
+		$tampilMember = $this->barang->dotampilkanMember();
+		echo json_encode($tampilMember);
+	}
+
 	public function tampilkanKategori()
 	{
 		$tampilKategori = $this->barang->dotampilkanKategori();
@@ -107,6 +141,24 @@ class Admin extends BaseController
 
 	public function book_add()
 	{
+		$nama = $this->request->getPost('nama_barang');
+			$xslug = explode(" ", $nama);
+			$yslug = implode("-", $xslug);
+			$nslug = strtolower($yslug);
+			$cekslug = $this->database->query("SELECT slug_barang FROM barang WHERE slug_barang = '$nslug'")->getRowArray();
+			// var_dump($cekslug['slug']);
+			if($cekslug['slug_barang'] == ''){
+				$slug = $nslug;
+				// echo $slug;
+			} else{
+				$zslug = $cekslug['slug_barang'] . '-2';
+				$cekslugtwo = $this->database->query("SELECT slug_barang FROM barang WHERE slug_barang = '$zslug'")->getRowArray();
+				if($cekslugtwo['slug_barang'] == ''){
+					$slug = $zslug;
+				} else {
+					$slug = $zslug . '-2';
+				}
+			}
 		$data = array(
 			'nama_barang' => $this->request->getPost('nama_barang'),
 			'nama_lain' => $this->request->getPost('nama_lain'),
@@ -114,7 +166,7 @@ class Admin extends BaseController
 			'harga_barang' => $this->request->getPost('harga_barang'),
 			'stok_barang' => $this->request->getPost('stok_barang'),
 			'deskripsi' => $this->request->getPost('deskripsi'),
-			'slug' => $slug
+			'slug_barang' => $slug
 		);
 		$insert = $this->barang->book_add($data);
 		echo json_encode(array("status" => TRUE));
@@ -164,6 +216,13 @@ class Admin extends BaseController
 	{
 		$id_barang = $this->request->getVar('id_barang');
 		$data = $this->barang->dodetailBarang($id_barang);
+		echo json_encode($data);
+	}
+
+	public function detailMembers()
+	{
+		$id_member = $this->request->getVar('id_member');
+		$data = $this->barang->dodetailMember($id_member);
 		echo json_encode($data);
 	}
 
@@ -234,6 +293,14 @@ class Admin extends BaseController
 	{
 		$id = $this->request->getVar('kode');
 		$data = $this->barang->dodeleteRecord($id);
+		echo json_encode($data);
+	}
+
+	public function deleteMember()
+	{
+		$id = $this->request->getVar('kode');
+		// print_r($_POST);
+		$data = $this->barang->dodeleteMember($id);
 		echo json_encode($data);
 	}
 
