@@ -138,8 +138,17 @@
 	$(document).ready(function() {
 		// alert('aaa');
 		$('#add-cart').click(function() {
-			console.log('aaa');
-			tampilcart();
+
+			console.log(<?= session()->get('login') ?>)
+			var login = '<?= session()->get('login') ?>';
+			if (login != '') {
+				// alert('aaa');
+				tampilcart();
+			} else {
+
+				window.location = "<?= base_url(); ?>/daftar";
+			}
+
 
 		});
 
@@ -160,8 +169,8 @@
 				},
 
 				success: function(data) {
-					// $('#sukses').html(data.barang.stok);
-					console.log(data.sukses);
+					$('.inicart').html(data.sukses);
+					// console.log(data.sukses);
 					// $('#harga').html(data.barang.harga);
 				},
 				error: function(xhr, ajaxOptions, thrownError) {

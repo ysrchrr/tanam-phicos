@@ -1,7 +1,7 @@
 <?= $this->extend('front/layout/home'); ?>
 <?= $this->section('content'); ?>
 
-<div class="row">
+<div class="row" id="printableArea">
     <div class="container">
         <div class="col-md-12">
             <div class="box padding">
@@ -74,25 +74,52 @@
                 <div class="row">
                     <div class="col-md-6" style="color:grey;">
                         <p>Total Harga</p>
-                        <p>Total Ongkos Kirim</p>
-                        <p>Total Bayar</p>
-                        <p>Metode Pembayaran</p>
                     </div>
                     <div class="col-md-6" style="border-left: thin solid #bababa;font-weight:600;">
                         <p><?= $bio['total']; ?></p>
-                        <p>Rp. 0</p>
-                        <p style="color:green;"><?= $bio['total']; ?></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6" style="color:grey;">
+                        <p>Biaya Pengiriman</p>
+                    </div>
+                    <div class="col-md-6" style="border-left: thin solid #bababa;font-weight:600;">
+                        <p>GRATIS</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6" style="color:grey;">
+                        <p>Metode Pembayaran</p>
+                    </div>
+                    <div class="col-md-6" style="border-left: thin solid #bababa;font-weight:600;">
                         <p>Transfer Bank</p>
                     </div>
                 </div>
-                <hr>
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <button class="btn btn-success">Cetak Invoice</button>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>
 </div>
+
+<div class="row">
+    <div class="container ">
+        <div class="col-md-12 ">
+            <div class="box padding text-center">
+                <button onclick="printDiv('printableArea')" class="btn btn-success">Cetak Invoice</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+    }
+</script>
 <?= $this->endSection(); ?>
