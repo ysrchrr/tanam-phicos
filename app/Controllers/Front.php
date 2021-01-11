@@ -16,6 +16,21 @@ class Front extends BaseController
 	}
 
 
+	public function cart_detail()
+	{
+		$data = array(
+			'title' => 'Front - Sapphire',
+			'cart' => 	$this->get_cart()['total'],
+			'cart_d' => 	$this->get_cart()['detail'],
+			'gambar' => 	$this->get_cart()['gambar'],
+			// 'category' => $this->product_view->query('Select * from kategori'),
+			// 'product'  => $produk->paginate(9),
+			// 'pager' => $produk->pager
+		);
+
+		echo view('front/pages/cart_detail', $data);
+	}
+
 	public function get_cart()
 	{
 
@@ -96,11 +111,12 @@ class Front extends BaseController
 		$id_barang = $this->request->getVar('id_barang');
 		$jumlah	= $this->request->getVar('jumlah_barang');
 
+
 		$data = array(
-			'sukses' => $jumlah
+			'sukses' => $this->CartModel->tampilcart($id_barang, $jumlah)
 		);
 
-		
+
 
 		echo json_encode($data);
 	}

@@ -52,9 +52,13 @@
 					</ul>
 
 					<ul class="nav navbar-right cart">
-						<li class="dropdown">
+						<li class="dropdown inicart">
 							<?php if (count($cart_d) > 0) { ?>
-								<a href="<?= base_url(); ?>/front/cart" class="dropdown-toggle" data-toggle="dropdown"><span><?= count($cart_d); ?></span></a>
+								<?php $a = 0;
+								foreach ($cart_d as $total) {
+									$a = $a + $total['sub_jumlah'];
+								} ?>
+								<a href="<?= base_url(); ?>/front/cart" class="dropdown-toggle" data-toggle="dropdown"><span><?= $a ?></span></a>
 								<div class="cart-info dropdown-menu text-center">
 									<table class="table">
 										<thead>
