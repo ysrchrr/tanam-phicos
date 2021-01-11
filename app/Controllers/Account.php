@@ -42,7 +42,7 @@ class Account extends BaseController
     {
 
         if (!session()->get('login')) {
-            return redirect()->to(base_url() . '/front');
+            return redirect()->to(base_url() . '/');
         }
 
         $data = array(
@@ -93,13 +93,13 @@ class Account extends BaseController
     public function logout()
     {
         session()->destroy();
-        return redirect()->to(base_url() . '/front');
+        return redirect()->to(base_url() . '/');
     }
 
     public function address()
     {
         if (!session()->get('login')) {
-            return redirect()->to(base_url() . '/front');
+            return redirect()->to(base_url() . '/');
         }
         $data = array(
             'title' => "Phicos | Address",
@@ -120,7 +120,7 @@ class Account extends BaseController
     public function orders()
     {
         if (!session()->get('login')) {
-            return redirect()->to(base_url() . '/front');
+            return redirect()->to(base_url() . '/');
         }
 
         $a = "";
@@ -162,7 +162,7 @@ class Account extends BaseController
     {
 
         if (!session()->get('login')) {
-            return redirect()->to(base_url() . '/front');
+            return redirect()->to(base_url() . '/');
         }
 
         if (empty($nomor_order)) {

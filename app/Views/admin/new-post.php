@@ -68,7 +68,7 @@
                     window.setTimeout( function(){
                         window.location = "<?= base_url()?>/admin/blog";
                     }, 300 );
-                    Command: toastr["success"](" Post telah di-publish", "Berhasil")
+                    Command: toastr["success"]("Post telah di-publish", "Berhasil")
                     toastr.options = {
                         "closeButton": false,
                         "debug": false,

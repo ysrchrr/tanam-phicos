@@ -35,11 +35,10 @@ body
     background:#222;
 }
 
-.container
-{
-	/*padding:0px 30px 30px;*/
+/* .container {
+
 	
-}
+} */
 a 
 {
    font-size:12px;
@@ -60,7 +59,7 @@ ul, ol
 
 p
 {
-	line-height: 26px;.
+	line-height: 26px;
 }
 
 img
@@ -793,6 +792,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 	.order-notes textarea
 	{
 		width:440px;
+		margin-bottom: 20px;
 	}
 
 
@@ -1912,7 +1912,7 @@ label
    color:#333;
    line-height:40px;
 }
-input[type="text"],label
+input[type="text"], input[type="password"], textarea, label
 {
    color:#999;
    font-size:12px;
@@ -2123,6 +2123,9 @@ input[type="text"],label
 .tabs .table 
 {
    border:1px solid #F3F3F3;
+}
+.table-checkout {
+	margin-bottom: 20px;
 }
 .table.specs td,.table.specs th
 {
