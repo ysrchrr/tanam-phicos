@@ -186,7 +186,7 @@ class CartModel extends Model
 												</tr>
 											</tbody>
 										</table>
-										<div class="checkout"><a href=' . base_url() . '/front/view_cart" class="ajax_right">View Cart</a> | <a href="' . base_url() . '/front/checkout" class="ajax_right">Checkout</a></div>
+										<div class="checkout"><a href="' . base_url() . '/cart" class="ajax_right">View Cart</a> | <a href="' . base_url() . '/front/checkout" class="ajax_right">Checkout</a></div>
 
 									</div>
 
