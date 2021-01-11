@@ -96,9 +96,7 @@
                 </div>
             </form>
 
-        </div>
-        <div class="col-md-6">
-
+            </div><div class="col-md-6">
 
             <div class="shiptobilling clearfix">
                 <h3>Shipping Address</h3>
@@ -107,71 +105,80 @@
                 </label>
             </div>
             <div class="shipping-address">
-                <form class="form-horizontal">
+                <form class="form-horizontal" role="form">
                     <div class="form-group">
-                        <label class="col-md-3 control-label" for="input_">Nama Depan<span class="required">*</span></label>
+                        <label class="col-md-3 control-label" for="input_user_id">ID Member<span class="required">*</span></label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" placeholder="First Name">
+                            <input type="password" class="form-control" name="input_user_id" placeholder="ID010010">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label" for="input_">Nama Belakang<span class="required">*</span></label>
+                        <label class="col-md-3 control-label" for="input_nama">Nama Lengkap<span class="required">*</span></label>
                         <div class="col-md-9">
-                            <input type="password" placeholder="Last Name">
+                            <input type="text" class="form-control" name="input_nama" placeholder="Nama Lengkap Member">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label" for="input_">Company Name</label>
+                        <label class="col-md-3 control-label" for="input_perusahaan">Nama Perusahaan</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" placeholder="Company (optional)">
+                            <input type="text" class="form-control" name="input_perusahaan" placeholder="Perusahaan (Opsional)">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label" for="input_">Address<span class="required">*</span></label>
+                        <label class="col-md-3 control-label" for="input_alamat">Alamat<span class="required">*</span></label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" placeholder="Address">
+                            <textarea name="input_alamat" class="form-control" id="input_alamat" rows="5"></textarea>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label" for="input_">Address 2</label>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control" id="input_" placeholder="Address (optional)">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label" for="input_">Town/City<span class="required">*</span></label>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control" placeholder="Town/City">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label" for="input_">Postcode<span class="required">*</span></label>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control" placeholder="Postcode">
-                        </div>
-                    </div>
-
-
-                    <div class="form-group">
-                        <label class="col-md-3 control-label" for="input_">Country<span class="required">*</span></label>
-                        <div class="col-md-9">
+                        <label class="col-md-4 control-label" for="input_kecamatan">Nama Kecamatan<span class="required">*</span></label>
+                        <div class="col-md-8">
                             <select>
-                                <option value=""> --- Please Select --- </option>
+                                <option value=""> --- Pilih Salah Satu --- </option>
                                 <option value="1">Afghanistan</option>
                             </select>
                         </div>
                     </div>
-
                     <div class="form-group">
-                        <label class="col-md-3 control-label" for="input_">County</label>
+                        <label class="col-md-4 control-label" for="input_kota">Nama Kota<span class="required">*</span></label>
+                        <div class="col-md-8">
+                            <select>
+                                <option value=""> --- Pilih Salah Satu --- </option>
+                                <option value="1">Afghanistan</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="input_provinsi">Nama Provinsi<span class="required">*</span></label>
+                        <div class="col-md-8">
+                            <select>
+                                <option value=""> --- Pilih Salah Satu --- </option>
+                                <option value="1">Afghanistan</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="input_kodepos">Kode Pos<span class="required">*</span></label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" placeholder="County">
+                            <input type="text" class="form-control" name="input_kodepos" placeholder="Kode Pos">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="input_email">Alamat Email<span class="required">*</span></label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" placeholder="Alamat Email" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="input_phone">Nomor Telepon<span class="required">*</span></label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" placeholder="Nomor Telepon">
                         </div>
                     </div>
                 </form>
             </div>
             <div class="order-notes">
-                <p>Order Notes</p>
+                <h3>Order Notes</h3>
                 <textarea rows="3" cols="10" class="form-control" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
             </div>
         </div>
@@ -179,7 +186,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            <div class="your_order">
+            <div class="your_order table-checkout">
                 <h3>Your order</h3>
                 <table class="table table-bordered table-responsive">
                     <thead>
@@ -212,27 +219,6 @@
                         </tr>
                     </tbody>
                 </table>
-                <label class="radio" onclick="jQuery('.transfer').toggle()">
-                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                    Direct Bank Transfer
-                </label>
-                <div class="transfer">
-                    <p> Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order wont be shipped until the funds have cleared in our account.</p>
-                </div>
-                <label class="radio" onclick="jQuery('.cheque').toggle()">
-                    <input type="radio" name="optionsRadios" value="option1" checked>
-                    Cheque Payment
-                </label>
-                <div class="cheque">
-                    <p> Please send your cheque to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
-                </div>
-                <label class="radio" onclick="jQuery('.paypal').toggle()">
-                    <input type="radio" name="optionsRadios" value="option1" checked>
-                    PayPal <img alt="american" src="image/paypal1.png">
-                </label>
-                <div class="paypal">
-                    <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account</p>
-                </div>
                 <p>
                     <button class="btn btn-primary" type="submit">Place Order</button>
                 </p>

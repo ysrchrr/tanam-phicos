@@ -52,9 +52,15 @@
 					</ul>
 
 					<ul class="nav navbar-right cart">
-						<li class="dropdown">
+						<li class="dropdown inicart">
 							<?php if (count($cart_d) > 0) { ?>
-								<a href="<?= base_url(); ?>/front/cart" class="dropdown-toggle" data-toggle="dropdown"><span><?= count($cart_d); ?></span></a>
+								<?php $a = 0;
+								$b = 0;
+								foreach ($cart_d as $total) {
+									$a = $a + $total['sub_jumlah'];
+									$b = $b + $total['sub_total'];
+								} ?>
+								<a href="<?= base_url(); ?>/front/cart" class="dropdown-toggle" data-toggle="dropdown"><span><?= $a ?></span></a>
 								<div class="cart-info dropdown-menu text-center">
 									<table class="table">
 										<thead>
@@ -73,7 +79,7 @@
 															<td class="image"><img alt="IMAGE" class="img-responsive" src="<?= $g['link_gambar']; ?>"></td>
 														<?php endif; ?>
 													<?php endforeach; ?>
-													<td class="name"><a href="project.html"><?= $cd['nama_barang']; ?></a></td>
+													<td class="name"><a href="#"><?= $cd['nama_barang']; ?></a></td>
 													<td class="quantity"><?= $cd['sub_jumlah']; ?></td>
 													<td class="total"><?= $cd['sub_total']; ?></td>
 													<td class="remove"><img src="<?= base_url() ?>/front-assets/image/remove-small.png" alt="Remove" title="Remove"></td>
@@ -90,7 +96,7 @@
 												</tr>
 											</tbody>
 										</table>
-										<div class="checkout"><a href="<?= base_url(); ?>/front/view_cart" class="ajax_right">View Cart</a> | <a href="<?= base_url(); ?>/front/checkout" class="ajax_right">Checkout</a></div>
+										<div class="checkout"><a href="<?= base_url(); ?>/cart" class="ajax_right">View Cart</a> | <a href="<?= base_url(); ?>/checkout" class="ajax_right">Checkout</a></div>
 
 									</div>
 

@@ -133,13 +133,25 @@
 		</div>
 	</div>
 </div>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
 <script>
 	$(document).ready(function() {
 		// alert('aaa');
 		$('#add-cart').click(function() {
-			console.log('aaa');
-			tampilcart();
+
+			console.log(<?= session()->get('login') ?>)
+			var login = '<?= session()->get('login') ?>';
+			if (login != '') {
+				// alert('aaa');
+				tampilcart();
+			} else {
+
+				window.location = "<?= base_url(); ?>/daftar";
+			}
+
 
 		});
 
@@ -160,8 +172,26 @@
 				},
 
 				success: function(data) {
-					// $('#sukses').html(data.barang.stok);
-					console.log(data.sukses);
+					toastr.options = {
+						"closeButton": false,
+						"debug": false,
+						"newestOnTop": false,
+						"progressBar": true,
+						"positionClass": "toast-bottom-right",
+						"preventDuplicates": false,
+						"onclick": null,
+						"showDuration": "300",
+						"hideDuration": "1000",
+						"timeOut": "5000",
+						"extendedTimeOut": "1000",
+						"showEasing": "swing",
+						"hideEasing": "linear",
+						"showMethod": "fadeIn",
+						"hideMethod": "fadeOut"
+					}
+					toastr.info('Berhasil ditambahkan');
+					$('.inicart').html(data.sukses);
+					// console.log(data.sukses);
 					// $('#harga').html(data.barang.harga);
 				},
 				error: function(xhr, ajaxOptions, thrownError) {
