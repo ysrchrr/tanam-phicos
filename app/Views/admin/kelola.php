@@ -19,7 +19,7 @@
                 </button>
                 <h4>Daftar Tanaman</h4>
                 <div class="m-t-25">
-                    <table id="data-table" class="table">
+                    <table id="data-table" class="table table-hover e-commerce-table">
                         <thead>
                             <tr>
                                 <th>Nama Barang</th>
@@ -72,11 +72,11 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label>Harga</label>
-                                <input type="text" class="form-control" name="harga_barang" placeholder="10000" maxlength="13">
+                                <input type="text" class="form-control" name="harga_barang" placeholder="10000" maxlength="13" onkeypress="return isNumber(event)">
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Stok</label>
-                                <input type="text" class="form-control" name="stok_barang" maxlength="5" placeholder="0-9999">
+                                <input type="text" class="form-control" name="stok_barang" maxlength="5" placeholder="0-9999" onkeypress="return isNumber(event)">
                             </div>
                         </div>
                         <div class="form-group">
@@ -182,6 +182,14 @@
     <!-- Content Wrapper END -->
     <script src="<?= base_url() ?>/back-assets/js/jquery-3.5.1.min.js"></script>
     <script type="text/javascript">
+        function isNumber(evt) {
+            evt = (evt) ? evt : window.event;
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                return false;
+            }
+            return true;
+        }
         function convertToRupiah(angka){
             var rupiah = '';		
             var angkarev = angka.toString().split('').reverse().join('');
@@ -199,12 +207,11 @@
                     var i;
                     for(i=0; i<data.length; i++){
                         html += '<tr>'+
-                                '<td>'+data[i].nama_barang+'</td>'+
+                                '<td><img class="img-fluid rounded" src="'+data[i].link_gambar+'" style="max-width: 60px" alt=""> '+data[i].nama_barang+'</td>'+
                                 '<td>'+data[i].nama_lain+'</td>'+
                                 '<td>'+convertToRupiah(data[i].harga_barang)+'</td>'+
                                 '<td>'+data[i].stok_barang+'</td>'+
                                 '<td align="center"><button type="button" class="btn btn-primary btn-tone btn-sm edit_data" idb="'+data[i].id_barang+'"><i class="fas fa-edit"></i></button></td>'+
-                                // '<td align="center"> <button type="button" idx="'+data[i].id+'" class="btn btn-warning btn-sm edit_data"><i class="fas fa-edit"></i></button></td>'+
                                 '</tr>';
                     }
                     $('#show_data').html(html);
