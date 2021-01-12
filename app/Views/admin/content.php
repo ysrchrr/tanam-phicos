@@ -168,12 +168,6 @@
             </div>
         </div>
     </div>
-
-    <div class="row">
-        <div class="col">
-            <?= chat('test'); ?>
-        </div>
-    </div>
     </div>
     <!-- Content Wrapper END -->
 </div>

@@ -131,6 +131,32 @@ class AdminModel extends Model
         }
         return $hasil;
     }
+    
+    public function dodetailPemesanan($id_Pemesanan)
+    {
+        $hsl = $this->db->query("SELECT
+                                    pemesanan.id_pemesanan,
+                                    member.nama,
+                                    pemesanan.resi,
+                                    pemesanan.total,
+                                    pemesanan.tgl_pesan,
+                                    pemesanan.status_pemesanan
+                                FROM
+                                    pemesanan
+                                JOIN member on member.id_member = pemesanan.id_member
+                                WHERE pemesanan.id_pemesanan = '$id_Pemesanan'");
+        foreach ($hsl->getResult() as $data) {
+            $hasil = array(
+                'id_pemesanan' => $data->id_pemesanan,
+                'nama' => $data->nama,
+                'resi' => $data->resi,
+                'total' => $data->total,
+                'tgl_pesan' => $data->tgl_pesan,
+                'status_pemesanan' => $data->status_pemesanan
+            );
+        }
+        return $hasil;
+    }
 
     public function dodetailMember($id_member)
     {
@@ -186,6 +212,14 @@ class AdminModel extends Model
         return $hasil;
     }
 
+    public function doupdatePemesanan($id_pemesanan, $status)
+    {
+        $hasil = $this->db->query(
+            "UPDATE `pemesanan` SET `status_pemesanan` = '$status' WHERE `id_pemesanan` = '$id_pemesanan'"
+        );
+        return $hasil;
+    }
+
     public function dodeleteRecord($id)
     {
         $hasil = $this->db->query("DELETE FROM barang WHERE id_barang = '$id'");
@@ -195,6 +229,12 @@ class AdminModel extends Model
     public function dodeleteMember($id)
     {
         $hasil = $this->db->query("DELETE FROM member WHERE id_member = '$id'");
+        return $hasil;
+    }
+
+    public function dodeletePemesanan($id)
+    {
+        $hasil = $this->db->query("DELETE FROM pemesanan WHERE id_pemesanan = '$id'");
         return $hasil;
     }
 
