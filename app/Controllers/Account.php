@@ -68,7 +68,7 @@ class Account extends BaseController
             'telp' => 'required',
             'tgl_lahir' => 'required',
         ])) {
-            // session()->setflashdata('pesan', 'Data yang anda isi belum lengkap');
+            session()->setflashdata('pesan', 'Data yang anda isi belum lengkap');
             return redirect()->to(base_url() . '/account')->withInput();
         }
 
@@ -202,7 +202,7 @@ class Account extends BaseController
             'kecamatan' => 'required',
 
         ])) {
-            // session()->setflashdata('pesan', 'Data yang anda isi belum lengkap');
+            session()->setflashdata('pesan', 'Data yang anda isi belum lengkap');
             return redirect()->to(base_url() . '/account/address')->withInput();
         }
 

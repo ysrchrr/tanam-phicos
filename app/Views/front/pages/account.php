@@ -21,6 +21,9 @@
             </div>
         </div>
         <div class="col-md-8">
+            <?php if (session()->getflashdata('pesan')) : ?>
+                <div class="alert alert-danger" role="alert"><?= session()->getflashdata('pesan'); ?></div>
+            <?php endif; ?>
             <div class="box padding">
                 <form action="<?= base_url(); ?>/account/akun_update" method="post">
                     <?= csrf_field(); ?>
