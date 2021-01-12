@@ -79,6 +79,20 @@ class Admin extends BaseController
 		echo view('admin/footer');
 	}
 
+	public function account()
+	{
+		if(! session()->get('logged_in')){
+            return redirect()->to('/Admin/login'); 
+        }
+		$data = array(
+			'title' => "Pengaturan Akun"
+		);
+		echo view('admin/header', $data);
+		echo view('admin/sidebar');
+		echo view('admin/account');
+		echo view('admin/footer');
+	}
+
 	public function kategori()
 	{
 		if(! session()->get('logged_in')){
@@ -319,6 +333,30 @@ class Admin extends BaseController
 		$deskripsi = $this->request->getVar('deskripsi');
 		$data = $this->barang->doupdateRecord($id_barang, $id_kategori, $nama_barang, $nama_lain, $harga_barang, $stok_barang, $deskripsi);
 		echo json_encode($data);
+	}
+
+	public function updateAccount()
+	{
+		$id_admin = $this->request->getVar('id_admin');
+		$nama = $this->request->getVar('nama_e');
+		$uname = $this->request->getVar('username_e');
+		$telp = $this->request->getVar('telp_e');
+		$email = $this->request->getVar('email_e');
+		// print_r($_POST);
+		$this->barang->doupdateAccount($id_admin, $nama, $uname, $telp, $email);
+		return redirect()->to('/Admin/account?id=' . $id_admin .'&change=profile');
+	}
+
+	public function updatePassword()
+	{
+		$id_admin = $this->request->getVar('id_admin');
+		$oldPassword = $this->request->getVar('oldPassword');
+		$newPassword = md5($this->request->getVar('newPassword'));
+		$CnewPassword = $this->request->getVar('CnewPassword');
+		// print_r($_POST);
+		// echo "<br/>" . $newPassword;
+		$this->barang->doupdatePassword($id_admin, $oldPassword, $newPassword);
+		return redirect()->to('/Admin/account?id=' . $id_admin .'&change=password');
 	}
 
 	public function updateKategori()
