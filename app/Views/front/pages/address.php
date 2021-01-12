@@ -21,10 +21,13 @@
             </div>
         </div>
         <div class="col-md-8">
+            <?php if (session()->getflashdata('pesan')) : ?>
+                <div class="alert alert-danger" role="alert"><?= session()->getflashdata('pesan'); ?></div>
+            <?php endif; ?>
             <div class="box padding">
-                <form action="<?=base_url();?>/account/address_update" method="post">
-                <?=csrf_field();?>
-                <input type="hidden" name="id" id="" value="<?= $bio['id_member']; ?>">
+                <form action="<?= base_url(); ?>/account/address_update" method="post">
+                    <?= csrf_field(); ?>
+                    <input type="hidden" name="id" id="" value="<?= $bio['id_member']; ?>">
                     <div class="form-group">
                         <label for="Alamat">Alamat</label>
                         <input type="text" name="alamat" class="form-control" value="<?= $bio['alamat']; ?>" id="Alamat" aria-describedby="Alamat" placeholder="Alamat">

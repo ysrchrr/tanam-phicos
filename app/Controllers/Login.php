@@ -71,9 +71,11 @@ class Login extends BaseController
                 session()->set($session_login);
                 return redirect()->to(base_url() . '/');
             } else {
+                session()->setFlashdata('pesan', 'username atau password salah');
                 return redirect()->to(base_url() . '/login')->withInput();
             }
         } else {
+            session()->setFlashdata('pesan', 'username atau password salah');
             return redirect()->to(base_url() . '/login')->withInput();
         }
     }
@@ -115,7 +117,8 @@ class Login extends BaseController
             'password' => 'required'
 
         ])) {
-            // session()->setflashdata('pesan', 'Data yang anda isi belum lengkap');
+            session()->setflashdata('pesan', 'Data yang anda isi belum lengkap');
+            // session()->setFlashdata('pesan', 'username atau password salah');
             return redirect()->to(base_url() . '/daftar')->withInput();
         }
 
