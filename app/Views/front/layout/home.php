@@ -13,6 +13,7 @@
 	<link href='http://fonts.googleapis.com/css?family=Montserrat:200,300,400,600,700' rel='stylesheet' type='text/css' />
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:200,300,400,600,700' rel='stylesheet' type='text/css' />
 	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 	<title><?= $title; ?></title>
 </head>
 
@@ -162,7 +163,7 @@
 				</div> -->
 					<div class="col-md-3"></div>
 					<div class="col-md-3 social">
-						<div class="copy">Copyright &copy; nicole_89</div>
+						<div class="copy">Copyright &copy; trio_macan</div>
 						<ul class="social-network">
 							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
 							<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
