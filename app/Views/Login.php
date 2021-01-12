@@ -22,6 +22,9 @@
 
     <div class="row ">
         <div class="col-md-12 mb-2">
+            <?php if (session()->getflashdata('pesan')) : ?>
+                <div class="alert alert-danger" role="alert"><?= session()->getflashdata('pesan'); ?></div>
+            <?php endif; ?>
             <form class="loginbox form-horizontal" action="<?= base_url(); ?>/login/auth" method="post">
                 <p>Login</p>
                 <div class="form-group">
@@ -39,6 +42,10 @@
                 <div class="form-group">
                     <div class="col-md-12">
                         <button class="btn btn-primary" type="submit">Login</button>
+                        <!-- <button class="btn btn-primary" type="submit">Login</button> -->
+                        <a href="<?= base_url(); ?>/daftar">
+                            <p>Belum punya akun? daftar disini</p>
+                        </a>
                     </div>
                 </div>
             </form>
