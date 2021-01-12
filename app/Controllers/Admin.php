@@ -211,6 +211,29 @@ class Admin extends BaseController
 
 	public function book_add()
 	{
+		helper(['form', 'url']);
+		$imgdb = \Config\Database::connect();
+		$udb = $imgdb->table('gambar');
+		if ($this->request->getFileMultiple('images')) {
+			foreach($this->request->getFileMultiple('images') as $file){   
+				$file->move(ROOTPATH . '/public/gambar/');
+				if(!$file){
+					echo "error gabisa";
+				}
+				$barang_id = $this->imgdb->query("SELECT id_barang FROM barang ORDER BY id_barang DESC LIMIT 1")->getRowArray();
+				$id = $barang_id['id_barang'];
+				$data = [
+					'id_barang' => $id,
+					'link_gambar' => $file->getClientName()
+					// 'name' =>  $file->getClientName(),
+					// 'type'  => $file->getClientMimeType()
+				];
+
+				$save = $udb->insert($data);
+			}
+		} else{
+			echo "error input ga kebaca";
+		}
 		$nama = $this->request->getPost('nama_barang');
 			$xslug = explode(" ", $nama);
 			$yslug = implode("-", $xslug);
@@ -229,18 +252,7 @@ class Admin extends BaseController
 					$slug = $zslug . '-2';
 				}
 			}
-		if ($this->request->getFileMultiple('file')) {
-			foreach($this->request->getFileMultiple('file') as $file){
-				$gambar = $file->getClientName();
-				$file->move(ROOTPATH . 'public/gambar', $gambar);
-				// $img->move(ROOTPATH . 'public/gambar-blog', $gambar);
-				// $data = [
-				// 	'name' =>  $file->getClientName(),
-				// 	'type'  => $file->getClientMimeType()
-				// ];
-				// $save = $builder->insert($data);
-			}
-		}
+		
 		$data = array(
 			'nama_barang' => $this->request->getPost('nama_barang'),
 			'nama_lain' => $this->request->getPost('nama_lain'),
@@ -251,6 +263,7 @@ class Admin extends BaseController
 			'slug_barang' => $slug
 		);
 		$insert = $this->barang->book_add($data);
+
 		echo json_encode(array("status" => TRUE));
 	}
 
@@ -354,7 +367,6 @@ class Admin extends BaseController
 		$newPassword = md5($this->request->getVar('newPassword'));
 		$CnewPassword = $this->request->getVar('CnewPassword');
 		// print_r($_POST);
-		// echo "<br/>" . $newPassword;
 		$this->barang->doupdatePassword($id_admin, $oldPassword, $newPassword);
 		return redirect()->to('/Admin/account?id=' . $id_admin .'&change=password');
 	}
