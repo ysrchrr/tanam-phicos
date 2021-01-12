@@ -8,13 +8,48 @@ use App\Models\AdminModel;
 class Admin extends BaseController
 {
 	public function __construct(){
-		// helper('form');
-		// helper('filesystem');
 		$this->barang = new AdminModel();
 	}
 
+	public function login(){
+		$data = array(
+			'title' => "Login"
+		);
+		echo view('admin/login', $data);
+	}
+
+	function aksi_login(){
+		$session = session();
+		$username = $this->request->getPost('username');
+		$password = md5($this->request->getPost('password'));
+		// print_r($_POST);
+		// echo ($username . " | " . $password);
+		$ceklogin = $this->database->query("SELECT COUNT(id_admin) AS cek FROM `admin` WHERE username = '$username' AND `password` = '$password'")->getRowArray();
+		// echo $username . " | " . $password . "<br/>";
+		// echo $ceklogin['cek'];
+		if($ceklogin['cek'] > 0){
+			$data_session = array(
+				'username' => $username,
+				'logged_in' => TRUE
+				);
+			$session->set($data_session);
+			return redirect()->to('/admin/index');
+		}else{
+			return redirect()->to('/admin/login?err=1');
+		}
+	}
+
+	public function logout(){
+        $session = session();
+        $session->destroy();
+        return redirect()->to('/admin/login');
+    }
+
 	public function index()
 	{
+		if(! session()->get('logged_in')){
+            return redirect()->to('/Admin/login'); 
+        }
 		$data = array(
 			'title' => "Admin Panel",
 			'summary' => $this->barang->summary(),
@@ -30,6 +65,9 @@ class Admin extends BaseController
 
 	public function kelola()
 	{
+		if(! session()->get('logged_in')){
+            return redirect()->to('/Admin/login'); 
+        }
 		$data = array(
 			'title' => "Kelola Barang",
 			'barang' => $this->barang->get_all_barang(),
@@ -43,6 +81,9 @@ class Admin extends BaseController
 
 	public function kategori()
 	{
+		if(! session()->get('logged_in')){
+            return redirect()->to('/Admin/login'); 
+        }
 		$data = array(
 			'title' => "Kelola Kategori"
 		);
@@ -54,6 +95,9 @@ class Admin extends BaseController
 
 	public function blog()
 	{
+		if(! session()->get('logged_in')){
+            return redirect()->to('/Admin/login'); 
+        }
 		$data = array(
 			'title' => "Kelola Blog"
 		);
@@ -65,6 +109,9 @@ class Admin extends BaseController
 
 	public function member()
 	{
+		if(! session()->get('logged_in')){
+            return redirect()->to('/Admin/login'); 
+        }
 		$data = array(
 			'title' => "Kelola Member"
 		);
@@ -76,6 +123,9 @@ class Admin extends BaseController
 
 	public function newpost()
 	{
+		if(! session()->get('logged_in')){
+            return redirect()->to('/Admin/login'); 
+        }
 		$data = array(
 			'title' => "Tulis postingan"
 		);
@@ -87,6 +137,9 @@ class Admin extends BaseController
 
 	public function pesanan()
 	{
+		if(! session()->get('logged_in')){
+            return redirect()->to('/Admin/login'); 
+        }
 		$data = array(
 			'title' => "Kelola Pesanan"
 		);
@@ -98,6 +151,9 @@ class Admin extends BaseController
 
 	public function showpost()
 	{
+		if(! session()->get('logged_in')){
+            return redirect()->to('/Admin/login'); 
+        }
 		$id_blog = $this->request->getVar('id_blog');
 		$data = array(
 			'title' => 'Edit Post',
@@ -150,7 +206,7 @@ class Admin extends BaseController
 			if($cekslug['slug_barang'] == ''){
 				$slug = $nslug;
 				// echo $slug;
-			} else{
+			} else {
 				$zslug = $cekslug['slug_barang'] . '-2';
 				$cekslugtwo = $this->database->query("SELECT slug_barang FROM barang WHERE slug_barang = '$zslug'")->getRowArray();
 				if($cekslugtwo['slug_barang'] == ''){
@@ -159,6 +215,18 @@ class Admin extends BaseController
 					$slug = $zslug . '-2';
 				}
 			}
+		if ($this->request->getFileMultiple('file')) {
+			foreach($this->request->getFileMultiple('file') as $file){
+				$gambar = $file->getClientName();
+				$file->move(ROOTPATH . 'public/gambar', $gambar);
+				// $img->move(ROOTPATH . 'public/gambar-blog', $gambar);
+				// $data = [
+				// 	'name' =>  $file->getClientName(),
+				// 	'type'  => $file->getClientMimeType()
+				// ];
+				// $save = $builder->insert($data);
+			}
+		}
 		$data = array(
 			'nama_barang' => $this->request->getPost('nama_barang'),
 			'nama_lain' => $this->request->getPost('nama_lain'),
@@ -218,6 +286,13 @@ class Admin extends BaseController
 		$data = $this->barang->dodetailBarang($id_barang);
 		echo json_encode($data);
 	}
+	
+	public function detailPemesanan()
+	{
+		$id_Pemesanan = $this->request->getVar('id_pemesanan');
+		$data = $this->barang->dodetailPemesanan($id_Pemesanan);
+		echo json_encode($data);
+	}
 
 	public function detailMembers()
 	{
@@ -251,6 +326,14 @@ class Admin extends BaseController
 		$id_kategori = $this->request->getVar('id_kategori');
 		$nama_kategori = $this->request->getVar('nama_kategori');
 		$data = $this->barang->doupdateKategori($id_kategori, $nama_kategori);
+		echo json_encode($data);
+	}
+
+	public function updatePemesanan()
+	{
+		$id_pemesanan = $this->request->getVar('id_pemesanan');
+		$status = $this->request->getVar('status');
+		$data = $this->barang->doupdatePemesanan($id_pemesanan, $status);
 		echo json_encode($data);
 	}
 
@@ -296,6 +379,13 @@ class Admin extends BaseController
 		echo json_encode($data);
 	}
 
+	public function deletePemesanan()
+	{
+		$id = $this->request->getVar('kode');
+		$data = $this->barang->dodeletePemesanan($id);
+		echo json_encode($data);
+	}
+
 	public function deleteMember()
 	{
 		$id = $this->request->getVar('kode');
@@ -320,16 +410,11 @@ class Admin extends BaseController
 
 	public function delimg(){
 		$id_blog = $this->request->getVar('id_blog');
-		$del = $this->database->query("UPDATE blog SET gambar_blog = '' WHERE id_blog = '$id_blog'");
 		$cekgambar = $this->database->query("SELECT gambar_blog FROM blog WHERE id_blog = '$id_blog'")->getRowArray();
-		$gambar = $cekgambar['gambar_blog'];
-		$path_to_file = ROOTPATH . 'public/gambar-blog' . $gambar;
-		if(unlink($path_to_file)) {
-			return redirect()->to('/Admin/showpost?id_blog=' . $id_blog);
-		}
-		else {
-			echo 'errors occured';
-		}
+		$path_to_file = ROOTPATH . 'public\gambar-blog/' . $cekgambar['gambar_blog'];
+		unlink($path_to_file);
+		$this->database->query("UPDATE blog SET gambar_blog = '' WHERE id_blog = '$id_blog'");
+		return redirect()->to('/Admin/showpost?id_blog=' . $id_blog);
 	}
 
 	public function test()
