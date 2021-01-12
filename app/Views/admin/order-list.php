@@ -47,33 +47,40 @@
                     <form id="form-tambah">
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label>Nama Barang</label>
-                                <input type="hidden" class="form-control" id="id_barang_e" placeholder="Nama Barang">
-                                <input type="text" class="form-control" id="nama_barang_e" placeholder="Nama Barang">
+                                <label>Nama Pemesan</label>
+                                <input type="hidden" class="form-control" id="id_pemesanan_e" placeholder="Nama Barang">
+                                <input type="text" class="form-control" id="nama_e" placeholder="Nama Barang" readonly>
                             </div>
                             <div class="form-group col-md-6">
-                                <label>Nama Lain</label>
-                                <input type="text" class="form-control" id="nama_lain_e" placeholder="Nama Lain">
+                                <label>Tanggal pesan</label>
+                                <input type="text" class="form-control" id="tgl_e" placeholder="YYYY-MM-DD" readonly>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label>Harga</label>
-                                <input type="text" class="form-control" id="harga_barang_e" placeholder="10000" maxlength="13">
+                                <label>Total</label>
+                                <input type="text" class="form-control" id="total_e" placeholder="10000" readonly>
                             </div>
                             <div class="form-group col-md-6">
-                                <label>Stok</label>
-                                <input type="text" class="form-control" id="stok_barang_e" maxlength="5" placeholder="0-9999">
+                                <label>No. Resi</label>
+                                <input type="text" class="form-control" id="resi_e" placeholder="Masukkan No. Resi" readonly>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label>Deskripsi</label>
-                            <textarea class="form-control" id="deskripsi_e" placeholder="Tuliskan deksripsi produk..."></textarea>
+                            <label>Status Pemesanan</label>
+                            <select name="status_e" id="status_e" class="form-control">
+                                    <option value="Belum dibayar">Belum dibayar</option>
+                                    <option value="Sudah dibayar">Sudah dibayar</option>
+                                    <option value="Packing">Packing</option>
+                                    <option value="Dikirim">Dikirim</option>
+                                    <option value="Selesai">Selesai</option>
+                            </select>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="btn-update">Simpan perubahan</button>
                     <button type="button" class="btn btn-danger" id="btn-chapus">Hapus data</button>
                 </div>
             </div>
@@ -133,7 +140,7 @@
                         if(status == "Belum dibayar"){
                             badge = '<span class="badge badge-pill badge-volcano">Belum dibayar</span>';
                         } else if(status == "Sudah dibayar"){
-                            badge = '<span class="badge badge-pill badge-blue">Sudah dibayar</span>';
+                            badge = '<span class="badge badge-pill badge-cyan">Sudah dibayar</span>';
                         } else if(status == "Packing"){
                             badge = '<span class="badge badge-pill badge-gold">Packing</span>';
                         } else if(status == "Dikirim"){
@@ -148,7 +155,6 @@
                                 '<td>'+convertDateDBtoIndo(data[i].tgl_pesan)+'</td>'+
                                 '<td>'+badge+'</td>'+
                                 '<td align="center"><button type="button" class="btn btn-primary btn-tone btn-sm edit_data" idb="'+data[i].id_pemesanan+'"><i class="fas fa-edit"></i></button></td>'+
-                                // '<td align="center"><button type="button" class="btn btn-primary btn-tone btn-sm edit_data" idb="'+data[i].id_pemesanan+'"><i class="fas fa-edit"></i></button></td>'+
                                 '</tr>';
                     }
                     $('#show_data').html(html);
@@ -178,20 +184,21 @@
                 var id = $(this).attr('idb');
                 $.ajax({
                     type: "GET",
-                    url: "<?php echo base_url('Admin/detailMembers') ?>",
+                    url: "<?php echo base_url('Admin/detailPemesanan') ?>",
                     dataType: "JSON",
                     data: {
-                        id_member: id
+                        id_pemesanan: id
                     },
                     success: function(data) {
-                        $.each(data, function(id_member, nama, username, email, alamat) {
+                        $.each(data, function(id_pemesanan, nama, resi, total, tgl_pesan, status_pemesanan) {
                             $('#editModal').modal('show');
-                            $('[id="id_member_e"]').val(data.id_member);
+                            $('[id="id_pemesanan_e"]').val(data.id_pemesanan);
                             $('[id="nama_e"]').val(data.nama);
-                            $('[id="username_e"]').val(data.username);
-                            $('[id="email_e"]').val(data.email);
-                            $('[id="telp_e"]').val(data.telp);
-                            $('[id="alamat_e"]').val(data.alamat);
+                            $('[id="resi_e"]').val(data.resi);
+                            $('[id="total_e"]').val(data.total);
+                            $('[id="tgl_e"]').val(data.tgl_pesan);
+                            $('[id="resi_e"]').val(data.resi);
+                            $('[id="status_e"]').val(data.status_pemesanan);
                         });
                     },
                     error: function(xhr, ajaxOptions, thrownError) {
@@ -200,8 +207,50 @@
                 });
                 return false;
             });
+            $('#btn-update').on('click', function(){
+                $('#data-table').DataTable().destroy();
+                var id_pemesananan = $('#id_pemesanan_e').val();
+                var status = $('#status_e').val();
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo base_url('Admin/updatePemesanan') ?>",
+                    dataType: "JSON",
+                    data: {
+                        id_pemesanan:id_pemesananan,
+                        status:status
+                    },
+                    success: function(data) {
+                        $('[id="id_pemesanan_e"]').val("");
+                        $('[id="status_e"]').val("");
+                        $('#editModal').modal('hide');
+                        showTablePesanan();
+                        Command: toastr["success"]("Data berhasil di-update", "Berhasil")
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": false,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+                    },
+                    error: function(xhr, ajaxOptions, thrownError) {
+                        console.log(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+                    }
+                });
+                return false;
+            });
             $('#btn-chapus').on('click', function(){
-                var id = $('#id_member_e').val();
+                var id = $('#id_pemesanan_e').val();
                 $('#editModal').modal('hide');
                 $('#modalHapus').modal('show');
                 $('[name="id_d"]').val(id);
@@ -212,14 +261,14 @@
                 // alert(kode);
                 $.ajax({
                     type: "POST",
-                    url: "<?php echo base_url('Admin/deleteMember') ?>",
+                    url: "<?php echo base_url('Admin/deletePemesanan') ?>",
                     dataType: "JSON",
                     data: {
                         kode: kode
                     },
                     success: function(data) {
                         $('#modalHapus').modal('hide');
-                        showTableMember();
+                        showTablePesanan();
                         Command: toastr["success"]("Data berhasil dihapus", "Berhasil")
                         toastr.options = {
                             "closeButton": false,
