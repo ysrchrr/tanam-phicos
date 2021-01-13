@@ -84,7 +84,7 @@
                         </tr>
                     </table>
                     <p>
-                        <a class="btn btn-primary" href="checkout.html">
+                        <a class="btn btn-primary" href="<?= base_url(); ?>/checkout">
                             Proceed to Checkout
                         </a>
                     </p>

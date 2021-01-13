@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use CodeIgniter\Controller;
 use App\Models\Front\Product_view;
+use App\Models\Front\UserModel;
 use App\Models\Front\CartModel;
 
 class Front extends BaseController
@@ -13,6 +14,7 @@ class Front extends BaseController
 	{
 		$this->product_view = new Product_view();
 		$this->CartModel = new CartModel();
+		$this->UserModel = new UserModel();
 	}
 
 
@@ -245,16 +247,53 @@ class Front extends BaseController
 
 	public function checkout()
 	{
+		if (!session()->get('login')) {
+			return redirect()->to(base_url() . '/');
+		}
+
 		$data = array(
 			'title' => 'Phicos | Checkout',
 			'cart' => $this->get_cart()['total'],
 			'cart_d' => $this->get_cart()['detail'],
 			'gambar' => $this->get_cart()['gambar'],
-
-
+			'bio' => $this->UserModel->query('select * from member where id_member =' . session()->get('user_id'))->getrowarray(),
+            'provinsi' => $this->UserModel->query('select * from wilayah_provinsi order by nama asc')->getresultarray(),
+            'kota' => $this->UserModel->query('select * from wilayah_kabupaten order by nama asc')->getresultarray(),
+            'kecamatan' => $this->UserModel->query('select * from wilayah_kecamatan order by nama asc')->getresultarray(),
 		);
-		return  view('front/pages/checkout', $data);
+
+		return view('front/pages/checkout', $data);
 	}
+
+	public function checkout_save() {
+		if (!$this->validate([
+            'input_user_id'  => 'required',
+            'input_alamat' => 'required',
+            'provinsi' => 'required',
+            'kota' => 'required',
+            'kecamatan' => 'required',
+            'input_kodepos' => 'required',
+            'input_phone' => 'required',
+
+        ])) {
+            session()->setflashdata('pesan', 'Data yang anda isi belum lengkap');
+            return redirect()->to(base_url() . '/checkout')->withInput();
+		}
+		
+		$data = [
+            'id_member' => $this->request->getVar('input_user_id'),
+            'alamat' => $this->request->getVar('input_alamat'),
+            'id_provinsi' => $this->request->getVar('provinsi'),
+            'id_kabupaten' => $this->request->getVar('kota'),
+            'id_kecamatan' => $this->request->getVar('kecamatan'),
+            'kodepos' => $this->request->getVar('input_kodepos'),
+            'telp' => $this->request->getVar('input_phone')
+		];
+		
+		$this->UserModel->save($data);
+        return redirect()->to(base_url() . '/checkout');
+	}
+
 	public function test()
 	{
 		return view('referensi/front-e-commerce');
