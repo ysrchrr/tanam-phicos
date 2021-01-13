@@ -25,7 +25,7 @@
     <div class="row box">
         <div class="col-md-6">
             <h3>Billing Address</h3>
-            <form class="form-horizontal" role="form" method="post" action="<?= base_url(); ?>/front/checkout_save">
+            <form class="form-horizontal" role="form" method="post" action="<?= base_url(); ?>/front/checkout_save" autocomplete="off">
                 <div class="form-group">
                     <label class="col-md-3 control-label" for="input_user_id">ID Member<span class="required">*</span></label>
                     <div class="col-md-9">
@@ -42,7 +42,7 @@
                 <div class="form-group">
                     <label class="col-md-3 control-label" for="input_perusahaan">Nama Perusahaan</label>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" name="input_perusahaan" placeholder="Perusahaan (Opsional)">
+                        <input type="text" class="form-control" name="input_perusahaan" placeholder="Perusahaan (Opsional)" value="<?= $bio['nama_instansi']; ?>">
                     </div>
                 </div>
                 <div class="form-group">
@@ -58,7 +58,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="input_provinsi">Nama Provinsi<span class="required">*</span></label>
                     <div class="col-md-8">
-                        <select>
+                        <select name="provinsi">
                             <option value=""> --- Pilih Salah Satu --- </option>
                             <?php foreach ($provinsi as $prov) : ?>
                                 <option value="<?= $prov['id']; ?>" <?= ($bio['id_provinsi'] == $prov['id']) ? 'selected' : ''; ?>><?= $prov['nama']; ?></option>
@@ -69,7 +69,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="input_kota">Nama Kota<span class="required">*</span></label>
                     <div class="col-md-8">
-                        <select>
+                        <select name="kota">
                             <option value=""> --- Pilih Salah Satu --- </option>
                             <?php foreach ($kota as $kota) : ?>
                                 <option value="<?= $kota['id']; ?>" <?= ($bio['id_kabupaten'] == $kota['id']) ? 'selected' : ''; ?>><?= $kota['nama']; ?></option>
@@ -80,7 +80,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="input_kecamatan">Nama Kecamatan<span class="required">*</span></label>
                     <div class="col-md-8">
-                        <select>
+                        <select name="kecamatan">
                             <option value=""> --- Pilih Salah Satu --- </option>
                             <?php foreach ($kecamatan as $kec) : ?>
                                 <option value="<?= $kec['id']; ?>" <?= ($bio['id_kecamatan'] == $kec['id']) ? 'selected' : ''; ?>><?= $kec['nama']; ?></option>
@@ -106,8 +106,8 @@
                         <input type="text" class="form-control" name="input_phone" placeholder="Nomor Telepon" value="<?= $bio['telp']; ?>">
                     </div>
                 </div>
-                <button class="btn btn-primary" type="submit">Place Order</button>
-            </form>
+                <!-- <button class="btn btn-primary" type="submit">Place Order</button> -->
+            
             </div><div class="col-md-6">
             <div class="order-notes">
                 <h3>Order Notes</h3>
@@ -160,6 +160,6 @@
             </div>
         </div>
     </div>
-
+    </form>
 </div>
 <?= $this->endSection(); ?>
