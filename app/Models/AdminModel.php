@@ -201,6 +201,29 @@ class AdminModel extends Model
         return $hasil;
     }
 
+    public function doupdateAccount($id_admin, $nama, $uname, $telp, $email)
+    {
+        $hasil = $this->db->query("UPDATE `admin` SET 
+                                    `nama` = '$nama',
+                                    `username` = '$uname',
+                                    `telp` = '$telp',
+                                    `email` = '$email'
+                                    WHERE
+                                    `id_admin` = '$id_admin'"
+        );
+        return $hasil;
+    }
+
+    public function doupdatePassword($id_admin, $oldPassword, $newPassword)
+    {
+        $hasil = $this->db->query("UPDATE `admin` SET 
+                                    `password` = '$newPassword'
+                                    WHERE
+                                    `id_admin` = '$id_admin'"
+        );
+        return $hasil;
+    }
+
     public function doupdateKategori($id_kategori, $nama_kategori)
     {
         $hasil = $this->db->query(
