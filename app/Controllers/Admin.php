@@ -79,6 +79,20 @@ class Admin extends BaseController
 		echo view('admin/footer');
 	}
 
+	public function account()
+	{
+		if(! session()->get('logged_in')){
+            return redirect()->to('/Admin/login'); 
+        }
+		$data = array(
+			'title' => "Pengaturan Akun"
+		);
+		echo view('admin/header', $data);
+		echo view('admin/sidebar');
+		echo view('admin/account');
+		echo view('admin/footer');
+	}
+
 	public function kategori()
 	{
 		if(! session()->get('logged_in')){
@@ -197,6 +211,29 @@ class Admin extends BaseController
 
 	public function book_add()
 	{
+		helper(['form', 'url']);
+		$imgdb = \Config\Database::connect();
+		$udb = $imgdb->table('gambar');
+		if ($this->request->getFileMultiple('images')) {
+			foreach($this->request->getFileMultiple('images') as $file){   
+				$file->move(ROOTPATH . '/public/gambar/');
+				if(!$file){
+					echo "error gabisa";
+				}
+				$barang_id = $this->imgdb->query("SELECT id_barang FROM barang ORDER BY id_barang DESC LIMIT 1")->getRowArray();
+				$id = $barang_id['id_barang'];
+				$data = [
+					'id_barang' => $id,
+					'link_gambar' => $file->getClientName()
+					// 'name' =>  $file->getClientName(),
+					// 'type'  => $file->getClientMimeType()
+				];
+
+				$save = $udb->insert($data);
+			}
+		} else{
+			echo "error input ga kebaca";
+		}
 		$nama = $this->request->getPost('nama_barang');
 			$xslug = explode(" ", $nama);
 			$yslug = implode("-", $xslug);
@@ -215,18 +252,7 @@ class Admin extends BaseController
 					$slug = $zslug . '-2';
 				}
 			}
-		if ($this->request->getFileMultiple('file')) {
-			foreach($this->request->getFileMultiple('file') as $file){
-				$gambar = $file->getClientName();
-				$file->move(ROOTPATH . 'public/gambar', $gambar);
-				// $img->move(ROOTPATH . 'public/gambar-blog', $gambar);
-				// $data = [
-				// 	'name' =>  $file->getClientName(),
-				// 	'type'  => $file->getClientMimeType()
-				// ];
-				// $save = $builder->insert($data);
-			}
-		}
+		
 		$data = array(
 			'nama_barang' => $this->request->getPost('nama_barang'),
 			'nama_lain' => $this->request->getPost('nama_lain'),
@@ -237,6 +263,7 @@ class Admin extends BaseController
 			'slug_barang' => $slug
 		);
 		$insert = $this->barang->book_add($data);
+
 		echo json_encode(array("status" => TRUE));
 	}
 
@@ -319,6 +346,29 @@ class Admin extends BaseController
 		$deskripsi = $this->request->getVar('deskripsi');
 		$data = $this->barang->doupdateRecord($id_barang, $id_kategori, $nama_barang, $nama_lain, $harga_barang, $stok_barang, $deskripsi);
 		echo json_encode($data);
+	}
+
+	public function updateAccount()
+	{
+		$id_admin = $this->request->getVar('id_admin');
+		$nama = $this->request->getVar('nama_e');
+		$uname = $this->request->getVar('username_e');
+		$telp = $this->request->getVar('telp_e');
+		$email = $this->request->getVar('email_e');
+		// print_r($_POST);
+		$this->barang->doupdateAccount($id_admin, $nama, $uname, $telp, $email);
+		return redirect()->to('/Admin/account?id=' . $id_admin .'&change=profile');
+	}
+
+	public function updatePassword()
+	{
+		$id_admin = $this->request->getVar('id_admin');
+		$oldPassword = $this->request->getVar('oldPassword');
+		$newPassword = md5($this->request->getVar('newPassword'));
+		$CnewPassword = $this->request->getVar('CnewPassword');
+		// print_r($_POST);
+		$this->barang->doupdatePassword($id_admin, $oldPassword, $newPassword);
+		return redirect()->to('/Admin/account?id=' . $id_admin .'&change=password');
 	}
 
 	public function updateKategori()

@@ -40,6 +40,8 @@ $routes->get('/konsultasi', 'Front::konsultasi');
 $routes->get('/account', 'Account::index');
 $routes->get('/checkout', 'Front::checkout');
 $routes->get('/cart', 'Front::cart_detail');
+$routes->get('/about', 'Front::about');
+$routes->get('/delivery', 'Front::delivery');
 
 $routes->group('/', function ($routes) {
 	$routes->add('', 'Front::index');

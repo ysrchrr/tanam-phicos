@@ -47,7 +47,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="form-tambah">
+                    <form id="form-tambah" enctype="multipart/form-data" method="post">
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label>Nama Barang</label>
@@ -84,8 +84,8 @@
                             <textarea class="form-control" name="deskripsi" placeholder="Tuliskan deksripsi produk..."></textarea>
                         </div>
                         <div class="form-group">
-                            <label>Select Files</label>
-                            <input type="file" name="file[]" class="form-control" id="file" multiple>
+                            <label>Gambar</label>
+                            <input type="file" name='images[]' multiple="" class="form-control">
                         </div> 
                         <!-- <div class="form-group">
                             <div class="file-loading">
@@ -113,7 +113,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="form-tambah">
+                    <form id="form-edit">
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label>Nama Barang</label>
@@ -273,17 +273,6 @@
                 });
                 return false;
             });
-            // $("#file-1").fileinput({
-            //     theme: 'fa',
-            //     uploadUrl: "/imageUpload.php",
-            //     allowedFileExtensions: ['jpg', 'png', 'gif'],
-            //     overwriteInitial: false,
-            //     maxFileSize:2000,
-            //     maxFilesNum: 10,
-            //     slugCallback: function (filename) {
-            //         return filename.replace('(', '_').replace(']', '_');
-            //     }
-            // });
             $('#show_data').on('click', '.edit_data', function() {
                 // alert('hii');
                 var id = $(this).attr('idb');
