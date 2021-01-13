@@ -31,6 +31,11 @@
                         </tbody>
                     </table>
                 </div>
+                <div align="center">
+                    <div id='loadingajax'>
+                        <h1><i class="anticon anticon-loading"></i></h1>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -118,6 +123,7 @@
     <!-- Content Wrapper END -->
     <script src="<?= base_url() ?>/back-assets/js/jquery-3.5.1.min.js"></script>
     <script type="text/javascript">
+        var loading = $('#loadingajax');
         function isNumber(evt) {
             evt = (evt) ? evt : window.event;
             var charCode = (evt.which) ? evt.which : evt.keyCode;
@@ -133,6 +139,7 @@
             return 'Rp. '+rupiah.split('',rupiah.length-1).reverse().join('');
         }
         function showTableBarang(){
+            
             $.ajax({
                 type  : 'GET',
                 url   : '<?= base_url()?>/Admin/tampilkanBarang',
@@ -161,10 +168,10 @@
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
                     console.log(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+                },
+                complete: function(){
+                    loading.hide();
                 }
-                // complete: function(){
-                //     loading.hide();
-                // }
             });
         }
         $(document).ready(function(){
