@@ -283,13 +283,14 @@ class Front extends BaseController
 		$data = [
             'id_member' => $this->request->getVar('input_user_id'),
             'alamat' => $this->request->getVar('input_alamat'),
+            'nama_instansi' => $this->request->getVar('input_perusahaan'),
             'id_provinsi' => $this->request->getVar('provinsi'),
             'id_kabupaten' => $this->request->getVar('kota'),
             'id_kecamatan' => $this->request->getVar('kecamatan'),
             'kodepos' => $this->request->getVar('input_kodepos'),
             'telp' => $this->request->getVar('input_phone')
 		];
-		
+		// dd($data);
 		$this->UserModel->save($data);
         return redirect()->to(base_url() . '/checkout');
 	}
