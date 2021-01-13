@@ -63,6 +63,37 @@ class Front extends BaseController
 		echo view('front/pages/cart_detail', $data);
 	}
 
+	public function about()
+	{
+
+		$data = array(
+			'title' => 'Front - Sapphire',
+			'cart' => 	$this->get_cart()['total'],
+			'cart_d' => 	$this->get_cart()['detail'],
+			'gambar' => 	$this->get_cart()['gambar'],
+			// 'category' => $this->product_view->query('Select * from kategori'),
+			// 'product'  => $produk->paginate(9),
+			// 'pager' => $produk->pager
+		);
+
+		return view('front/pages/pengiriman', $data);
+	}
+	public function delivery()
+	{
+
+
+		$data = array(
+			'title' => 'Front - Sapphire',
+			'cart' => 	$this->get_cart()['total'],
+			'cart_d' => 	$this->get_cart()['detail'],
+			'gambar' => 	$this->get_cart()['gambar'],
+			// 'category' => $this->product_view->query('Select * from kategori'),
+			// 'product'  => $produk->paginate(9),
+			// 'pager' => $produk->pager
+		);
+
+		return view('front/pages/pengiriman', $data);
+	}
 	public function get_cart()
 	{
 
@@ -183,9 +214,9 @@ class Front extends BaseController
 	{
 		$cari = $this->request->getVar('search');
 		if (empty($cari)) {
-			$produk = $this->product_view->join('gambar', 'gambar.id_barang = barang.id_barang', 'left');
+			$produk = $this->product_view->join('gambar', 'gambar.id_barang = barang.id_barang', 'left')->join('kategori', 'kategori.id_kategori = barang.id_kategori', 'left');
 		} else {
-			$produk = $this->product_view->join('gambar', 'gambar.id_barang = barang.id_barang', 'left')->like('nama_barang', $cari);
+			$produk = $this->product_view->join('gambar', 'gambar.id_barang = barang.id_barang', 'left')->join('kategori', 'kategori.id_kategori = barang.id_kategori', 'left')->like('nama_barang', $cari);
 		}
 
 		$data = array(
