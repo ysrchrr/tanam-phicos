@@ -149,6 +149,21 @@ class Admin extends BaseController
 		echo view('admin/footer');
 	}
 
+	public function newproduct()
+	{
+		if(! session()->get('logged_in')){
+            return redirect()->to('/Admin/login'); 
+        }
+		$data = array(
+			'title' => "Tambah Product Baru",
+			'kategori' => $this->barang->getSubKategori()
+		);
+		echo view('admin/header', $data);
+		echo view('admin/sidebar');
+		echo view('admin/new-product');
+		echo view('admin/footer');
+	}
+
 	public function pesanan()
 	{
 		if(! session()->get('logged_in')){
@@ -209,31 +224,15 @@ class Admin extends BaseController
 		echo json_encode($tampilBlog);
 	}
 
-	public function book_add()
+	public function newKategori()
 	{
-		helper(['form', 'url']);
-		$imgdb = \Config\Database::connect();
-		$udb = $imgdb->table('gambar');
-		if ($this->request->getFileMultiple('images')) {
-			foreach($this->request->getFileMultiple('images') as $file){   
-				$file->move(ROOTPATH . '/public/gambar/');
-				if(!$file){
-					echo "error gabisa";
-				}
-				$barang_id = $this->imgdb->query("SELECT id_barang FROM barang ORDER BY id_barang DESC LIMIT 1")->getRowArray();
-				$id = $barang_id['id_barang'];
-				$data = [
-					'id_barang' => $id,
-					'link_gambar' => $file->getClientName()
-					// 'name' =>  $file->getClientName(),
-					// 'type'  => $file->getClientMimeType()
-				];
+		$nama = $this->request->getPost('nama_kategori');
+		$data = $this->barang->donewKategori($nama);
+		echo json_encode($data);
+	}
 
-				$save = $udb->insert($data);
-			}
-		} else{
-			echo "error input ga kebaca";
-		}
+	public function addProduct()
+	{
 		$nama = $this->request->getPost('nama_barang');
 			$xslug = explode(" ", $nama);
 			$yslug = implode("-", $xslug);
@@ -263,15 +262,21 @@ class Admin extends BaseController
 			'slug_barang' => $slug
 		);
 		$insert = $this->barang->book_add($data);
-
-		echo json_encode(array("status" => TRUE));
-	}
-
-	public function newKategori()
-	{
-		$nama = $this->request->getPost('nama_kategori');
-		$data = $this->barang->donewKategori($nama);
-		echo json_encode($data);
+		if(isset($_FILES['image'])){
+			if ($this->request->getFileMultiple('images')) {
+				$get_lastest_id = $this->database->query("SELECT id_barang FROM barang ORDER BY id_barang DESC LIMIT 1")->getRowArray();
+				foreach($this->request->getFileMultiple('images') as $file){   
+					$file->move(ROOTPATH . '/public/gambar/');
+					$id = $get_lastest_id['id_barang'];
+					$link = $file->getClientName();
+					$save = $this->barang->doaddProduct($id, $link);
+					$msg = 'Produk berhasil ditambahkan';
+				}
+			}
+		} else {
+			$msg = 'Produk berhasil ditambahkan';
+		}
+		return redirect()->to( base_url('/Admin/newproduct') )->with('msg', $msg);
 	}
 
 	public function newBlog()
