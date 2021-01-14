@@ -21,7 +21,7 @@
                         <form id="form-tambah">
                             <div class="form-group">
                                 <label>Nama Kategori</label>
-                                <input type="text" class="form-control" id="nama_kategori" placeholder="Masukkan nama kategori">
+                                <input type="text" class="form-control" id="nama_kategori" placeholder="Masukkan nama kategori" required>
                             </div>
                             <button type="submit" class="btn btn-primary btn-block btn-tone m-r-5" id="btn-simpan"><i class="anticon anticon-plus"></i>Tambahkan</button>
                         </form>
@@ -60,7 +60,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="form-tambah">
+                    <form id="form-edit">
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label>Nama Kategori</label>
@@ -148,6 +148,18 @@
         }
         $(document).ready(function(){
             showTableKategori();
+            $('#form-tambah').validate({
+                ignore: ':hidden:not(:checkbox)',
+                errorElement: 'label',
+                errorClass: 'is-invalid',
+                validClass: 'is-valid',
+                rules:{
+                    nama_kategori: {
+                        required: true,
+                        minlength: 3
+                    }
+                }
+            });
             $('#btn-simpan').on('click', function(){
                 $('#data-table').DataTable().destroy();
                 var nama_kategori = $('#nama_kategori').val();

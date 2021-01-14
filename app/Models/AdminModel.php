@@ -19,18 +19,7 @@ class AdminModel extends Model
 
     public function dotampilkanBarang()
     {
-        $query = $this->db->query("SELECT
-        barang.id_barang,
-        barang.id_kategori,
-        barang.nama_barang,
-        barang.nama_lain,
-        barang.harga_barang,
-        barang.stok_barang,
-        barang.deskripsi,
-        gambar.link_gambar 
-    FROM
-        barang
-        JOIN gambar ON gambar.id_barang = barang.id_barang");
+        $query = $this->db->query("SELECT * FROM barang");
         return $query->getResult();
     }
 
@@ -100,6 +89,12 @@ class AdminModel extends Model
     public function donewKategori($nama)
     {
         $query = $this->db->query("INSERT INTO `kategori`(`nama_kategori`) VALUES ('$nama')");
+        return $query;
+    }
+
+    public function doaddProduct($id, $link)
+    {
+        $query = $this->db->query("INSERT INTO `gambar`(`id_barang`, `link_gambar`) VALUES ('$id', '$link')");
         return $query;
     }
 

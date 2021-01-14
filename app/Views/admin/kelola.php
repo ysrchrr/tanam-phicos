@@ -14,9 +14,7 @@
         </div>
         <div class="card">
             <div class="card-body">
-                <button type="button" class="btn btn-primary btn-tone m-r-5 float-right" data-toggle="modal" data-target="#exampleModal">
-                    <i class="fa fa-plus"></i> Tambahkan produk baru
-                </button>
+                <a href="<?php echo base_url();?>/Admin/newproduct" class="btn btn-primary btn-tone m-r-5 float-right"><i class="fa fa-plus"></i> Tambahkan produk baru</a>
                 <h4>Daftar Tanaman</h4>
                 <div class="m-t-25">
                     <table id="data-table" class="table table-hover e-commerce-table">
@@ -36,72 +34,6 @@
             </div>
         </div>
     </div>
-    <!-- add modal start -->
-    <div class="modal fade" id="exampleModal">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambahkan produk baru</h5>
-                    <button type="button" class="close" data-dismiss="modal">
-                        <i class="anticon anticon-close"></i>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="form-tambah" enctype="multipart/form-data" method="post">
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label>Nama Barang</label>
-                                <input type="text" class="form-control" name="nama_barang" placeholder="Nama Barang">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label>Nama Lain</label>
-                                <input type="text" class="form-control" name="nama_lain" placeholder="Nama Lain">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputAddress">Jenis Tanaman</label>
-                                <select name="id_kategori" class="form-control">
-                                    <option>Silakan pilih salah satu</option>
-                                    <?php
-                                    foreach($kategori as $row){
-                                    ?>
-                                    <option value="<?php echo $row['id_kategori'];?>"><?php echo $row['nama_kategori'];?></option>
-                                    <?php } ?>
-                                </select>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label>Harga</label>
-                                <input type="text" class="form-control" name="harga_barang" placeholder="10000" maxlength="13" onkeypress="return isNumber(event)">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label>Stok</label>
-                                <input type="text" class="form-control" name="stok_barang" maxlength="5" placeholder="0-9999" onkeypress="return isNumber(event)">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputAddress2">Deskripsi</label>
-                            <textarea class="form-control" name="deskripsi" placeholder="Tuliskan deksripsi produk..."></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Gambar</label>
-                            <input type="file" name='images[]' multiple="" class="form-control">
-                        </div> 
-                        <!-- <div class="form-group">
-                            <div class="file-loading">
-                                <input id="file-1" type="file" name="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="2">
-                            </div>
-                        </div> -->
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" id="btn-simpan">Simpan produk</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- add modal end -->
     <!-- modal edit -->
     <div class="modal fade" id="editModal">
         <div class="modal-dialog modal-lg">
@@ -211,7 +143,7 @@
                     var i;
                     for(i=0; i<data.length; i++){
                         html += '<tr>'+
-                                '<td><img class="img-fluid rounded" src="'+data[i].link_gambar+'" style="max-width: 60px" alt=""> '+data[i].nama_barang+'</td>'+
+                                '<td>'+data[i].nama_barang+'</td>'+
                                 '<td>'+data[i].nama_lain+'</td>'+
                                 '<td>'+convertToRupiah(data[i].harga_barang)+'</td>'+
                                 '<td>'+data[i].stok_barang+'</td>'+
