@@ -18,7 +18,9 @@
     <div class="row">
         <div class="col-md-12">
             <h2>Checkout</h2>
-            <p class="well">Sudah Memiliki Akun? <a href="<?= base_url()?>/login">Silahkan login di sini</a></p>
+            <?php if (session()->getflashdata('pesan')) : ?>
+                <div class="alert alert-danger" role="alert"><?= session()->getflashdata('pesan'); ?></div>
+            <?php endif; ?>
         </div>
     </div>
 
@@ -27,10 +29,9 @@
             <h3>Billing Address</h3>
             <form class="form-horizontal" role="form" method="post" action="<?= base_url(); ?>/front/checkout_save" autocomplete="off">
                 <div class="form-group">
-                    <label class="col-md-3 control-label" for="input_user_id">ID Member<span class="required">*</span></label>
+                    <!-- <label class="col-md-3 control-label" for="input_user_id">ID Member<span class="required">*</span></label> -->
                     <div class="col-md-9">
-                    
-                        <input type="password" class="form-control" name="input_user_id" value="<?= $bio['id_member']; ?>">
+                <input type="hidden" class="form-control" name="input_user_id" value="<?= $bio['id_member']; ?>">
                     </div>
                 </div>
                 <div class="form-group">
@@ -111,7 +112,7 @@
             </div><div class="col-md-6">
             <div class="order-notes">
                 <h3>Order Notes</h3>
-                <textarea rows="3" cols="10" class="form-control" placeholder="Sertakan catatan pada pengirim."></textarea>
+                <textarea rows="3" cols="10" class="form-control" name="notes" placeholder="Sertakan catatan pada pengirim."></textarea>
             </div>
         </div>
     </div>
@@ -154,6 +155,9 @@
                         </tr>
                     </tbody>
                 </table>
+                <input type="hidden" name="jumlah" value="<?= $cart['jumlah']; ?>">
+                <input type="hidden" name="total" value="<?= $cart['total']; ?>">
+                <input type="hidden" name="id_cart" value="<?= $cart['id_cart']; ?>">
                 <p>
                     <button class="btn btn-primary" type="submit">Place Order</button>
                 </p>
