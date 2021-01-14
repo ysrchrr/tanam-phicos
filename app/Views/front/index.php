@@ -48,7 +48,7 @@
 						<div class="col-md-4">
 							<div class="product">
 								<a href="<?= base_url(); ?>/product/<?= $row['slug_kategori']; ?>/<?= $row['slug_barang']; ?>">
-									<img src="<?= $row['link_gambar']; ?>" alt="<?= $row['nama_barang']; ?>">
+									<img src="<?= base_url() . '/front-assets/img/plant/' . $row['link_gambar']; ?>" alt="<?= $row['nama_barang']; ?>">
 								</a>
 								<div class="name">
 									<a href="<?= base_url(); ?>/product/<?= $row['slug_kategori']; ?>/<?= $row['slug_barang']; ?>"><?= $row['nama_barang']; ?> (<?= $row['nama_lain']; ?>)</a>
