@@ -5,6 +5,7 @@ namespace App\Controllers;
 use CodeIgniter\Controller;
 use App\Models\Front\Product_view;
 use App\Models\Front\UserModel;
+use App\Models\Front\OrderModel;
 use App\Models\Front\CartModel;
 
 class Front extends BaseController
@@ -15,6 +16,7 @@ class Front extends BaseController
 		$this->product_view = new Product_view();
 		$this->CartModel = new CartModel();
 		$this->UserModel = new UserModel();
+		$this->OrderModel = new OrderModel();
 	}
 
 
@@ -63,6 +65,37 @@ class Front extends BaseController
 		echo view('front/pages/cart_detail', $data);
 	}
 
+	public function about()
+	{
+
+		$data = array(
+			'title' => 'Front - Sapphire',
+			'cart' => 	$this->get_cart()['total'],
+			'cart_d' => 	$this->get_cart()['detail'],
+			'gambar' => 	$this->get_cart()['gambar'],
+			// 'category' => $this->product_view->query('Select * from kategori'),
+			// 'product'  => $produk->paginate(9),
+			// 'pager' => $produk->pager
+		);
+
+		return view('front/pages/pengiriman', $data);
+	}
+	public function delivery()
+	{
+
+
+		$data = array(
+			'title' => 'Front - Sapphire',
+			'cart' => 	$this->get_cart()['total'],
+			'cart_d' => 	$this->get_cart()['detail'],
+			'gambar' => 	$this->get_cart()['gambar'],
+			// 'category' => $this->product_view->query('Select * from kategori'),
+			// 'product'  => $produk->paginate(9),
+			// 'pager' => $produk->pager
+		);
+
+		return view('front/pages/pengiriman', $data);
+	}
 	public function get_cart()
 	{
 
@@ -183,9 +216,9 @@ class Front extends BaseController
 	{
 		$cari = $this->request->getVar('search');
 		if (empty($cari)) {
-			$produk = $this->product_view->join('gambar', 'gambar.id_barang = barang.id_barang', 'left');
+			$produk = $this->product_view->join('gambar', 'gambar.id_barang = barang.id_barang', 'left')->join('kategori', 'kategori.id_kategori = barang.id_kategori', 'left');
 		} else {
-			$produk = $this->product_view->join('gambar', 'gambar.id_barang = barang.id_barang', 'left')->like('nama_barang', $cari);
+			$produk = $this->product_view->join('gambar', 'gambar.id_barang = barang.id_barang', 'left')->join('kategori', 'kategori.id_kategori = barang.id_kategori', 'left')->like('nama_barang', $cari);
 		}
 
 		$data = array(
@@ -243,24 +276,40 @@ class Front extends BaseController
             'kecamatan' => 'required',
             'input_kodepos' => 'required',
             'input_phone' => 'required',
-
         ])) {
             session()->setflashdata('pesan', 'Data yang anda isi belum lengkap');
             return redirect()->to(base_url() . '/checkout')->withInput();
 		}
-		
+
 		$data = [
             'id_member' => $this->request->getVar('input_user_id'),
             'alamat' => $this->request->getVar('input_alamat'),
+            'nama_instansi' => $this->request->getVar('input_perusahaan'),
             'id_provinsi' => $this->request->getVar('provinsi'),
             'id_kabupaten' => $this->request->getVar('kota'),
             'id_kecamatan' => $this->request->getVar('kecamatan'),
             'kodepos' => $this->request->getVar('input_kodepos'),
             'telp' => $this->request->getVar('input_phone')
 		];
-		
+
+		$data_pemesanan = [
+			'id_member' => $this->request->getVar('input_user_id'),
+			'notes' => $this->request->getVar('notes'),
+			'total' => $this->request->getVar('total'),
+			'jumlah' => $this->request->getVar('jumlah')
+		];
+
 		$this->UserModel->save($data);
-        return redirect()->to(base_url() . '/checkout');
+		$this->OrderModel->save($data_pemesanan);
+
+		$id_cart = $this->request->getVar('id_cart');
+		$qd = "delete from cart_detail where id_cart= $id_cart";
+		$qd2 = "delete from cart where id_cart= $id_cart";
+
+        $this->CartModel->query($qd);
+		$this->CartModel->query($qd2);
+
+		return redirect()->to(base_url() . '/account/orders');
 	}
 
 	public function test()

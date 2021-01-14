@@ -135,8 +135,8 @@
 						<div>
 							<h3>Information</h3>
 							<ul>
-								<li><a href="about.html">About Us</a></li>
-								<li><a href="#">Delivery Information</a></li>
+								<li><a href="<?= base_url(); ?>/about">About Us</a></li>
+								<li><a href="<?= base_url(); ?>/delivery">Delivery Information</a></li>
 								<li><a href="#">Privacy Policy</a></li>
 								<li><a href="#">Terms & Conditions</a></li>
 							</ul>
