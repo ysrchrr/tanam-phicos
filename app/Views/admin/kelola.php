@@ -87,6 +87,12 @@
                             <label>Deskripsi</label>
                             <textarea class="form-control" id="deskripsi_e" placeholder="Tuliskan deksripsi produk..."></textarea>
                         </div>
+                        <div class="form-group">
+                            <label>Gambar</label>
+                            <div id="panggil-gambar">
+                            </div>
+                            <!-- <img id="img" class="rounded img-thumbnail"> -->
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -223,7 +229,7 @@
                         id_barang: id
                     },
                     success: function(data) {
-                        $.each(data, function(id_barang, nama_barang, nama_lain, harga_barang, stok_barang, deskripsi) {
+                        $.each(data, function(id_barang, nama_barang, nama_lain, harga_barang, stok_barang, deskripsi, link_gambar) {
                             $('#editModal').modal('show');
                             $('[id="id_barang_e"]').val(data.id_barang);
                             $('[id="nama_barang_e"]').val(data.nama_barang);
@@ -231,6 +237,7 @@
                             $('[id="harga_barang_e"]').val(data.harga_barang);
                             $('[id="deskripsi_e"]').val(data.deskripsi);
                             $('[id="stok_barang_e"]').val(data.stok_barang);
+                            $('#panggil-gambar').html('<img src='+data.link_gambar+' class="rounded img-thumbnail">');
                         });
                     },
                     error: function(xhr, ajaxOptions, thrownError) {
