@@ -31,6 +31,11 @@
                         </tbody>
                     </table>
                 </div>
+                <div align="center">
+                    <div id='loadingajax'>
+                        <h1><i class="anticon anticon-loading"></i></h1>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -82,6 +87,12 @@
                             <label>Deskripsi</label>
                             <textarea class="form-control" id="deskripsi_e" placeholder="Tuliskan deksripsi produk..."></textarea>
                         </div>
+                        <div class="form-group">
+                            <label>Gambar</label>
+                            <div id="panggil-gambar">
+                            </div>
+                            <!-- <img id="img" class="rounded img-thumbnail"> -->
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -118,6 +129,7 @@
     <!-- Content Wrapper END -->
     <script src="<?= base_url() ?>/back-assets/js/jquery-3.5.1.min.js"></script>
     <script type="text/javascript">
+        var loading = $('#loadingajax');
         function isNumber(evt) {
             evt = (evt) ? evt : window.event;
             var charCode = (evt.which) ? evt.which : evt.keyCode;
@@ -133,6 +145,7 @@
             return 'Rp. '+rupiah.split('',rupiah.length-1).reverse().join('');
         }
         function showTableBarang(){
+            
             $.ajax({
                 type  : 'GET',
                 url   : '<?= base_url()?>/Admin/tampilkanBarang',
@@ -161,10 +174,10 @@
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
                     console.log(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+                },
+                complete: function(){
+                    loading.hide();
                 }
-                // complete: function(){
-                //     loading.hide();
-                // }
             });
         }
         $(document).ready(function(){
@@ -208,6 +221,7 @@
             $('#show_data').on('click', '.edit_data', function() {
                 // alert('hii');
                 var id = $(this).attr('idb');
+                var base_url = window.location.origin;
                 $.ajax({
                     type: "GET",
                     url: "<?php echo base_url('Admin/detailBarang') ?>",
@@ -216,7 +230,7 @@
                         id_barang: id
                     },
                     success: function(data) {
-                        $.each(data, function(id_barang, nama_barang, nama_lain, harga_barang, stok_barang, deskripsi) {
+                        $.each(data, function(id_barang, nama_barang, nama_lain, harga_barang, stok_barang, deskripsi, link_gambar) {
                             $('#editModal').modal('show');
                             $('[id="id_barang_e"]').val(data.id_barang);
                             $('[id="nama_barang_e"]').val(data.nama_barang);
@@ -224,6 +238,7 @@
                             $('[id="harga_barang_e"]').val(data.harga_barang);
                             $('[id="deskripsi_e"]').val(data.deskripsi);
                             $('[id="stok_barang_e"]').val(data.stok_barang);
+                            $('#panggil-gambar').html('<img src='+data.link_gambar+' class="rounded img-thumbnail">');
                         });
                     },
                     error: function(xhr, ajaxOptions, thrownError) {

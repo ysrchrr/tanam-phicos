@@ -113,7 +113,8 @@ class AdminModel extends Model
 
     public function dodetailBarang($idne)
     {
-        $hsl = $this->db->query("SELECT * FROM barang WHERE id_barang = '$idne'");
+        // SELECT barang.id_barang, barang.id_kategori, barang.nama_barang, barang.nama_lain, barang.harga_barang, barang.stok_barang, barang.deskripsi, gambar.link_gambar FROM barang JOIN gambar ON gambar.id_barang =  barang.id_barang
+        $hsl = $this->db->query("SELECT barang.id_barang, barang.id_kategori, barang.nama_barang, barang.nama_lain, barang.harga_barang, barang.stok_barang, barang.deskripsi, gambar.link_gambar FROM barang JOIN gambar ON gambar.id_barang =  barang.id_barang WHERE barang.id_barang = '$idne'");
         foreach ($hsl->getResult() as $data) {
             $hasil = array(
                 'id_barang' => $data->id_barang,
@@ -121,7 +122,8 @@ class AdminModel extends Model
                 'nama_lain' => $data->nama_lain,
                 'harga_barang' => $data->harga_barang,
                 'stok_barang' => $data->stok_barang,
-                'deskripsi' => $data->deskripsi
+                'deskripsi' => $data->deskripsi,
+                'link_gambar' => $data->link_gambar
             );
         }
         return $hasil;

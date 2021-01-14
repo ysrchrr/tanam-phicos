@@ -29,6 +29,11 @@
                         </tbody>
                     </table>
                 </div>
+                <div align="center">
+                    <div id='loadingajax'>
+                        <h1><i class="anticon anticon-loading"></i></h1>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -104,6 +109,7 @@
     <!-- Content Wrapper END -->
     <script src="<?= base_url() ?>/back-assets/js/jquery-3.5.1.min.js"></script>
     <script type="text/javascript">
+        var loading = $('#loadingajax');
         function showTableMember(){
             $.ajax({
                 type  : 'GET',
@@ -132,10 +138,10 @@
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
                     console.log(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+                },
+                complete: function(){
+                    loading.hide();
                 }
-                // complete: function(){
-                //     loading.hide();
-                // }
             });
         }
         $(document).ready(function(){
