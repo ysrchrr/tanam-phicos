@@ -18,19 +18,20 @@
     <div class="row">
         <div class="col-md-12">
             <h2>Checkout</h2>
-            <p class="well">Sudah Memiliki Akun? <a href="<?= base_url()?>/login">Silahkan login di sini</a></p>
+            <?php if (session()->getflashdata('pesan')) : ?>
+                <div class="alert alert-danger" role="alert"><?= session()->getflashdata('pesan'); ?></div>
+            <?php endif; ?>
         </div>
     </div>
 
     <div class="row box">
         <div class="col-md-6">
             <h3>Billing Address</h3>
-            <form class="form-horizontal" role="form" method="post" action="<?= base_url(); ?>/front/checkout_save">
+            <form class="form-horizontal" role="form" method="post" action="<?= base_url(); ?>/front/checkout_save" autocomplete="off">
                 <div class="form-group">
-                    <label class="col-md-3 control-label" for="input_user_id">ID Member<span class="required">*</span></label>
+                    <!-- <label class="col-md-3 control-label" for="input_user_id">ID Member<span class="required">*</span></label> -->
                     <div class="col-md-9">
-                    
-                        <input type="password" class="form-control" name="input_user_id" value="<?= $bio['id_member']; ?>">
+                <input type="hidden" class="form-control" name="input_user_id" value="<?= $bio['id_member']; ?>">
                     </div>
                 </div>
                 <div class="form-group">
@@ -42,7 +43,7 @@
                 <div class="form-group">
                     <label class="col-md-3 control-label" for="input_perusahaan">Nama Perusahaan</label>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" name="input_perusahaan" placeholder="Perusahaan (Opsional)">
+                        <input type="text" class="form-control" name="input_perusahaan" placeholder="Perusahaan (Opsional)" value="<?= $bio['nama_instansi']; ?>">
                     </div>
                 </div>
                 <div class="form-group">
@@ -58,7 +59,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="input_provinsi">Nama Provinsi<span class="required">*</span></label>
                     <div class="col-md-8">
-                        <select>
+                        <select name="provinsi">
                             <option value=""> --- Pilih Salah Satu --- </option>
                             <?php foreach ($provinsi as $prov) : ?>
                                 <option value="<?= $prov['id']; ?>" <?= ($bio['id_provinsi'] == $prov['id']) ? 'selected' : ''; ?>><?= $prov['nama']; ?></option>
@@ -69,7 +70,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="input_kota">Nama Kota<span class="required">*</span></label>
                     <div class="col-md-8">
-                        <select>
+                        <select name="kota">
                             <option value=""> --- Pilih Salah Satu --- </option>
                             <?php foreach ($kota as $kota) : ?>
                                 <option value="<?= $kota['id']; ?>" <?= ($bio['id_kabupaten'] == $kota['id']) ? 'selected' : ''; ?>><?= $kota['nama']; ?></option>
@@ -80,7 +81,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="input_kecamatan">Nama Kecamatan<span class="required">*</span></label>
                     <div class="col-md-8">
-                        <select>
+                        <select name="kecamatan">
                             <option value=""> --- Pilih Salah Satu --- </option>
                             <?php foreach ($kecamatan as $kec) : ?>
                                 <option value="<?= $kec['id']; ?>" <?= ($bio['id_kecamatan'] == $kec['id']) ? 'selected' : ''; ?>><?= $kec['nama']; ?></option>
@@ -106,12 +107,12 @@
                         <input type="text" class="form-control" name="input_phone" placeholder="Nomor Telepon" value="<?= $bio['telp']; ?>">
                     </div>
                 </div>
-                <button class="btn btn-primary" type="submit">Place Order</button>
-            </form>
+                <!-- <button class="btn btn-primary" type="submit">Place Order</button> -->
+            
             </div><div class="col-md-6">
             <div class="order-notes">
                 <h3>Order Notes</h3>
-                <textarea rows="3" cols="10" class="form-control" placeholder="Sertakan catatan pada pengirim."></textarea>
+                <textarea rows="3" cols="10" class="form-control" name="notes" placeholder="Sertakan catatan pada pengirim."></textarea>
             </div>
         </div>
     </div>
@@ -154,12 +155,15 @@
                         </tr>
                     </tbody>
                 </table>
+                <input type="hidden" name="jumlah" value="<?= $cart['jumlah']; ?>">
+                <input type="hidden" name="total" value="<?= $cart['total']; ?>">
+                <input type="hidden" name="id_cart" value="<?= $cart['id_cart']; ?>">
                 <p>
                     <button class="btn btn-primary" type="submit">Place Order</button>
                 </p>
             </div>
         </div>
     </div>
-
+    </form>
 </div>
 <?= $this->endSection(); ?>
