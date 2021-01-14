@@ -221,6 +221,7 @@
             $('#show_data').on('click', '.edit_data', function() {
                 // alert('hii');
                 var id = $(this).attr('idb');
+                var base_url = window.location.origin;
                 $.ajax({
                     type: "GET",
                     url: "<?php echo base_url('Admin/detailBarang') ?>",
