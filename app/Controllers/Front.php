@@ -5,6 +5,7 @@ namespace App\Controllers;
 use CodeIgniter\Controller;
 use App\Models\Front\Product_view;
 use App\Models\Front\UserModel;
+use App\Models\Front\OrderModel;
 use App\Models\Front\CartModel;
 
 class Front extends BaseController
@@ -15,6 +16,7 @@ class Front extends BaseController
 		$this->product_view = new Product_view();
 		$this->CartModel = new CartModel();
 		$this->UserModel = new UserModel();
+		$this->OrderModel = new OrderModel();
 	}
 
 
@@ -274,12 +276,11 @@ class Front extends BaseController
             'kecamatan' => 'required',
             'input_kodepos' => 'required',
             'input_phone' => 'required',
-
         ])) {
             session()->setflashdata('pesan', 'Data yang anda isi belum lengkap');
             return redirect()->to(base_url() . '/checkout')->withInput();
 		}
-		
+
 		$data = [
             'id_member' => $this->request->getVar('input_user_id'),
             'alamat' => $this->request->getVar('input_alamat'),
@@ -290,9 +291,25 @@ class Front extends BaseController
             'kodepos' => $this->request->getVar('input_kodepos'),
             'telp' => $this->request->getVar('input_phone')
 		];
-		// dd($data);
+
+		$data_pemesanan = [
+			'id_member' => $this->request->getVar('input_user_id'),
+			'notes' => $this->request->getVar('notes'),
+			'total' => $this->request->getVar('total'),
+			'jumlah' => $this->request->getVar('jumlah')
+		];
+
 		$this->UserModel->save($data);
-        return redirect()->to(base_url() . '/checkout');
+		$this->OrderModel->save($data_pemesanan);
+
+		$id_cart = $this->request->getVar('id_cart');
+		$qd = "delete from cart_detail where id_cart= $id_cart";
+		$qd2 = "delete from cart where id_cart= $id_cart";
+
+        $this->CartModel->query($qd);
+		$this->CartModel->query($qd2);
+
+		return redirect()->to(base_url() . '/account/orders');
 	}
 
 	public function test()
