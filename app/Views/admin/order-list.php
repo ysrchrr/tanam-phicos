@@ -165,6 +165,10 @@
                     }
                     $('#show_data').html(html);
                     $('#data-table').DataTable({
+                        dom: 'Bfrtip',
+                        buttons: [
+                            'excel', 'pdf', 'print'
+                        ],
                         "order": [],
                         // dom: 'Bfrtip',
                         // buttons: [

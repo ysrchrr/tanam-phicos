@@ -16,6 +16,13 @@
     <script src="<?= base_url() ?>/back-assets/vendors/jquery-validation/jquery.validate.min.js"></script>
     <script src="<?= base_url() ?>/back-assets/vendors/datatables/jquery.dataTables.min.js"></script>
     <script src="<?= base_url() ?>/back-assets/vendors/datatables/dataTables.bootstrap.min.js"></script>
+    <script src="<?= base_url() ?>/back-assets/vendors/datatables/dataTables.buttons.min.js"></script>
+    <script src="<?= base_url() ?>/back-assets/vendors/datatables/buttons.flash.min.js"></script>
+    <script src="<?= base_url() ?>/back-assets/vendors/datatables/jszip.min.js"></script>
+    <script src="<?= base_url() ?>/back-assets/vendors/datatables/pdfmake.min.js"></script>
+    <script src="<?= base_url() ?>/back-assets/vendors/datatables/vfs_fonts.js"></script>
+    <script src="<?= base_url() ?>/back-assets/vendors/datatables/buttons.html5.min.js"></script>
+    <script src="<?= base_url() ?>/back-assets/vendors/datatables/buttons.print.min.js"></script>
     
     <script src="<?= base_url() ?>/back-assets/js/pages/dashboard-e-commerce.js"></script>
     <!-- Core JS -->
