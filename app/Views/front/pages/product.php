@@ -15,8 +15,8 @@
 		<input type="hidden" value="<?= $id; ?>" id="id_barang">
 		<div class="col-md-6">
 			<div class="image">
-				<a class="cloud-zoom" rel="adjustX: 0, adjustY:0" id='zoom1' href="<?= $link_img; ?>" title="<?= $name; ?>">
-					<img src="<?=  base_url() . '/front-assets/img/plant/' . $link_img; ?>" title="<?= $name; ?>" alt="<?= $name; ?>" id="image" />
+				<a class="cloud-zoom" rel="adjustX: 0, adjustY:0" id='zoom1' href="<?= base_url() ?> /gambar/ <?= $link_img; ?>" title="<?= $name; ?>">
+					<img src="<?=  base_url() . '/gambar/' . $link_img; ?>" title="<?= $name; ?>" alt="<?= $name; ?>" id="image" />
 				</a>
 			</div>
 			<!-- <div class="image-additional">
