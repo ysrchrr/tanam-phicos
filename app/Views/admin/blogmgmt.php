@@ -48,6 +48,11 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div align="center">
+                            <div id='loadingajax'>
+                                <h1><i class="anticon anticon-loading"></i></h1>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -111,6 +116,7 @@
     <script src="<?= base_url() ?>/back-assets/js/popper.min.js"></script>
     <script src="<?= base_url() ?>/back-assets/js/bootstrap.min.js"></script>
     <script type="text/javascript">
+        var loading = $('#loadingajax');
         function convertDateDBtoIndo(string) {
             bulanIndo = ['', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September' , 'Oktober', 'November', 'Desember'];
             tanggal = string.split("-")[2];
@@ -145,10 +151,10 @@
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
                     console.log(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+                },
+                complete: function(){
+                    loading.hide();
                 }
-                // complete: function(){
-                //     loading.hide();
-                // }
             });
         }
         $(document).ready(function(){
