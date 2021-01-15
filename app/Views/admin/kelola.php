@@ -238,7 +238,7 @@
                             $('[id="harga_barang_e"]').val(data.harga_barang);
                             $('[id="deskripsi_e"]').val(data.deskripsi);
                             $('[id="stok_barang_e"]').val(data.stok_barang);
-                            $('#panggil-gambar').html('<img src='+data.link_gambar+' class="rounded img-thumbnail">');
+                            $('#panggil-gambar').html('<img src=/gambar/'+data.link_gambar+' class="rounded img-thumbnail">');
                         });
                     },
                     error: function(xhr, ajaxOptions, thrownError) {
