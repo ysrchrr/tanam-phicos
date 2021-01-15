@@ -14,6 +14,7 @@ $_SESSION['logged-in'] = true;
     <!-- page css -->
     <link href="<?= base_url() ?>/back-assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet">
     <link href="<?= base_url() ?>/back-assets/vendors/datatables/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="<?= base_url() ?>/back-assets/vendors/datatables/buttons.dataTables.min.css" rel="stylesheet">
     <!-- Core css -->
     <link href="<?= base_url() ?>/back-assets/css/app.min.css" rel="stylesheet">
     <link href="<?= base_url() ?>/back-assets/css/toastr.css" rel="stylesheet">
