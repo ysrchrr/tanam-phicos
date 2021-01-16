@@ -77,7 +77,7 @@
 												<tr>
 													<?php foreach ($gambar as $g) : ?>
 														<?php if ($g['id_barang'] == $cd['id_barang']) : ?>
-															<td class="image"><img alt="IMAGE" class="img-responsive" src="<?= $g['link_gambar']; ?>"></td>
+															<td class="image"><img alt="IMAGE" class="img-responsive" src="<?= base_url() . '/gambar/' . $g['link_gambar']; ?>"></td>
 														<?php endif; ?>
 													<?php endforeach; ?>
 													<td class="name"><a href="#"><?= $cd['nama_barang']; ?></a></td>
