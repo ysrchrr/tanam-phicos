@@ -38,7 +38,7 @@
                                 <tr>
                                     <?php foreach ($gambar as $g) : ?>
                                         <?php if ($g['id_barang'] == $cd['id_barang']) : ?>
-                                            <td class="image"><img alt="IMAGE" src="<?= $g['link_gambar']; ?>"></td>
+                                            <td class="image"><img alt="IMAGE" src="<?= base_url() . '/gambar/' . $g['link_gambar']; ?>"></td>
                                         <?php endif; ?>
                                     <?php endforeach; ?>
                                     <td class="name"><a href="product.html"><?= $cd['nama_barang']; ?></a></td>
