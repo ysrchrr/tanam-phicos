@@ -165,15 +165,11 @@
                     }
                     $('#show_data').html(html);
                     $('#data-table').DataTable({
-                        dom: 'Bfrtip',
+                        dom: 'lBfrtip',
                         buttons: [
                             'excel', 'pdf', 'print'
                         ],
                         "order": [],
-                        // dom: 'Bfrtip',
-                        // buttons: [
-                        //     'excel', 'pdf', 'print'
-                        // ],
                         "language" : {
                             "emptyTable" : "Belum ada data:(",
                             "zeroRecords" : "Tidak ada yang cocok dengan database kami"

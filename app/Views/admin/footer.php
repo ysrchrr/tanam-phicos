@@ -1,5 +1,4 @@
-
-    <!-- Footer START -->
+<!-- Footer START -->
     <footer class="footer">
         <div class="footer-content">
             <p class="m-b-0">Copyright © 2019s Theme_Nate. All rights reserved.</p>
