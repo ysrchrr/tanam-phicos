@@ -24,6 +24,13 @@
                                 <div class="card-body">
                                     <h2 class="m-t-20">Sign In</h2>
                                     <p class="m-b-30">Enter your credential to get access</p>
+                                    <?php
+                                    if(isset($_GET['err'])){
+                                    ?>
+                                    <div class="alert alert-danger">
+                                        Username atau password salah
+                                    </div>
+                                    <?php } ?>
                                     <form action="<?php echo base_url();?>/Admin/aksi_login" method="post">
                                         <div class="form-group">
                                             <label class="font-weight-semibold">Username:</label>
