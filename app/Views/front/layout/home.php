@@ -37,7 +37,6 @@
 					<ul class="nav navbar-nav">
 						<li class="active"><a href="<?= base_url('/') ?>">Shop</a></li>
 						<li class=""><a href="<?= base_url('/blog') ?>">Blog</a></li>
-						<li><a href="<?= base_url('/product/') ?>">Our Products</a></li>
 						<li><a href="<?= base_url(); ?>/konsultasi" class="ajax_right">Consultation</a></li>
 						<?php if (session()->get('login')) { ?>
 							<li class="dropdown">
@@ -77,7 +76,7 @@
 												<tr>
 													<?php foreach ($gambar as $g) : ?>
 														<?php if ($g['id_barang'] == $cd['id_barang']) : ?>
-															<td class="image"><img alt="IMAGE" class="img-responsive" src="<?= $g['link_gambar']; ?>"></td>
+															<td class="image"><img alt="IMAGE" class="img-responsive" src="<?= base_url() . '/gambar/' . $g['link_gambar']; ?>"></td>
 														<?php endif; ?>
 													<?php endforeach; ?>
 													<td class="name"><a href="#"><?= $cd['nama_barang']; ?></a></td>
@@ -137,8 +136,8 @@
 							<ul>
 								<li><a href="<?= base_url(); ?>/about">About Us</a></li>
 								<li><a href="<?= base_url(); ?>/delivery">Delivery Information</a></li>
-								<li><a href="#">Privacy Policy</a></li>
-								<li><a href="#">Terms & Conditions</a></li>
+								<!-- <li><a href="#">Privacy Policy</a></li>
+								<li><a href="#">Terms & Conditions</a></li> -->
 							</ul>
 						</div>
 					</div>
@@ -147,9 +146,9 @@
 							<h3>Customer Service</h3>
 							<ul>
 								<li><a href="contact.html" class="ajax_right">Contact Us</a></li>
-								<li><a href="#">Returns</a></li>
+								<!-- <li><a href="#">Returns</a></li>
 								<li><a href="#">Site Map</a></li>
-								<li><a href="#">Shipping</a></li>
+								<li><a href="#">Shipping</a></li> -->
 							</ul>
 						</div>
 					</div>
@@ -163,7 +162,7 @@
 				</div> -->
 					<div class="col-md-3"></div>
 					<div class="col-md-3 social">
-						<div class="copy">Copyright &copy; trio_macan</div>
+						<div class="copy">Copyright &copy; phicos_group</div>
 						<ul class="social-network">
 							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
 							<li><a href="#"><i class="fa fa-google-plus"></i></a></li>

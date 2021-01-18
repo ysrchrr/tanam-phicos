@@ -15,7 +15,7 @@
 		<input type="hidden" value="<?= $id; ?>" id="id_barang">
 		<div class="col-md-6">
 			<div class="image">
-				<a class="cloud-zoom" rel="adjustX: 0, adjustY:0" id='zoom1' href="<?= base_url() ?> /gambar/ <?= $link_img; ?>" title="<?= $name; ?>">
+				<a class="cloud-zoom" rel="adjustX: 0, adjustY:0" id='zoom1' href="<?= base_url() . '/gambar/' . $link_img; ?>" title="<?= $name; ?>">
 					<img src="<?=  base_url() . '/gambar/' . $link_img; ?>" title="<?= $name; ?>" alt="<?= $name; ?>" id="image" />
 				</a>
 			</div>
@@ -120,7 +120,7 @@
 				<div class="col-md-3">
 					<div class="product">
 						<div class="product_sale">Sale</div>
-						<a href="<?= base_url(); ?>/product/<?= $row['slug_kategori']; ?>/<?= $row['slug_barang']; ?>"><img alt="<?= $row['nama_barang'] ?>" src="<?= $row['link_gambar'] ?>"></a>
+						<a href="<?= base_url(); ?>/product/<?= $row['slug_kategori']; ?>/<?= $row['slug_barang']; ?>"><img alt="<?= $row['nama_barang'] ?>" src="<?= base_url() . '/gambar/' . $row['link_gambar']?>"></a>
 						<div class="name">
 							<a href="<?= base_url(); ?>/product/<?= $row['slug_kategori']; ?>/<?= $row['slug_barang']; ?>"><?= $row['nama_barang'] ?></a>
 						</div>

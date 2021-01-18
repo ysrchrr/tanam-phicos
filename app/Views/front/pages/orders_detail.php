@@ -37,7 +37,7 @@
                         <div class="col-md-8 mt-1">
                             <?php foreach ($gambar_pd as $g) : ?>
                                 <?php if ($pd['id_barang'] == $g['id_barang']) : ?>
-                                    <img style="width: 100px;height: 100px;" src="<?= $g['link_gambar']; ?>" alt="">
+                                    <img style="width: 100px;height: 100px;" src="<?= base_url() . '/gambar/' .$g['link_gambar']; ?>" alt="">
                                 <?php endif; ?>
                             <?php endforeach; ?>
                             <label style="margin-top: 10px;color:black;"><?= $pd['nama_barang']; ?><p style="margin-bottom: 0;font-weight:500;color:green"><?= $pd['harga']; ?></p>
